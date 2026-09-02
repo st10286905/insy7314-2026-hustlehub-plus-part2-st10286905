@@ -46,7 +46,7 @@ exports.register = async (req, res, next) => {
       role: assignedRole,
     });
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "User successfully registered.",
       user: {
         id: newUser.id,
@@ -109,6 +109,21 @@ exports.login = async (req, res, next) => {
         role: user.role,
       },
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.me = async (req, res, next) => {
+  try {
+    const user = await UserModel.findById(req.user.id);
+    if (!user)
+      return res.status(404).json({
+        error: { code: "USER_NOT_FOUND", message: "User not found." },
+      });
+
+    const { passwordHash, ...safeUserData } = user;
+    return res.status(200).json({ user: safeUserData });
   } catch (err) {
     next(err);
   }
