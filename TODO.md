@@ -14,19 +14,19 @@
     - [ ] Detailed explanation of security decisions (hashing, JWT, validation, HTTPS).
 
 ### 2. API Functionality: Register/Login (20 Marks)
-- [ ] **Backend API Implementation**
-    - [ ] Implement using Node.js and Express.
-    - [ ] Support user registration functionality.
-    - [ ] Support user login functionality.
-    - [ ] User data storage (initial: in-memory or file-based).
+- [x] **Backend API Implementation**
+    - [x] Implement using Node.js and Express.
+    - [x] Support user registration functionality.
+    - [x] Support user login functionality.
+    - [x] User data storage (initial: in-memory or file-based).
 
 ### 3. API Functionality: Password Security & JWT (20 Marks)
-- [ ] **Security Implementation - Auth**
-    - [ ] **Password Hashing**: Ensure passwords are never stored in plain text.
-    - [ ] **JWT Authentication**:
-        - [ ] Generate JWT upon login.
-        - [ ] Protect API routes using JWT.
-        - [ ] Validate JWT on each protected request.
+- [x] **Security Implementation - Auth**
+    - [x] **Password Hashing**: Ensure passwords are never stored in plain text.
+    - [x] **JWT Authentication**:
+        - [x] Generate JWT upon login.
+        - [x] Protect API routes using JWT.
+        - [x] Validate JWT on each protected request.
 
 ### 4. HTTPS Implementation (10 Marks)
 - [ ] **Security Implementation - Transport**
