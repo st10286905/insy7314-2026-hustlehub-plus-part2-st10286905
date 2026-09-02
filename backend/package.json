@@ -1,0 +1,26 @@
+{
+  "name": "hustlehub-plus_backend",
+  "version": "1.0.0",
+  "description": "The backend API for HustleHub+",
+  "keywords": [
+    "MERN"
+  ],
+  "author": "Sky Martin, Lyle William Richardson, James Marshall, Connaire Myall",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "./scripts/test.sh"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
