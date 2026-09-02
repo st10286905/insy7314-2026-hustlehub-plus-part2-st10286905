@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# AI Disclosure: https://share.gemini.google/a8tW4tPvJ5Kz
+
 set -uo pipefail
 
 PORT=3000
