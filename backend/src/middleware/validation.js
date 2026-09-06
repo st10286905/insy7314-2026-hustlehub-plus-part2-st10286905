@@ -36,3 +36,22 @@ const registerValidation = [
 
     handleValidationErrors,
 ];
+
+const loginValidation = [
+    body('email')
+    .exists().withMessage('Email is required')
+    .bail().isString().withMessage('Email must be a string')
+    .bail().trim().isEmail().withMessage('Email must be a valid email address')
+    .normalizeEmail(),
+
+    body('password')
+    .exists().withMessage('Password is required')
+    .bail().isString().withMessage('Password must be a string'),
+
+    handleValidationErrors,
+];
+
+module.exports = {
+    registerValidation,
+    loginValidation,
+};
