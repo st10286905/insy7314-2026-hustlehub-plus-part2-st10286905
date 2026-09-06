@@ -14,6 +14,7 @@ The design of the system and implementation follows the MERN architecture and is
 
 The below diagram visualises the MERN architecture at a high-level without representation of security considerations. 
 
+<img width="542" height="512" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/c50d2755-c66a-44a4-975c-474dc8f3272c" />
 
 ## Architecture diagram 
 
