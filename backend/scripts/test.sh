@@ -5,7 +5,7 @@
 set -uo pipefail
 
 PORT=3000
-BASE_URL="http://localhost:${PORT}/api/auth"
+BASE_URL="https://localhost:${PORT}/api/auth"
 SERVER_CMD="${SERVER_CMD:-npm run dev}"
 SERVER_LOG="$(mktemp /tmp/hustlehub_server_XXXXXX.log)"
 
@@ -56,7 +56,7 @@ echo -n "Waiting for server to accept connections on port ${PORT}"
 MAX_WAIT_SECONDS=30
 ELAPSED=0
 
-until curl -s "http://localhost:${PORT}" > /dev/null 2>&1 || [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; do
+until curl -ks "https://localhost:${PORT}" > /dev/null 2>&1 || [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; do
     if ! kill -0 "$SERVER_PID" 2>/dev/null; then
         echo -e " ${RED}[FAILED]${NC}\nServer process died unexpectedly. Log output:"
         cat "$SERVER_LOG"
@@ -125,9 +125,9 @@ assert_request() {
 
     local raw_output
     if [[ -n "$payload" ]]; then
-        raw_output=$(curl -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}" -d "$payload")
+        raw_output=$(curl -ks -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}" -d "$payload")
     else
-        raw_output=$(curl -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}")
+        raw_output=$(curl -ks -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}")
     fi
 
     local status_code
