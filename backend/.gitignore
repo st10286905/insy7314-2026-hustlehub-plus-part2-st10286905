@@ -143,14 +143,10 @@ vite.config.ts.timestamp-*
 .vite/
 
 # Secrets & Config
-.env
-.env.*
 !.env.example
 
 # Local SSL / TLS Certificates
 backend/certs/
 certs/
 *.pem
-*.key
-*.crt
 *.pfx
