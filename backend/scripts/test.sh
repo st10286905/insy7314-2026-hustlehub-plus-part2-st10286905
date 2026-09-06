@@ -169,6 +169,49 @@ assert_request() {
 
 echo -e "${BOLD}--- Starting Integration Test Suite ---${NC}\n"
 
+# 0. Invalid email during registration
+INVALID_EMAIL_PAYLOAD=$(jq -n \
+        --arg password "$PASSWORD" \
+    '{email: "not-an-email", password: $password, role: "freelancer"}')
+
+assert_request \
+    "Reject registration with invalid email" \
+    400 \
+    "POST" \
+    "/register" \
+    "$INVALID_EMAIL_PAYLOAD" \
+    "" \
+    '.error.code == "VALIDATION_ERROR"'
+
+# 0.1 Weak password
+WEAK_PASSWORD_PAYLOAD=$(jq -n \
+        --arg email "$TEST_EMAIL" \
+    '{email: $email, password: "123", role: "freelancer"}')
+
+assert_request \
+    "Reject registration with weak password" \
+    400 \
+    "POST" \
+    "/register" \
+    "$WEAK_PASSWORD_PAYLOAD" \
+    "" \
+    '.error.code == "VALIDATION_ERROR"'
+
+# 0.2 Missing email
+MISSING_EMAIL_PAYLOAD=$(jq -n \
+        --arg password "$PASSWORD" \
+    '{password: $password, role: "freelancer"}')
+
+assert_request \
+    "Reject registration with missing email" \
+    400 \
+    "POST" \
+    "/register" \
+    "$MISSING_EMAIL_PAYLOAD" \
+    "" \
+    '.error.code == "VALIDATION_ERROR"'
+
+
 # 1. Successful Registration (201 Created)
 REGISTER_PAYLOAD=$(jq -n \
         --arg email "$TEST_EMAIL" \
