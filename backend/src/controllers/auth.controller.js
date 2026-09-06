@@ -8,6 +8,15 @@ exports.register = async (req, res, next) => {
   try {
     const { email, password, role } = req.body;
 
+    // Validate fields are present
+    if (!email || !password)
+      return res.status(400).json({
+        error: {
+          code: "MISSING_FIELDS",
+          message: "Email and password are required.",
+        },
+      });
+
     // Validate role is allowed
     const allowedRoles = ["client", "freelancer", "admin"];
     const assignedRole = role ? role.toLowerCase() : "client";
