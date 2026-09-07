@@ -1,5 +1,5 @@
 /**
- * @file validation.js
+ * @file validation.middleware.js
  * @description Middleware for validating request data using express-validator.
  * This file contains validation rules for user registration and login, as well as middleware to handle validation errors and reject unknown fields.
  * Code based on the following source:

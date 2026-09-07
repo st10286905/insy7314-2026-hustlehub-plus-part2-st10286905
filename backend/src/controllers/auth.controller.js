@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const config = require("../config");
 const UserModel = require("../models/user.model");
 
 const SALT_ROUNDS = 12;
@@ -68,7 +69,7 @@ exports.login = async (req, res, next) => {
     // Mint token
     const token = jwt.sign(
       { sub: user.id, role: user.role, email: user.email },
-      process.env.JWT_SECRET,
+      config.jwt.secret,
       { expiresIn: "1h" },
     );
 

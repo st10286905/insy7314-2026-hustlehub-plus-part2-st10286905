@@ -1,17 +1,24 @@
-require('dotenv').config();
+const fs = require("fs");
+const http = require("http");
+const https = require("https");
+const app = require("./app");
+const config = require("./config");
 
-const fs = require('fs');
-const https = require('https');
+let server;
 
-const app = require('./app');
+if (config.ssl.useHttps) {
+  const sslOptions = {
+    key: fs.readFileSync(config.ssl.keyPath),
+    cert: fs.readFileSync(config.ssl.certPath),
+  };
+  server = https.createServer(sslOptions, app);
+} else {
+  server = http.createServer(app);
+}
 
-const PORT = process.env.PORT || 3000;
-
-const sslOptions = {
-  key: fs.readFileSync(process.env.SSL_KEY_PATH),
-  cert: fs.readFileSync(process.env.SSL_CERT_PATH),
-};
-
-https.createServer(sslOptions, app).listen(PORT, () => {
-  console.log(`[HustleHub+ API] Listening on https://localhost:${PORT}`);
+server.listen(config.port, () => {
+  const protocol = config.ssl.useHttps ? "https" : "http";
+  console.log(
+    `[HustleHub+ API] Listening on ${protocol}://localhost:${config.port}`,
+  );
 });
