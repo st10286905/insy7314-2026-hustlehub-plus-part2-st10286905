@@ -10,8 +10,10 @@ cd "$PROJECT_DIR"
 ./scripts/init.sh
 export $(grep -v '^#' .env | xargs) # Load .env vars
 
-PORT=3000
-BASE_URL="https://localhost:${PORT}/api/auth"
+BASE_URL="https://localhost:${PORT}"
+if [[ "$USE_HTTPS" != "true" ]]; then
+    BASE_URL="http://localhost:${PORT}"
+fi
 SERVER_CMD="${SERVER_CMD:-node src/server.js}"
 SERVER_LOG="$(mktemp /tmp/hustlehub_server_XXXXXX.log)"
 
@@ -60,7 +62,11 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 locurl() {
-    curl --cacert "$SSL_CERT_PATH" "$@"
+    if [[ "$USE_HTTPS" != "true" ]]; then
+        curl "$@"
+    else
+        curl --cacert "$SSL_CERT_PATH" "$@"
+    fi
 }
 
 # Start background server
@@ -68,11 +74,11 @@ echo -e "${BOLD}Starting server: \`${SERVER_CMD}\`${NC}"
 $SERVER_CMD > "$SERVER_LOG" 2>&1 &
 SERVER_PID=$!
 
-echo -n "Waiting for server to accept connections on port ${PORT}"
+echo -n "Waiting for server to accept connections at ${BASE_URL}"
 MAX_WAIT_SECONDS=30
 ELAPSED=0
 
-until locurl -s "https://localhost:${PORT}" > /dev/null 2>&1 || [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; do
+until locurl -s "$BASE_URL" > /dev/null 2>&1 || [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; do
     if ! kill -0 "$SERVER_PID" 2>/dev/null; then
         echo -e " ${RED}[FAILED]${NC}\nServer process died unexpectedly. Log output:"
         cat "$SERVER_LOG"
@@ -194,7 +200,7 @@ assert_request \
     "Reject registration with invalid email" \
     400 \
     "POST" \
-    "/register" \
+    "/api/auth/register" \
     "$INVALID_EMAIL_PAYLOAD" \
     "" \
     '.error.code == "VALIDATION_ERROR"'
@@ -208,7 +214,7 @@ assert_request \
     "Reject registration with weak password" \
     400 \
     "POST" \
-    "/register" \
+    "/api/auth/register" \
     "$WEAK_PASSWORD_PAYLOAD" \
     "" \
     '.error.code == "VALIDATION_ERROR"'
@@ -222,7 +228,7 @@ assert_request \
     "Reject registration with missing email" \
     400 \
     "POST" \
-    "/register" \
+    "/api/auth/register" \
     "$MISSING_EMAIL_PAYLOAD" \
     "" \
     '.error.code == "VALIDATION_ERROR"'
@@ -239,7 +245,7 @@ assert_request \
     "Register new user account" \
     201 \
     "POST" \
-    "/register" \
+    "/api/auth/register" \
     "$REGISTER_PAYLOAD" \
     "" \
     '.user.email == "'"$TEST_EMAIL"'"'
@@ -249,7 +255,7 @@ assert_request \
     "Reject duplicate account registration" \
     409 \
     "POST" \
-    "/register" \
+    "/api/auth/register" \
     "$REGISTER_PAYLOAD" \
     "" \
     '.error.code == "DUPLICATE_EMAIL"'
@@ -264,7 +270,7 @@ assert_request \
     "Authenticate user and issue JWT" \
     200 \
     "POST" \
-    "/login" \
+    "/api/auth/login" \
     "$LOGIN_PAYLOAD" \
     "" \
     '.token != null and .user.email == "'"$TEST_EMAIL"'"'
@@ -281,7 +287,7 @@ assert_request \
     "Deny access to /me without token" \
     401 \
     "GET" \
-    "/me" \
+    "/api/auth/me" \
     "" \
     "" \
     '.error.code == "UNAUTHORIZED"'
@@ -291,7 +297,7 @@ assert_request \
     "Allow access to /me with valid Bearer token" \
     200 \
     "GET" \
-    "/me" \
+    "/api/auth/me" \
     "" \
     "Bearer ${TOKEN}" \
     '.user.email == "'"$TEST_EMAIL"'"'
@@ -301,7 +307,7 @@ assert_request \
     "Deny access to /me with malformed token" \
     401 \
     "GET" \
-    "/me" \
+    "/api/auth/me" \
     "" \
     "Bearer malformed.or.invalid.token" \
     '.error.code == "INVALID_TOKEN"'
