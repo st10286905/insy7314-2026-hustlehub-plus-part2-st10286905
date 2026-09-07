@@ -20,6 +20,7 @@ exports.register = async (req, res, next) => {
 
     // Hash password and create new user
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+    const assignedRole = role ? role.toLowerCase() : "client";
     const newUser = await UserModel.create({
       email,
       passwordHash,
