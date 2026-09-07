@@ -10,6 +10,9 @@ npm run demo # demonstrate tests, run postman collection, etc.
 ```
 ![CLI based demonstration video](asciinema/demo.gif)
 
+## Team Member Details
+See [TEAM.md](TEAM.md) for team member details including student and group numbers.
+
 ## HustleHub+ User Matrix
 
 | User Role      | System Description                                                                         | Core Responsibilities & Permissions                                                                                                                                                                                                                     |
