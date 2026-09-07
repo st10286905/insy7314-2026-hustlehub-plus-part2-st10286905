@@ -4,9 +4,15 @@
 
 set -uo pipefail
 
+# Init project
+PROJECT_DIR="$(cd -- "$(dirname -- $0)" && pwd)/.."
+cd "$PROJECT_DIR"
+./scripts/init.sh
+export $(grep -v '^#' .env | xargs) # Load .env vars
+
 PORT=3000
 BASE_URL="https://localhost:${PORT}/api/auth"
-SERVER_CMD="${SERVER_CMD:-npm run dev}"
+SERVER_CMD="${SERVER_CMD:-node src/server.js}"
 SERVER_LOG="$(mktemp /tmp/hustlehub_server_XXXXXX.log)"
 
 TIMESTAMP=$(date +%s)
@@ -36,6 +42,12 @@ declare -a TEST_DETAILS=()
 
 cleanup() {
     local exit_code=$?
+
+    if [[ $exit_code -ne 0 && -f "$SERVER_LOG" ]]; then
+        echo -e "\n${RED}${BOLD}Server Log Output on Failure:${NC}"
+        cat "$SERVER_LOG"
+    fi
+
     if [[ -n "${SERVER_PID:-}" ]] && kill -0 "$SERVER_PID" 2>/dev/null; then
         echo -e "\n${BOLD}Shutting down server (PID: ${SERVER_PID})...${NC}"
         pkill -P "$SERVER_PID" 2>/dev/null || true
@@ -47,6 +59,10 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
+locurl() {
+    curl --cacert "$SSL_CERT_PATH" "$@"
+}
+
 # Start background server
 echo -e "${BOLD}Starting server: \`${SERVER_CMD}\`${NC}"
 $SERVER_CMD > "$SERVER_LOG" 2>&1 &
@@ -56,7 +72,7 @@ echo -n "Waiting for server to accept connections on port ${PORT}"
 MAX_WAIT_SECONDS=30
 ELAPSED=0
 
-until curl -ks "https://localhost:${PORT}" > /dev/null 2>&1 || [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; do
+until locurl -s "https://localhost:${PORT}" > /dev/null 2>&1 || [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; do
     if ! kill -0 "$SERVER_PID" 2>/dev/null; then
         echo -e " ${RED}[FAILED]${NC}\nServer process died unexpectedly. Log output:"
         cat "$SERVER_LOG"
@@ -125,9 +141,9 @@ assert_request() {
 
     local raw_output
     if [[ -n "$payload" ]]; then
-        raw_output=$(curl -ks -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}" -d "$payload")
+        raw_output=$(locurl -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}" -d "$payload")
     else
-        raw_output=$(curl -ks -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}")
+        raw_output=$(locurl -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}")
     fi
 
     local status_code

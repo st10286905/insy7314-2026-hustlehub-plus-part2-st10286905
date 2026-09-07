@@ -9,6 +9,7 @@
   "type": "commonjs",
   "main": "src/server.js",
   "scripts": {
+    "init": "./scripts/init.sh",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "./scripts/test.sh"
