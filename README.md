@@ -1,3 +1,15 @@
+The HustleHub+ system is a freelance marketplace platform that facilitates the advertisement and browsing of listed services. The system processes sensitive personable identifiable and financial information related to the booking of services. This make it imperative that the system be designed and implemented in a security conscious manner to proactively mitigate and prevent attack vectors that could be leveraged to compromise its integrity. 
+
+
+## HustleHub+ User Matrix
+
+| User Role      | System Description                                                                         | Core Responsibilities & Permissions                                                                                                                                                                                                                     |
+| :------------- | :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Client**     | Standard consumers who browse, discover, and book freelance services on the platform.      | • **Browse Services:** Browse listed gigs.<br>• **Manage Bookings:** Book services and view automated booking confirmations and histories.                                                                                                              |
+| **Freelancer** | Service providers who market their skills, advertise listed services, and manage bookings. | • **Gig Management:** Create, update, view, and delete their own advertised service listings.<br>• **Track Revenue:** View income generated from pending and completed bookings.<br>• **Booking Management:** View and manage incoming client bookings. |
+| **Admin**      | System administrators responsible for platform health and global user management.          | • **System Monitoring:** Monitor system performance and endpoint activity.<br>• **Platform Governance:** Oversee global user accounts, active service listings, and bookings.                                                                           |
+
+
 # Architecture 
 
 The HustleHub+ system is a freelance marketplace platform that facilitates the advertisement and browsing of listed services. The system processes sensitive personable identifiable and financial information related to the booking of services. This make it imperative that the system be designed and implemented in a security conscious manner to proactively mitigate and prevent attack vectors that could be leveraged to compromise its integrity. 
