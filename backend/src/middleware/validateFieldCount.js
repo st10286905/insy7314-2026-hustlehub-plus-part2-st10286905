@@ -1,4 +1,4 @@
-const rejectUnknownFIelds = (allowedFields) => {
+const rejectUnknownFields = (allowedFields) => {
     return (req, res, next) => {
         const unknownFields = Object.keys(req.body).filter((field) => !allowedFields.includes(field));
         if (unknownFields.length > 0) {
