@@ -8,26 +8,6 @@ exports.register = async (req, res, next) => {
   try {
     const { email, password, role } = req.body;
 
-    // Validate fields are present
-    if (!email || !password)
-      return res.status(400).json({
-        error: {
-          code: "MISSING_FIELDS",
-          message: "Email and password are required.",
-        },
-      });
-
-    // Validate role is allowed
-    const allowedRoles = ["client", "freelancer", "admin"];
-    const assignedRole = role ? role.toLowerCase() : "client";
-    if (!allowedRoles.includes(assignedRole))
-      return res.status(400).json({
-        error: {
-          code: "INVALID_ROLE",
-          message: "Role must be client, freelancer, or admin.",
-        },
-      });
-
     // Verify whether user already exists
     const existingUser = await UserModel.findByEmail(email);
     if (existingUser)
@@ -63,15 +43,6 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
-    // Validate fields are present
-    if (!email || !password)
-      return res.status(400).json({
-        error: {
-          code: "MISSING_FIELDS",
-          message: "Email and password are required.",
-        },
-      });
 
     // Verify whether user exists
     const user = await UserModel.findByEmail(email);
