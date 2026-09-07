@@ -927,6 +927,13 @@ sequenceDiagram
     Ctrl-->>Client: 7. Response: HTTP 200 + Dashboard Data
     deactivate Ctrl
 ```
+
+# Screenshots of API responses
+
+![alt text](<backend/tests/postman/Screenshots/Login - Invalid Credentials.png>) 
+![alt text](<backend/tests/postman/Screenshots/Login - Valid.png>) 
+![alt text](<backend/tests/postman/Screenshots/Me - Invalid Token.png>) ![alt text](<backend/tests/postman/Screenshots/Me - No Token.png>) ![alt text](<backend/tests/postman/Screenshots/Me - Valid Token.png>) ![alt text](<backend/tests/postman/Screenshots/Register - Duplicate Email.png>) ![alt text](<backend/tests/postman/Screenshots/Register - Invalid Email.png>) ![alt text](<backend/tests/postman/Screenshots/Register - Missing Email.png>) ![alt text](<backend/tests/postman/Screenshots/Register - Successful Registration.png>) ![alt text](<backend/tests/postman/Screenshots/Register - Unknown Field.png>) ![alt text](<backend/tests/postman/Screenshots/Register - Weak Password.png>)
+
 ---
 
 # References 
