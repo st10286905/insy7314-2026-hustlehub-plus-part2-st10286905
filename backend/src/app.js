@@ -33,11 +33,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
-// Prevent DoS
-app.use(express.json({ limit: "10kb" }));
 
-// Standard middleware
-app.use(express.json());
+// Standard middleware with limit configured to prevent DoS 
+app.use(express.json({ limit: "10kb" }));
 
 // Routes
 app.use("/api/auth", authRoutes);
