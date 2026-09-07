@@ -29,6 +29,25 @@ const handleValidationErrors = (req, res, next) => {
     next();
 }
 
+const rejectUnknownFields = (allowedFields) => {
+    return (req, res, next) => {
+        const unknownFields = Object.keys(req.body).filter((field) => !allowedFields.includes(field));
+        if (unknownFields.length > 0) {
+            return res.status(400).json({ 
+                error: {
+                    code: 'UNKNOWN_FIELDS',
+                    message: `Request contains unsupported fields`,
+                    details: unknownFields.map((field) => ({
+                        field,
+                        message: `Field "${field}" is not allowed`,
+                    })),
+                }
+            });
+        }
+        next();
+    };
+};
+
 /**
  * Validation rules for user registration.
  * 
@@ -38,7 +57,7 @@ const handleValidationErrors = (req, res, next) => {
  * - role
  */
 const registerValidation = [
-    rejectUnknownFIelds(['email', 'password', 'role']),
+    rejectUnknownFields(['email', 'password', 'role']),
     body('email')
     .exists({checkFalsy: true}).withMessage('Email is required')
     .bail().trim().isLength({max:254}).withMessage('Email must not exceed 254 characters')
@@ -67,7 +86,7 @@ const registerValidation = [
  * - password
  */
 const loginValidation = [
-    rejectUnknownFIelds(['email', 'password']),
+    rejectUnknownFields(['email', 'password']),
     body('email')
     .exists({checkFalsy: true}).withMessage('Email is required')
     .bail().isString().withMessage('Email must be a string')
