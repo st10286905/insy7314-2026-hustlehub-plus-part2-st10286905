@@ -38,6 +38,7 @@ const handleValidationErrors = (req, res, next) => {
  * - role
  */
 const registerValidation = [
+    rejectUnknownFIelds(['email', 'password', 'role']),
     body('email')
     .exists({checkFalsy: true}).withMessage('Email is required')
     .bail().trim().isLength({max:254}).withMessage('Email must not exceed 254 characters')
@@ -66,6 +67,7 @@ const registerValidation = [
  * - password
  */
 const loginValidation = [
+    rejectUnknownFIelds(['email', 'password']),
     body('email')
     .exists({checkFalsy: true}).withMessage('Email is required')
     .bail().isString().withMessage('Email must be a string')
