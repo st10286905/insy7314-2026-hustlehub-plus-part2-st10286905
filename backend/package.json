@@ -10,6 +10,8 @@
   "main": "src/server.js",
   "scripts": {
     "init": "node scripts/init.js",
+    "predev": "npm run init",
+    "pretest": "npm run init",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "node --test tests/**/*.test.js",
