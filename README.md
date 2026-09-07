@@ -917,7 +917,7 @@ sequenceDiagram
     Ctrl-->>Client: 7. Response: HTTP 200 + Dashboard Data
     deactivate Ctrl
 ```
-
+---
 
 # References 
 
