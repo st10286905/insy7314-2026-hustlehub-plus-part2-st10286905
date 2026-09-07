@@ -1,3 +1,13 @@
+/**
+ * @file auth.controller.js
+ * @description Auth API controllers: user registration, login, and the
+ * protected current-user endpoint.
+ * Code based on the following source:
+ *
+ * https://www.npmjs.com/package/bcrypt
+ * https://www.npmjs.com/package/jsonwebtoken
+ */
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
@@ -5,6 +15,13 @@ const UserModel = require("../models/user.model");
 
 const SALT_ROUNDS = 12;
 
+/**
+ * Register a new user. Rejects duplicate emails and returns the created user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Promise<void>}
+ */
 exports.register = async (req, res, next) => {
   try {
     const { email, password, role } = req.body;
@@ -42,6 +59,13 @@ exports.register = async (req, res, next) => {
   }
 };
 
+/**
+ * Authenticate a user and issue a signed JWT on success.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Promise<void>}
+ */
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -87,6 +111,13 @@ exports.login = async (req, res, next) => {
   }
 };
 
+/**
+ * Return the authenticated user's profile from the token payload.
+ * @param {Object} req - The request object (req.user set by auth middleware).
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Promise<void>}
+ */
 exports.me = async (req, res, next) => {
   try {
     const user = await UserModel.findById(req.user.id);

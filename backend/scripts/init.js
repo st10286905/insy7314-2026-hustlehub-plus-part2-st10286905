@@ -1,3 +1,15 @@
+/**
+ * @file init.js
+ * @description Initialisation script that ensures a .env file exists, loads environment
+ * variables, and generates a self-signed TLS certificate when USE_HTTPS is enabled.
+ * Code based on the following source:
+ *
+ * https://nodejs.org/api/fs.html
+ * https://nodejs.org/api/path.html
+ * https://www.npmjs.com/package/dotenv
+ * https://www.npmjs.com/package/selfsigned
+ * https://docs.openssl.org/3.0/man1/openssl-req/
+ */
 // AI Disclosure: .sh scripts ported by https://share.gemini.google/Mz0xUeqIrTaI
 
 const fs = require("fs");
@@ -9,7 +21,12 @@ const rootDir = path.join(__dirname, "..");
 const envPath = path.join(rootDir, ".env");
 const envExamplePath = path.join(rootDir, ".env.example");
 
-// Coordinate environment provisioning and certificate generation
+/**
+ * Coordinate environment provisioning and certificate generation.
+ * Copies .env from .env.example if missing, loads environment variables,
+ * and generates a self-signed TLS certificate when USE_HTTPS is "true".
+ * @returns {Promise<void>} Resolves when initialisation is complete.
+ */
 async function init() {
   // Bootstrap local environment configuration from template if missing
   if (!fs.existsSync(envPath)) {

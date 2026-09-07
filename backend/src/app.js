@@ -1,3 +1,16 @@
+/**
+ * @file app.js
+ * @description Express application setup: security middleware (Helmet, CORS), JSON parsing,
+ * auth routes, and centralized error handling.
+ * Code based on the following source:
+ *
+ * https://www.npmjs.com/package/express
+ * https://expressjs.com/en/4x/api/express/
+ * https://helmetjs.github.io/
+ * https://helmetjs.github.io/#content-security-policy
+ * https://www.npmjs.com/package/cors
+ */
+
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");

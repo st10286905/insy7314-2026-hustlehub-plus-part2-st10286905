@@ -1,3 +1,14 @@
+/**
+ * @file auth.routes.js
+ * @description Auth route wiring: validation middleware, JWT authentication,
+ * and controller handlers for the /api/auth endpoints.
+ * Code based on the following source:
+ *
+ * https://www.npmjs.com/package/express
+ * https://expressjs.com/en/4x/api/express/
+ * https://expressjs.com/en/guide/writing-middleware/
+ */
+
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth.controller");

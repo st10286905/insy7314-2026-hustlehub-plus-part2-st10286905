@@ -1,6 +1,25 @@
+/**
+ * @file auth.middleware.js
+ * @description Authentication and authorization middleware: verifies Bearer JWTs
+ * and restricts routes to allowed roles.
+ * Code based on the following source:
+ *
+ * https://www.npmjs.com/package/jsonwebtoken
+ * https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization
+ * https://expressjs.com/en/guide/writing-middleware/
+ */
+
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
+/**
+ * Verify the Bearer token in the Authorization header and attach the identity
+ * to req.user. Responds 401 for missing, expired, or invalid tokens.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {void}
+ */
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -42,6 +61,11 @@ const authenticate = (req, res, next) => {
   }
 };
 
+/**
+ * Build role-based authorization middleware.
+ * @param {...string} allowedRoles - The roles permitted to pass through.
+ * @returns {Function} A middleware that responds 403 when the role is not allowed.
+ */
 const authorizeRoles = (...allowedRoles) => {
   return (req, res, next) => {
     if (!req.user || !allowedRoles.includes(req.user.role)) {

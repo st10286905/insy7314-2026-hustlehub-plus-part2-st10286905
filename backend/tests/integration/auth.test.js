@@ -1,3 +1,14 @@
+/**
+ * @file auth.test.js
+ * @description Integration test suite for the auth endpoints using the node:test
+ * runner and fetch against an in-process Express server.
+ * Code based on the following source:
+ *
+ * https://nodejs.org/api/test.html
+ * https://nodejs.org/api/assert.html
+ * https://nodejs.org/api/http.html
+ * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+ */
 // AI Disclosure: based on postman collection and ported by https://share.gemini.google/FxpGj6jgOALG
 
 const { describe, it, before, after } = require("node:test");
@@ -23,6 +34,15 @@ describe("Auth Integration Tests", () => {
     role: "freelancer",
   };
 
+  /**
+   * Send a request to the test server and resolve with the status and parsed body.
+   * @param {string} path - The request path.
+   * @param {Object} [options] - The request options.
+   * @param {string} [options.method="GET"] - The HTTP method.
+   * @param {Object} [options.body] - The JSON request body.
+   * @param {Object} [options.headers={}] - Extra headers.
+   * @returns {Promise<{status: number, body: Object|null}>}
+   */
   async function request(path, { method = "GET", body, headers = {} } = {}) {
     const res = await fetch(`${baseUrl}${path}`, {
       method,
