@@ -1,3 +1,14 @@
+/**
+ * @file index.js
+ * @description Loads environment variables from .env and exposes a frozen,
+ * normalized application configuration object.
+ * Code based on the following source:
+ *
+ * https://www.npmjs.com/package/dotenv
+ * https://nodejs.org/api/process.html
+ * https://nodejs.org/api/path.html
+ */
+
 const path = require("path");
 const dotenv = require("dotenv");
 

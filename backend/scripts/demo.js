@@ -1,3 +1,18 @@
+/**
+ * @file demo.js
+ * @description In-process demo/test runner that boots the backend server, runs the
+ * auth API assertions, and executes the Postman collection with Newman.
+ * Code based on the following source:
+ *
+ * https://nodejs.org/api/fs.html
+ * https://nodejs.org/api/path.html
+ * https://nodejs.org/api/http.html
+ * https://nodejs.org/api/https.html
+ * https://nodejs.org/api/child_process.html
+ * https://www.npmjs.com/package/dotenv
+ * https://www.npmjs.com/package/newman
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+ */
 // AI Disclosure: based on postman collection and ported by https://share.gemini.google/FxpGj6jgOALG
 
 const fs = require("fs");
@@ -50,6 +65,11 @@ const testEmail = `test_${timestamp}@hustlehub.co.za`;
 const httpTestEmail = `test_http_${timestamp}@hustlehub.co.za`;
 const testPassword = "SecurePassword123!";
 
+/**
+ * Format a response body for console display with indentation.
+ * @param {Object|string|null|undefined} content - The body to display.
+ * @returns {string} The formatted, indented representation.
+ */
 function formatBody(content) {
   const indent = "    ";
   if (content === null || content === undefined) {
@@ -82,6 +102,15 @@ function formatBody(content) {
   }
 }
 
+/**
+ * Send an HTTP/HTTPS request to the local server and resolve with its response.
+ * @param {string} method - The HTTP method.
+ * @param {string} endpoint - The request path or absolute URL.
+ * @param {Object|string|null} [payload=null] - The request body.
+ * @param {string|null} [authHeader=null] - The Authorization header value.
+ * @param {string} [targetBaseUrl=baseUrl] - The base URL to resolve the endpoint against.
+ * @returns {Promise<{statusCode: number, body: Object|string|null}>} The response status and parsed body.
+ */
 function sendRequest(
   method,
   endpoint,
@@ -129,6 +158,20 @@ function sendRequest(
   });
 }
 
+/**
+ * Execute one API request test: send the request, compare the status code,
+ * run an optional body validator, and record the pass/fail result.
+ * @param {string} title - The test title shown in the console.
+ * @param {number} expectedStatus - The expected HTTP status code.
+ * @param {string} method - The HTTP method.
+ * @param {string} pathUrl - The request path.
+ * @param {Object|string|null} [payload=null] - The request body.
+ * @param {string|null} [authHeader=null] - The Authorization header value.
+ * @param {Function|null} [validatorFn=null] - Optional (body) => boolean validator.
+ * @param {string} [filterDesc=""] - Human-readable description of the validator.
+ * @param {string} [targetBaseUrl=baseUrl] - The base URL for the request.
+ * @returns {Promise<void>}
+ */
 async function assertRequest(
   title,
   expectedStatus,
@@ -197,6 +240,11 @@ async function assertRequest(
   console.log("");
 }
 
+/**
+ * Run the full demo: initialise the environment, boot the servers, execute the
+ * in-process assertions and the Newman Postman collection, then shut down.
+ * @returns {Promise<void>} Resolves after all checks have run.
+ */
 async function runSuite() {
   await init();
   dotenv.config({ path: envPath, override: true });
@@ -552,6 +600,11 @@ async function runSuite() {
   }
 }
 
+/**
+ * Close the HTTP/HTTPS servers and terminate the process.
+ * @param {number} code - The process exit code (0 for success, 1 for failure).
+ * @returns {Promise<void>}
+ */
 async function cleanupAndExit(code) {
   if (httpServer) {
     await new Promise((resolve) => httpServer.close(resolve)).catch(() => {});
