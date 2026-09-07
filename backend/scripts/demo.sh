@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
 
-# AI Disclosure:  https://share.gemini.google/a8tW4tPvJ5Kz
+# AI Disclosure: based on postman collection and ported by https://share.gemini.google/FxpGj6jgOALG
 
 set -uo pipefail
 
-# Init project
-PROJECT_DIR="$(cd -- "$(dirname -- $0)" && pwd)/.."
+PROJECT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)/.."
 cd "$PROJECT_DIR"
+
 ./scripts/init.sh
-export $(grep -v '^#' .env | xargs) # Load .env vars
+
+export $(grep -v '^#' .env | xargs)
 
 BASE_URL="https://localhost:${PORT}"
-if [[ "$USE_HTTPS" != "true" ]]; then
+if [[ "${USE_HTTPS:-false}" != "true" ]]; then
     BASE_URL="http://localhost:${PORT}"
 fi
+
 SERVER_CMD="${SERVER_CMD:-node src/server.js}"
 SERVER_LOG="$(mktemp /tmp/hustlehub_server_XXXXXX.log)"
-
 TIMESTAMP=$(date +%s)
 TEST_EMAIL="test_${TIMESTAMP}@hustlehub.co.za"
+HTTP_TEST_EMAIL="test_http_${TIMESTAMP}@hustlehub.co.za"
 PASSWORD="SecurePassword123!"
 
-# Output styling
 GREEN="\033[0;32m"
 RED="\033[0;31m"
 CYAN="\033[0;36m"
@@ -30,26 +31,30 @@ BLUE="\033[0;34m"
 BOLD="\033[1m"
 DIM="\033[2m"
 NC="\033[0m"
+DIVIDER="------------------------------------------------------------"
 
 PASSED=0
 FAILED=0
 TEST_INDEX=0
 LAST_BODY=""
 SERVER_PID=""
+HTTP_SERVER_PID=""
+HTTP_BASE_URL=""
 
-# Test tracking arrays for the final summary
 declare -a TEST_TITLES=()
 declare -a TEST_STATUSES=()
 declare -a TEST_DETAILS=()
 
 cleanup() {
     local exit_code=$?
-
     if [[ $exit_code -ne 0 && -f "$SERVER_LOG" ]]; then
         echo -e "\n${RED}${BOLD}Server Log Output on Failure:${NC}"
         cat "$SERVER_LOG"
     fi
-
+    if [[ -n "${HTTP_SERVER_PID:-}" ]] && kill -0 "$HTTP_SERVER_PID" 2>/dev/null; then
+        kill "$HTTP_SERVER_PID" 2>/dev/null || true
+        wait "$HTTP_SERVER_PID" 2>/dev/null || true
+    fi
     if [[ -n "${SERVER_PID:-}" ]] && kill -0 "$SERVER_PID" 2>/dev/null; then
         echo -e "\n${BOLD}Shutting down server (PID: ${SERVER_PID})...${NC}"
         pkill -P "$SERVER_PID" 2>/dev/null || true
@@ -59,17 +64,17 @@ cleanup() {
     rm -f "$SERVER_LOG"
     exit "$exit_code"
 }
+
 trap cleanup EXIT INT TERM
 
 locurl() {
-    if [[ "$USE_HTTPS" != "true" ]]; then
+    if [[ "${USE_HTTPS:-false}" != "true" ]]; then
         curl "$@"
     else
         curl --cacert "$SSL_CERT_PATH" "$@"
     fi
 }
 
-# Start background server
 echo -e "${BOLD}Starting server: \`${SERVER_CMD}\`${NC}"
 $SERVER_CMD > "$SERVER_LOG" 2>&1 &
 SERVER_PID=$!
@@ -94,10 +99,27 @@ if [[ $ELAPSED -ge $MAX_WAIT_SECONDS ]]; then
     cat "$SERVER_LOG"
     exit 1
 fi
-
 echo -e " ${GREEN}[READY]${NC} (PID: ${SERVER_PID})\n"
 
-# Pretty-print JSON or raw strings with indentation
+HTTP_BASE_URL="$BASE_URL"
+if [[ "${USE_HTTPS:-false}" == "true" ]]; then
+    HTTP_PORT=$((PORT + 1))
+    node -e "
+      const http = require('http');
+      const app = require('./src/app');
+      const server = http.createServer(app);
+      server.listen($HTTP_PORT, '127.0.0.1', () => {});
+    " > /dev/null 2>&1 &
+    HTTP_SERVER_PID=$!
+    HTTP_BASE_URL="http://127.0.0.1:${HTTP_PORT}"
+    for _ in {1..30}; do
+        if curl -s "$HTTP_BASE_URL/api/auth/me" > /dev/null 2>&1; then
+            break
+        fi
+        sleep 0.1
+    done
+fi
+
 format_body() {
     local content="$1"
     local indent="    "
@@ -119,15 +141,14 @@ assert_request() {
     local payload="${5:-}"
     local auth_header="${6:-}"
     local jq_filter="${7:-}"
-    local full_url="${BASE_URL}${path}"
+    local target_base="${8:-$BASE_URL}"
+    local full_url="${target_base}${path}"
 
     TEST_TITLES+=("$title")
-
-    echo -e "${BOLD}${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${BOLD}${BLUE}${DIVIDER}${NC}"
     echo -e "${BOLD}Test ${TEST_INDEX}: ${title}${NC}"
-    echo -e "${BOLD}${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${BOLD}${BLUE}${DIVIDER}${NC}"
 
-    # 1. Pretty format Request
     echo -e "${CYAN}${BOLD}> REQUEST${NC}"
     echo -e "  ${BOLD}Endpoint:${NC} ${method} ${full_url}"
     echo -e "  ${BOLD}Headers:${NC}  Content-Type: application/json"
@@ -139,17 +160,21 @@ assert_request() {
         format_body "$payload"
     fi
 
-    # 2. Execute Request
     local headers=(-H "Content-Type: application/json")
     if [[ -n "$auth_header" ]]; then
         headers+=(-H "Authorization: ${auth_header}")
     fi
 
     local raw_output
+    local curl_tool="locurl"
+    if [[ "$full_url" =~ ^http:// ]]; then
+        curl_tool="curl"
+    fi
+
     if [[ -n "$payload" ]]; then
-        raw_output=$(locurl -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}" -d "$payload")
+        raw_output=$($curl_tool -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}" -d "$payload")
     else
-        raw_output=$(locurl -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}")
+        raw_output=$($curl_tool -s -w "\n%{http_code}" -X "$method" "$full_url" "${headers[@]}")
     fi
 
     local status_code
@@ -158,13 +183,11 @@ assert_request() {
     body=$(sed '$ d' <<< "$raw_output")
     LAST_BODY="$body"
 
-    # 3. Pretty format Result
     echo -e "\n${YELLOW}${BOLD}< RESPONSE${NC}"
     echo -e "  ${BOLD}HTTP Status:${NC} ${status_code}"
     echo -e "  ${BOLD}Body:${NC}"
     format_body "$body"
 
-    # 4. Evaluate Assertions
     local error_msg=""
     if [[ "$status_code" -ne "$expected_status" ]]; then
         error_msg="Expected HTTP ${expected_status}, received ${status_code}"
@@ -176,12 +199,12 @@ assert_request() {
 
     echo ""
     if [[ -z "$error_msg" ]]; then
-        echo -e "  ${GREEN}${BOLD}✔ PASS${NC} (HTTP ${status_code} matched expected ${expected_status})"
+        echo -e "  ${GREEN}${BOLD}  PASS${NC} (HTTP ${status_code} matched expected ${expected_status})"
         TEST_STATUSES+=("PASS")
         TEST_DETAILS+=("HTTP ${status_code}")
         ((PASSED++))
     else
-        echo -e "  ${RED}${BOLD}✖ FAIL${NC} (${error_msg})"
+        echo -e "  ${RED}${BOLD}  FAIL${NC} (${error_msg})"
         TEST_STATUSES+=("FAIL")
         TEST_DETAILS+=("${error_msg}")
         ((FAILED++))
@@ -191,68 +214,94 @@ assert_request() {
 
 echo -e "${BOLD}--- Starting Integration Test Suite ---${NC}\n"
 
-# 0. Invalid email during registration
+# Test 1: Register - Invalid Email
 INVALID_EMAIL_PAYLOAD=$(jq -n \
         --arg password "$PASSWORD" \
     '{email: "not-an-email", password: $password, role: "freelancer"}')
-
 assert_request \
-    "Reject registration with invalid email" \
+    "Reject registration with invalid email (Register - Invalid Email)" \
     400 \
     "POST" \
     "/api/auth/register" \
     "$INVALID_EMAIL_PAYLOAD" \
     "" \
-    '.error.code == "VALIDATION_ERROR"'
+    '.error.code == "VALIDATION_ERROR" and (.error.details | any(.field == "email"))'
 
-# 0.1 Weak password
+# Test 2: Register - Weak Password
 WEAK_PASSWORD_PAYLOAD=$(jq -n \
         --arg email "$TEST_EMAIL" \
     '{email: $email, password: "123", role: "freelancer"}')
-
 assert_request \
-    "Reject registration with weak password" \
+    "Reject registration with weak password (Register - Weak Password)" \
     400 \
     "POST" \
     "/api/auth/register" \
     "$WEAK_PASSWORD_PAYLOAD" \
     "" \
-    '.error.code == "VALIDATION_ERROR"'
+    '.error.code == "VALIDATION_ERROR" and (.error.details | any(.field == "password"))'
 
-# 0.2 Missing email
+# Test 3: Register - Missing Email
 MISSING_EMAIL_PAYLOAD=$(jq -n \
         --arg password "$PASSWORD" \
     '{password: $password, role: "freelancer"}')
-
 assert_request \
-    "Reject registration with missing email" \
+    "Reject registration with missing email (Register - Missing Email)" \
     400 \
     "POST" \
     "/api/auth/register" \
     "$MISSING_EMAIL_PAYLOAD" \
     "" \
-    '.error.code == "VALIDATION_ERROR"'
+    '.error.code == "VALIDATION_ERROR" and (.error.details | any(.field == "email" and .message == "Email is required"))'
 
+# Test 4: Register - Unknown Field
+UNKNOWN_FIELD_PAYLOAD=$(jq -n \
+        --arg email "$TEST_EMAIL" \
+        --arg password "$PASSWORD" \
+        --arg role "freelancer" \
+    '{email: $email, password: $password, role: $role, username: "not-allowed"}')
+assert_request \
+    "Reject registration with unknown field (Register - Unknown Field)" \
+    400 \
+    "POST" \
+    "/api/auth/register" \
+    "$UNKNOWN_FIELD_PAYLOAD" \
+    "" \
+    '.error.code == "UNKNOWN_FIELDS" and (.error.details | any(.field == "username"))'
 
-# 1. Successful Registration (201 Created)
+# Test 5: Register - Successful Registration
 REGISTER_PAYLOAD=$(jq -n \
         --arg email "$TEST_EMAIL" \
         --arg password "$PASSWORD" \
         --arg role "freelancer" \
     '{email: $email, password: $password, role: $role}')
-
 assert_request \
-    "Register new user account" \
+    "Register new user account (Valid Register / Register - Successful Registration)" \
     201 \
     "POST" \
     "/api/auth/register" \
     "$REGISTER_PAYLOAD" \
     "" \
-    '.user.email == "'"$TEST_EMAIL"'"'
+    '.user.email == "'"$TEST_EMAIL"'" and .message == "User successfully registered." and (.user | has("passwordHash") | not)'
 
-# 2. Duplicate Registration Check (409 Conflict)
+# Test 6: Valid Register No HTTPS
+HTTP_REGISTER_PAYLOAD=$(jq -n \
+        --arg email "$HTTP_TEST_EMAIL" \
+        --arg password "$PASSWORD" \
+        --arg role "freelancer" \
+    '{email: $email, password: $password, role: $role}')
 assert_request \
-    "Reject duplicate account registration" \
+    "Register user account over HTTP (Valid Register No HTTPS)" \
+    201 \
+    "POST" \
+    "/api/auth/register" \
+    "$HTTP_REGISTER_PAYLOAD" \
+    "" \
+    '.user.email == "'"$HTTP_TEST_EMAIL"'" and .message == "User successfully registered."' \
+    "$HTTP_BASE_URL"
+
+# Test 7: Register - Duplicate Email
+assert_request \
+    "Reject duplicate account registration (Register - Duplicate Email)" \
     409 \
     "POST" \
     "/api/auth/register" \
@@ -260,31 +309,82 @@ assert_request \
     "" \
     '.error.code == "DUPLICATE_EMAIL"'
 
-# 3. Successful Login (200 OK + JWT)
+# Test 8: Login - Invalid Email
+LOGIN_INVALID_EMAIL_PAYLOAD=$(jq -n \
+        --arg password "$PASSWORD" \
+    '{email: "not-an-email", password: $password}')
+assert_request \
+    "Reject login with invalid email syntax (Login Invalid Email)" \
+    400 \
+    "POST" \
+    "/api/auth/login" \
+    "$LOGIN_INVALID_EMAIL_PAYLOAD" \
+    "" \
+    '.error.code == "VALIDATION_ERROR" and (.error.details | any(.field == "email"))'
+
+# Test 9: Login - Missing Password
+LOGIN_NO_PW_PAYLOAD=$(jq -n \
+        --arg email "$TEST_EMAIL" \
+    '{email: $email}')
+assert_request \
+    "Reject login with missing password (Login No Password)" \
+    400 \
+    "POST" \
+    "/api/auth/login" \
+    "$LOGIN_NO_PW_PAYLOAD" \
+    "" \
+    '.error.code == "VALIDATION_ERROR" and (.error.details | any(.field == "password"))'
+
+# Test 10: Login - Invalid Password
+LOGIN_INVALID_PW_PAYLOAD=$(node -e "
+    const obj = { email: '$TEST_EMAIL', password: 'A'.repeat(129) };
+    process.stdout.write(JSON.stringify(obj));
+")
+assert_request \
+    "Reject login with password exceeding length limit (Login Invalid Password)" \
+    400 \
+    "POST" \
+    "/api/auth/login" \
+    "$LOGIN_INVALID_PW_PAYLOAD" \
+    "" \
+    '.error.code == "VALIDATION_ERROR" and (.error.details | any(.field == "password"))'
+
+# Test 11: Login - Invalid Credentials
+LOGIN_WRONG_PW_PAYLOAD=$(jq -n \
+        --arg email "$TEST_EMAIL" \
+    '{email: $email, password: "WrongPassword123!"}')
+assert_request \
+    "Reject login with invalid credentials (Login - Invalid Credentials)" \
+    401 \
+    "POST" \
+    "/api/auth/login" \
+    "$LOGIN_WRONG_PW_PAYLOAD" \
+    "" \
+    '.error.code == "INVALID_CREDENTIALS"'
+
+# Test 12: Login - Valid
 LOGIN_PAYLOAD=$(jq -n \
         --arg email "$TEST_EMAIL" \
         --arg password "$PASSWORD" \
     '{email: $email, password: $password}')
-
 assert_request \
-    "Authenticate user and issue JWT" \
+    "Authenticate user and issue JWT (Valid Login / Login - Valid)" \
     200 \
     "POST" \
     "/api/auth/login" \
     "$LOGIN_PAYLOAD" \
     "" \
-    '.token != null and .user.email == "'"$TEST_EMAIL"'"'
+    '.token != null and .user.email == "'"$TEST_EMAIL"'" and (.user | has("passwordHash") | not)'
 
 TOKEN=$(echo "$LAST_BODY" | jq -r '.token // empty')
-
 if [[ -z "$TOKEN" ]]; then
     echo -e "${RED}${BOLD}Aborting remaining tests: Failed to retrieve JWT token from login response.${NC}\n"
     exit 1
 fi
 
-# 4. Protected Route without Token (401 Unauthorized)
+# Test 13: GET /me - No Token
 assert_request \
-    "Deny access to /me without token" \
+    "Deny access to /me without token (GET /me - No Token)" \
     401 \
     "GET" \
     "/api/auth/me" \
@@ -292,19 +392,9 @@ assert_request \
     "" \
     '.error.code == "UNAUTHORIZED"'
 
-# 5. Protected Route with Valid Token (200 OK)
+# Test 14: GET /me - Invalid Token
 assert_request \
-    "Allow access to /me with valid Bearer token" \
-    200 \
-    "GET" \
-    "/api/auth/me" \
-    "" \
-    "Bearer ${TOKEN}" \
-    '.user.email == "'"$TEST_EMAIL"'"'
-
-# 6. Protected Route with Invalid Token (401 Unauthorized)
-assert_request \
-    "Deny access to /me with malformed token" \
+    "Deny access to /me with malformed token (GET /me - Invalid Token)" \
     401 \
     "GET" \
     "/api/auth/me" \
@@ -312,18 +402,44 @@ assert_request \
     "Bearer malformed.or.invalid.token" \
     '.error.code == "INVALID_TOKEN"'
 
-# Summary Dashboard
+# Test 15: GET /me - Valid Token
+assert_request \
+    "Allow access to /me with valid Bearer token (GET /me - Valid Token)" \
+    200 \
+    "GET" \
+    "/api/auth/me" \
+    "" \
+    "Bearer ${TOKEN}" \
+    '.user.email == "'"$TEST_EMAIL"'" and (.user | has("passwordHash") | not)'
+
+# Postman / Newman Test Suite
+echo -e "${BOLD}${BLUE}============================================================${NC}"
+echo -e "${BOLD}             RUNNING POSTMAN COLLECTION (NEWMAN)            ${NC}"
+echo -e "${BOLD}${BLUE}============================================================${NC}\n"
+
+if npx newman run "tests/postman/HustleHub-Auth.postman_collection.json" -e "tests/postman/HustleHub-Local.postman_environment.json" --insecure; then
+    TEST_TITLES+=("Postman Collection (Newman)")
+    TEST_STATUSES+=("PASS")
+    TEST_DETAILS+=("All Postman tests passed")
+    ((PASSED++))
+else
+    TEST_TITLES+=("Postman Collection (Newman)")
+    TEST_STATUSES+=("FAIL")
+    TEST_DETAILS+=("Newman run failed")
+    ((FAILED++))
+fi
+echo ""
+
 TOTAL=$((PASSED + FAILED))
 echo -e "${BOLD}${BLUE}============================================================${NC}"
 echo -e "${BOLD}                       TEST SUMMARY                         ${NC}"
 echo -e "${BOLD}${BLUE}============================================================${NC}"
 
-# Itemised test breakdown
 for i in "${!TEST_TITLES[@]}"; do
     if [[ "${TEST_STATUSES[$i]}" == "PASS" ]]; then
-        printf "  ${GREEN}${BOLD}%-6s${NC}  %s\n" "✔ PASS" "${TEST_TITLES[$i]}"
+        printf "  ${GREEN}${BOLD}%-6s${NC}  %s\n" "  PASS" "${TEST_TITLES[$i]}"
     else
-        printf "  ${RED}${BOLD}%-6s${NC}  %s ${RED}(%s)${NC}\n" "✖ FAIL" "${TEST_TITLES[$i]}" "${TEST_DETAILS[$i]}"
+        printf "  ${RED}${BOLD}%-6s${NC}  %s ${RED}(%s)${NC}\n" "  FAIL" "${TEST_TITLES[$i]}" "${TEST_DETAILS[$i]}"
     fi
 done
 

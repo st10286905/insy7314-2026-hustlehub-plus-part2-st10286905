@@ -1,16 +1,16 @@
-// AI Disclosure: .sh scripts ported by https://share.gemini.google/Mz0xUeqIrTaI
+// AI Disclosure: based on postman collection and ported by https://share.gemini.google/FxpGj6jgOALG
 
 const fs = require("fs");
 const path = require("path");
 const http = require("http");
 const https = require("https");
+const { spawn } = require("child_process");
 const dotenv = require("dotenv");
 const init = require("./init");
 
 const rootDir = path.join(__dirname, "..");
 const envPath = path.join(rootDir, ".env");
 
-// Visual output styling and ANSI terminal codes
 const GREEN = "\x1b[0;32m";
 const RED = "\x1b[0;31m";
 const CYAN = "\x1b[0;36m";
@@ -19,23 +19,22 @@ const BLUE = "\x1b[0;34m";
 const BOLD = "\x1b[1m";
 const DIM = "\x1b[2m";
 const NC = "\x1b[0m";
-
-const DIVIDER = "────────────────────────────────────────────────────────────";
+const DIVIDER = "------------------------------------------------------------";
 const DOUBLE_DIVIDER =
   "============================================================";
 const SINGLE_DIVIDER =
   "------------------------------------------------------------";
 
-// Runtime handles populated dynamically during initialisation
 let app;
 let server;
+let httpServer;
 let baseUrl;
+let httpBaseUrl;
 let cert;
 let isHttps;
 let keyPath;
 let certPath;
 
-// Test execution tracking
 let passed = 0;
 let failed = 0;
 let testIndex = 0;
@@ -48,15 +47,14 @@ const testDetails = [];
 
 const timestamp = Math.floor(Date.now() / 1000);
 const testEmail = `test_${timestamp}@hustlehub.co.za`;
+const httpTestEmail = `test_http_${timestamp}@hustlehub.co.za`;
 const testPassword = "SecurePassword123!";
 
-// Format JSON or raw response strings with consistent indentation
 function formatBody(content) {
   const indent = "    ";
   if (content === null || content === undefined) {
     return `${indent}${DIM}(empty)${NC}`;
   }
-
   if (typeof content === "object") {
     if (Object.keys(content).length === 0) {
       return `${indent}${DIM}(empty)${NC}`;
@@ -66,12 +64,10 @@ function formatBody(content) {
       .map((line) => `${indent}${line}`)
       .join("\n");
   }
-
   const trimmed = String(content).trim();
   if (!trimmed) {
     return `${indent}${DIM}(empty)${NC}`;
   }
-
   try {
     const parsed = JSON.parse(trimmed);
     return JSON.stringify(parsed, null, 2)
@@ -86,25 +82,27 @@ function formatBody(content) {
   }
 }
 
-// Dispatch an HTTP or HTTPS network request with optional certificate authority verification
-function sendRequest(method, endpoint, payload = null, authHeader = null) {
+function sendRequest(
+  method,
+  endpoint,
+  payload = null,
+  authHeader = null,
+  targetBaseUrl = baseUrl,
+) {
   return new Promise((resolve, reject) => {
-    const url = new URL(endpoint, baseUrl);
-    const transport = isHttps ? https : http;
-
+    const url = new URL(endpoint, targetBaseUrl);
+    const transport = url.protocol === "https:" ? https : http;
     const headers = {
       "Content-Type": "application/json",
     };
     if (authHeader) {
       headers["Authorization"] = authHeader;
     }
-
     const reqOptions = {
       method,
       headers,
-      ca: isHttps ? cert : undefined,
+      ca: url.protocol === "https:" ? cert : undefined,
     };
-
     const req = transport.request(url, reqOptions, (res) => {
       let data = "";
       res.setEncoding("utf8");
@@ -121,9 +119,7 @@ function sendRequest(method, endpoint, payload = null, authHeader = null) {
         resolve({ statusCode: res.statusCode, body: parsed });
       });
     });
-
     req.on("error", reject);
-
     if (payload) {
       req.write(
         typeof payload === "string" ? payload : JSON.stringify(payload),
@@ -133,7 +129,6 @@ function sendRequest(method, endpoint, payload = null, authHeader = null) {
   });
 }
 
-// Execute a single test case with detailed visual request and response logging
 async function assertRequest(
   title,
   expectedStatus,
@@ -143,16 +138,16 @@ async function assertRequest(
   authHeader = null,
   validatorFn = null,
   filterDesc = "",
+  targetBaseUrl = baseUrl,
 ) {
   testIndex++;
-  const fullUrl = `${baseUrl}${pathUrl}`;
+  const fullUrl = `${targetBaseUrl}${pathUrl}`;
   testTitles.push(title);
 
   console.log(`${BOLD}${BLUE}${DIVIDER}${NC}`);
   console.log(`${BOLD}Test ${testIndex}: ${title}${NC}`);
   console.log(`${BOLD}${BLUE}${DIVIDER}${NC}`);
 
-  // Format and log request details
   console.log(`${CYAN}${BOLD}> REQUEST${NC}`);
   console.log(`  ${BOLD}Endpoint:${NC} ${method} ${fullUrl}`);
   console.log(`  ${BOLD}Headers:${NC}  Content-Type: application/json`);
@@ -164,22 +159,20 @@ async function assertRequest(
     console.log(formatBody(payload));
   }
 
-  // Dispatch network request
   const { statusCode, body } = await sendRequest(
     method,
     pathUrl,
     payload,
     authHeader,
+    targetBaseUrl,
   );
   lastBody = body;
 
-  // Format and log response details
   console.log(`\n${YELLOW}${BOLD}< RESPONSE${NC}`);
   console.log(`  ${BOLD}HTTP Status:${NC} ${statusCode}`);
   console.log(`  ${BOLD}Body:${NC}`);
   console.log(formatBody(body));
 
-  // Evaluate status code and schema assertions
   let errorMsg = "";
   if (statusCode !== expectedStatus) {
     errorMsg = `Expected HTTP ${expectedStatus}, received ${statusCode}`;
@@ -190,13 +183,13 @@ async function assertRequest(
   console.log("");
   if (!errorMsg) {
     console.log(
-      `  ${GREEN}${BOLD}✔ PASS${NC} (HTTP ${statusCode} matched expected ${expectedStatus})`,
+      `  ${GREEN}${BOLD}  PASS${NC} (HTTP ${statusCode} matched expected ${expectedStatus})`,
     );
     testStatuses.push("PASS");
     testDetails.push(`HTTP ${statusCode}`);
     passed++;
   } else {
-    console.log(`  ${RED}${BOLD}✖ FAIL${NC} (${errorMsg})`);
+    console.log(`  ${RED}${BOLD}  FAIL${NC} (${errorMsg})`);
     testStatuses.push("FAIL");
     testDetails.push(errorMsg);
     failed++;
@@ -204,15 +197,10 @@ async function assertRequest(
   console.log("");
 }
 
-// Coordinate initialisation, server startup, and the integration test suite
 async function runSuite() {
-  // Ensure environment files and TLS certificates are configured
   await init();
-
-  // Load environment variables into process.env now that the file exists
   dotenv.config({ path: envPath, override: true });
 
-  // Resolve configuration and paths from environment variables
   isHttps = process.env.USE_HTTPS === "true";
   keyPath = path.resolve(
     rootDir,
@@ -223,12 +211,7 @@ async function runSuite() {
     process.env.SSL_CERT_PATH || "secrets/localhost-cert.pem",
   );
 
-  // Import the Express application after environment variables are populated
   app = require("../src/app");
-
-  // Start the HTTP or HTTPS server based on configuration
-  const serverCmd = "node src/server.js";
-  console.log(`${BOLD}Starting server: \`${serverCmd}\`${NC}`);
 
   if (isHttps) {
     if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
@@ -240,89 +223,133 @@ async function runSuite() {
     cert = fs.readFileSync(certPath);
     const key = fs.readFileSync(keyPath);
     server = https.createServer({ key, cert }, app);
+
+    httpServer = http.createServer(app);
+    await new Promise((resolve) => httpServer.listen(0, resolve));
+    httpBaseUrl = `http://localhost:${httpServer.address().port}`;
   } else {
     server = http.createServer(app);
   }
 
-  await new Promise((resolve) => server.listen(0, resolve));
-  const port = server.address().port;
+  const port = parseInt(process.env.PORT, 10) || 3000;
+  await new Promise((resolve) => server.listen(port, resolve));
   baseUrl = `${isHttps ? "https" : "http"}://localhost:${port}`;
+  if (!isHttps) {
+    httpBaseUrl = baseUrl;
+  }
 
+  console.log(`${BOLD}Starting integration test runner${NC}`);
   console.log(
-    `Waiting for server to accept connections at ${baseUrl}... ${GREEN}[READY]${NC} (PID: ${process.pid})\n`,
+    `Server ready at ${baseUrl} ${GREEN}[READY]${NC} (PID: ${process.pid})\n`,
   );
   console.log(`${BOLD}--- Starting Integration Test Suite ---${NC}\n`);
 
-  // Validation: Malformed email syntax
-  const invalidEmailPayload = {
-    email: "not-an-email",
-    password: testPassword,
-    role: "freelancer",
-  };
+  // Test 1: Register - Invalid Email
   await assertRequest(
-    "Reject registration with invalid email",
+    "Reject registration with invalid email (Register - Invalid Email)",
     400,
     "POST",
     "/api/auth/register",
-    invalidEmailPayload,
+    { email: "not-an-email", password: testPassword, role: "freelancer" },
     "",
-    (b) => b?.error?.code === "VALIDATION_ERROR",
-    '.error.code == "VALIDATION_ERROR"',
+    (b) =>
+      b?.error?.code === "VALIDATION_ERROR" &&
+      b?.error?.details?.some((d) => d.field === "email"),
+    '.error.code == "VALIDATION_ERROR" and email error exists',
   );
 
-  // Validation: Password complexity requirements
-  const weakPasswordPayload = {
-    email: testEmail,
-    password: "123",
-    role: "freelancer",
-  };
+  // Test 2: Register - Weak Password
   await assertRequest(
-    "Reject registration with weak password",
+    "Reject registration with weak password (Register - Weak Password)",
     400,
     "POST",
     "/api/auth/register",
-    weakPasswordPayload,
+    { email: testEmail, password: "123", role: "freelancer" },
     "",
-    (b) => b?.error?.code === "VALIDATION_ERROR",
-    '.error.code == "VALIDATION_ERROR"',
+    (b) =>
+      b?.error?.code === "VALIDATION_ERROR" &&
+      b?.error?.details?.some((d) => d.field === "password"),
+    '.error.code == "VALIDATION_ERROR" and password error exists',
   );
 
-  // Validation: Missing required credentials
-  const missingEmailPayload = {
-    password: testPassword,
-    role: "freelancer",
-  };
+  // Test 3: Register - Missing Email
   await assertRequest(
-    "Reject registration with missing email",
+    "Reject registration with missing email (Register - Missing Email)",
     400,
     "POST",
     "/api/auth/register",
-    missingEmailPayload,
+    { password: testPassword, role: "freelancer" },
     "",
-    (b) => b?.error?.code === "VALIDATION_ERROR",
-    '.error.code == "VALIDATION_ERROR"',
+    (b) =>
+      b?.error?.code === "VALIDATION_ERROR" &&
+      b?.error?.details?.some(
+        (d) => d.field === "email" && d.message === "Email is required",
+      ),
+    '.error.code == "VALIDATION_ERROR" and email required message exists',
   );
 
-  // User lifecycle: Account creation
+  // Test 4: Register - Unknown Field
+  await assertRequest(
+    "Reject registration with unknown field (Register - Unknown Field)",
+    400,
+    "POST",
+    "/api/auth/register",
+    {
+      email: testEmail,
+      password: testPassword,
+      role: "freelancer",
+      username: "not-allowed",
+    },
+    "",
+    (b) =>
+      b?.error?.code === "UNKNOWN_FIELDS" &&
+      b?.error?.details?.some((d) => d.field === "username"),
+    '.error.code == "UNKNOWN_FIELDS" and username rejected',
+  );
+
+  // Test 5: Register - Successful Registration
   const registerPayload = {
     email: testEmail,
     password: testPassword,
     role: "freelancer",
   };
   await assertRequest(
-    "Register new user account",
+    "Register new user account (Valid Register / Register - Successful Registration)",
     201,
     "POST",
     "/api/auth/register",
     registerPayload,
     "",
-    (b) => b?.user?.email === testEmail,
-    `.user.email == "${testEmail}"`,
+    (b) =>
+      b?.user?.email === testEmail &&
+      b?.user?.role === "freelancer" &&
+      b?.message === "User successfully registered." &&
+      !b?.user?.passwordHash,
+    `.user.email == "${testEmail}" and passwordHash is undefined`,
   );
 
-  // User lifecycle: Enforce unique email constraint
+  // Test 6: Valid Register No HTTPS
   await assertRequest(
-    "Reject duplicate account registration",
+    "Register user account over HTTP (Valid Register No HTTPS)",
+    201,
+    "POST",
+    "/api/auth/register",
+    {
+      email: httpTestEmail,
+      password: testPassword,
+      role: "freelancer",
+    },
+    "",
+    (b) =>
+      b?.user?.email === httpTestEmail &&
+      b?.message === "User successfully registered.",
+    `.user.email == "${httpTestEmail}" over HTTP transport`,
+    httpBaseUrl,
+  );
+
+  // Test 7: Register - Duplicate Email
+  await assertRequest(
+    "Reject duplicate account registration (Register - Duplicate Email)",
     409,
     "POST",
     "/api/auth/register",
@@ -332,19 +359,76 @@ async function runSuite() {
     '.error.code == "DUPLICATE_EMAIL"',
   );
 
-  // Authentication: Credential verification and JWT issuance
+  // Test 8: Login - Invalid Email
+  await assertRequest(
+    "Reject login with invalid email syntax (Login Invalid Email)",
+    400,
+    "POST",
+    "/api/auth/login",
+    { email: "not-an-email", password: testPassword },
+    "",
+    (b) =>
+      b?.error?.code === "VALIDATION_ERROR" &&
+      b?.error?.details?.some((d) => d.field === "email"),
+    '.error.code == "VALIDATION_ERROR" and email error exists',
+  );
+
+  // Test 9: Login - Missing Password
+  await assertRequest(
+    "Reject login with missing password (Login No Password)",
+    400,
+    "POST",
+    "/api/auth/login",
+    { email: testEmail },
+    "",
+    (b) =>
+      b?.error?.code === "VALIDATION_ERROR" &&
+      b?.error?.details?.some((d) => d.field === "password"),
+    '.error.code == "VALIDATION_ERROR" and password error exists',
+  );
+
+  // Test 10: Login - Invalid Password
+  await assertRequest(
+    "Reject login with password exceeding length limit (Login Invalid Password)",
+    400,
+    "POST",
+    "/api/auth/login",
+    { email: testEmail, password: "A".repeat(129) },
+    "",
+    (b) =>
+      b?.error?.code === "VALIDATION_ERROR" &&
+      b?.error?.details?.some((d) => d.field === "password"),
+    '.error.code == "VALIDATION_ERROR" and password error exists',
+  );
+
+  // Test 11: Login - Invalid Credentials
+  await assertRequest(
+    "Reject login with invalid credentials (Login - Invalid Credentials)",
+    401,
+    "POST",
+    "/api/auth/login",
+    { email: testEmail, password: "WrongPassword123!" },
+    "",
+    (b) => b?.error?.code === "INVALID_CREDENTIALS",
+    '.error.code == "INVALID_CREDENTIALS"',
+  );
+
+  // Test 12: Login - Valid
   const loginPayload = {
     email: testEmail,
     password: testPassword,
   };
   await assertRequest(
-    "Authenticate user and issue JWT",
+    "Authenticate user and issue JWT (Valid Login / Login - Valid)",
     200,
     "POST",
     "/api/auth/login",
     loginPayload,
     "",
-    (b) => Boolean(b?.token) && b?.user?.email === testEmail,
+    (b) =>
+      Boolean(b?.token) &&
+      b?.user?.email === testEmail &&
+      !b?.user?.passwordHash,
     `.token != null and .user.email == "${testEmail}"`,
   );
 
@@ -356,9 +440,9 @@ async function runSuite() {
     await cleanupAndExit(1);
   }
 
-  // Access control: Reject unauthenticated request to protected endpoint
+  // Test 13: GET /me - No Token
   await assertRequest(
-    "Deny access to /me without token",
+    "Deny access to /me without token (GET /me - No Token)",
     401,
     "GET",
     "/api/auth/me",
@@ -368,21 +452,9 @@ async function runSuite() {
     '.error.code == "UNAUTHORIZED"',
   );
 
-  // Access control: Permit authorized request with valid Bearer token
+  // Test 14: GET /me - Invalid Token
   await assertRequest(
-    "Allow access to /me with valid Bearer token",
-    200,
-    "GET",
-    "/api/auth/me",
-    null,
-    `Bearer ${authToken}`,
-    (b) => b?.user?.email === testEmail,
-    `.user.email == "${testEmail}"`,
-  );
-
-  // Access control: Reject malformed or invalid token signatures
-  await assertRequest(
-    "Deny access to /me with malformed token",
+    "Deny access to /me with malformed token (GET /me - Invalid Token)",
     401,
     "GET",
     "/api/auth/me",
@@ -392,26 +464,80 @@ async function runSuite() {
     '.error.code == "INVALID_TOKEN"',
   );
 
-  // Render the final itemised summary dashboard
+  // Test 15: GET /me - Valid Token
+  await assertRequest(
+    "Allow access to /me with valid Bearer token (GET /me - Valid Token)",
+    200,
+    "GET",
+    "/api/auth/me",
+    null,
+    `Bearer ${authToken}`,
+    (b) =>
+      Boolean(b?.user) &&
+      b?.user?.email === testEmail &&
+      !b?.user?.passwordHash,
+    `.user.email == "${testEmail}" and passwordHash is undefined`,
+  );
+
+  // Postman / Newman Test Suite
+  console.log(`${BOLD}${BLUE}${DOUBLE_DIVIDER}${NC}`);
+  console.log(
+    `${BOLD}             RUNNING POSTMAN COLLECTION (NEWMAN)            ${NC}`,
+  );
+  console.log(`${BOLD}${BLUE}${DOUBLE_DIVIDER}${NC}\n`);
+
+  try {
+    await new Promise((resolve, reject) => {
+      const child = spawn(
+        "npx",
+        [
+          "newman",
+          "run",
+          "tests/postman/HustleHub-Auth.postman_collection.json",
+          "-e",
+          "tests/postman/HustleHub-Local.postman_environment.json",
+          "--insecure",
+        ],
+        { stdio: "inherit", cwd: rootDir, shell: true },
+      );
+
+      child.on("close", (code) => {
+        if (code === 0) resolve();
+        else reject(new Error(`Newman exited with code ${code}`));
+      });
+
+      child.on("error", reject);
+    });
+
+    testTitles.push("Postman Collection (Newman)");
+    testStatuses.push("PASS");
+    testDetails.push("All Postman tests passed");
+    passed++;
+  } catch (err) {
+    testTitles.push("Postman Collection (Newman)");
+    testStatuses.push("FAIL");
+    testDetails.push("Newman run failed");
+    failed++;
+  }
+  console.log("");
+
   const total = passed + failed;
   console.log(`${BOLD}${BLUE}${DOUBLE_DIVIDER}${NC}`);
   console.log(
     `${BOLD}                       TEST SUMMARY                         ${NC}`,
   );
   console.log(`${BOLD}${BLUE}${DOUBLE_DIVIDER}${NC}`);
-
   for (let i = 0; i < testTitles.length; i++) {
     if (testStatuses[i] === "PASS") {
       console.log(
-        `  ${GREEN}${BOLD}${"✔ PASS".padEnd(6)}${NC}  ${testTitles[i]}`,
+        `  ${GREEN}${BOLD}${"  PASS".padEnd(6)}${NC}  ${testTitles[i]}`,
       );
     } else {
       console.log(
-        `  ${RED}${BOLD}${"✖ FAIL".padEnd(6)}${NC}  ${testTitles[i]} ${RED}(${testDetails[i]})${NC}`,
+        `  ${RED}${BOLD}${"  FAIL".padEnd(6)}${NC}  ${testTitles[i]} ${RED}(${testDetails[i]})${NC}`,
       );
     }
   }
-
   console.log(`${BOLD}${BLUE}${SINGLE_DIVIDER}${NC}`);
   console.log(` Total Tests : ${total}`);
   console.log(` Passed      : ${GREEN}${passed}${NC}`);
@@ -426,15 +552,16 @@ async function runSuite() {
   }
 }
 
-// Clean up network listeners and terminate the process
 async function cleanupAndExit(code) {
+  if (httpServer) {
+    await new Promise((resolve) => httpServer.close(resolve)).catch(() => {});
+  }
   if (server) {
-    await new Promise((resolve) => server.close(resolve));
+    await new Promise((resolve) => server.close(resolve)).catch(() => {});
   }
   process.exit(code);
 }
 
-// Top-level failure handling
 runSuite().catch(async (err) => {
   console.error(`\n${RED}${BOLD}Unexpected Test Error:${NC}`, err);
   await cleanupAndExit(1);
