@@ -1,13 +1,13 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const config = require("./config");
 const authRoutes = require("./routes/auth.routes");
-const { errorHandler, errorHandler404 } = require("./middleware/error.handler");
+const { errorHandler, errorHandler404 } = require("./middleware/error.middleware");
 
 const app = express();
 
 // Security setup for helmet & cors
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 app.disable("x-powered-by");
 app.use(
   helmet({
@@ -17,7 +17,7 @@ app.use(
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", "data:"],
-        connectSrc: ["'self'", CLIENT_ORIGIN],
+        connectSrc: ["'self'", config.clientOrigin],
         objectSrc: ["'none'"],
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],
@@ -28,7 +28,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: CLIENT_ORIGIN,
+    origin: config.clientOrigin,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),

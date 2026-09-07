@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const config = require("../config");
 
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -16,7 +17,7 @@ const authenticate = (req, res, next) => {
 
   try {
     // Verify sig & check exp using JWT_SECRET
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, config.jwt.secret);
 
     // Attach standard identity payload to request object
     req.user = { id: decoded.sub, role: decoded.role };

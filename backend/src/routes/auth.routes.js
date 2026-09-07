@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth.controller");
-const authenticate = require("../middleware/auth");
+const authenticate = require("../middleware/auth.middleware");
 
-const { registerValidation, loginValidation } = require("../middleware/validation");
+const { registerValidation, loginValidation } = require("../middleware/validation.middleware");
 
 // Public routes
 /**
