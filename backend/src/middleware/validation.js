@@ -49,7 +49,7 @@ const registerValidation = [
     body('password')
     .exists({checkFalsy: true}).withMessage('Password is required')
     .bail().isString().withMessage('Password must be a string')
-    .bail().trim().isLength({ min: 8, max: 128 }).withMessage('Password must be between 8 and 128 characters long'),
+    .bail().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,128}$/).withMessage('Password must be complex and between 8 to 128 characters'),
 
     body("role")
     .optional()
