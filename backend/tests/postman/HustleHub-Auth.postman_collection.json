@@ -1,0 +1,556 @@
+{
+    "info":{
+        "name":"HustleHub Auth API",
+        "description":"Collection of API endpoints for HustleHub authentication",
+        "schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"        
+    },
+    "variable": [],
+    "item": [
+        {
+            "name": "User Registration",
+            "item": [
+                {
+                    "name": "Register - Invalid Email",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"not-an-email\",\n    \"password\": \"{{password}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "pm.test(\"Returns VALIDATION_ERROR\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('VALIDATION_ERROR');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Email validation error exists\", function () {",
+                                    "    const error = json.error.details.find(d => d.field === 'email');",
+                                    "    pm.expect(error).to.exist;",
+                                    "});"
+                                ]                                
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Register - Weak Password",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{testEmail}}\",\n    \"password\": \"123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns VALIDATION_ERROR\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('VALIDATION_ERROR');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Password validation error exists\", function () {",
+                                    "    const error = json.error.details.find(d => d.field === 'password');",
+                                    "    pm.expect(error).to.exist;",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Register - Missing Email",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"password\":\"{{password}}\", \"role\":\"{{role}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns VALIDATION_ERROR\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('VALIDATION_ERROR');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Email is required\", function () {",
+                                    "    const error = json.error.details.find(d => d.field === 'email');",
+                                    "    pm.expect(error).to.exist;",
+                                    "    pm.expect(error.message).to.equal('Email is required');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Register - Unknown Field",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"{{password}}\",\n  \"role\": \"{{role}}\",\n  \"username\": \"not-allowed\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns UNKNOWN_FIELDS\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNKNOWN_FIELDS');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Username is not allowed\", function () {",
+                                    "    const error = json.error.details.find(d => d.field === 'username');",
+                                    "    pm.expect(error).to.exist;",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Register - Successful Registration",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{testEmail}}\",\n    \"password\": \"{{password}}\",\n    \"role\": \"{{role}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "pm.environment.set(\"testEmail\", `test_${Date.now()}@hustlehub.com`);"
+                                ]
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Registration successful\", function () {",
+                                    "    pm.expect(json.message).to.equal('User successfully registered.');",
+                                    "});",
+                                    "pm.test(\"Correct email\", function () {",
+                                    "    pm.expect(json.user.email).to.equal(pm.environment.get(\"testEmail\"));",
+                                    "});",
+                                    "pm.test(\"Correct role\", function () {",
+                                    "    pm.expect(json.user.role).to.equal(pm.environment.get(\"role\"));",
+                                    "});",
+                                    "pm.test(\"Password hash is not exposed\", function () {",
+                                    "    pm.expect(json.user).to.not.have.property('passwordHash');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Register - Duplicate Email",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{testEmail}}\",\n    \"password\": \"{{password}}\",\n \"role\": \"{{role}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 409\", function () {",
+                                    "    pm.response.to.have.status(409);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns DUPLICATE_EMAIL\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('DUPLICATE_EMAIL');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Login",
+            "item": [
+                {
+                    "name": "Login - Invalid Credentials",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{testEmail}}\",\n    \"password\": \"WrongPassword123!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/login",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns INVALID_CREDENTIALS\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('INVALID_CREDENTIALS');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Login - Valid",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{testEmail}}\",\n    \"password\": \"{{password}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/login",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Login successful\", function () {",
+                                    "    pm.expect(json.message).to.equal('Login successful.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"JWT token exists\", function () {",
+                                    "    pm.expect(json.token).to.be.a('string');",
+                                    "    pm.expect(json.token.length).to.be.greaterThan(0);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Correct email\", function () {",
+                                    "    pm.expect(json.user.email).to.equal(pm.environment.get(\"testEmail\"));",
+                                    "});",
+                                    "pm.environment.set(\"token\", json.token);"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Protected Routes",
+            "item": [
+                {
+                    "name": "GET /me - No Token",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/me",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "me"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /me - Invalid Token",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer malformed.or.invalid.token"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/me",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "me"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns INVALID_TOKEN\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('INVALID_TOKEN');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /me - Valid Token",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/me  ",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "me"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"User is returned\", function () {",
+                                    "    pm.expect(json.user).to.exist;",
+                                    "});",
+                                    "pm.test(\"Correct email\", function () {",
+                                    "    pm.expect(json.user.email).to.equal(pm.environment.get(\"testEmail\"));",
+                                    "});",
+                                    "pm.test(\"Password hash is not exposed\", function () {",
+                                    "    pm.expect(json.user).to.not.have.property('passwordHash');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
