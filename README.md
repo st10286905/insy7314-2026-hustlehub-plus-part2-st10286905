@@ -9,11 +9,13 @@ The design of the system and implementation follows the MERN architecture and is
 - React(.js) - Front-end JavaScript framework
 - Node(.js) - JavaScript web server (runtime)
 
-The below diagram visualises the MERN architecture at a high-level without representation of security considerations. 
+The below diagram visualises the MERN architecture at a high-level: 
 
 <img width="542" height="512" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/c50d2755-c66a-44a4-975c-474dc8f3272c" />
 
 ## Architecture diagram 
+
+The architecture diagram illustrates the MERN architectural model and its organisation into four decoupled layers which establishes security boundaries to protect user data as it moves throughout the system: 
 
 ```mermaid 
 architecture-beta
@@ -48,14 +50,98 @@ architecture-beta
     mongoose:B -- T:mongo_db
 ```
 
-# System Security 
+### Client Layer (React)
 
-The security considerations revolve around cross-site scripting, structure query language (SQL) injection 
+The frontend serves as the initial line of defense, focusing on input sanitization and input validation. The React User Interface (UI) components leverage React's built-in HTML encoding to automatically escape markdown or code, neutralising code injection risks. The React Hook Form Context and Zod Schemas enforce client-side input validation rules. By validating types, lengths, and formats, the system prevents malformed payloads from causing unnecessary network traffic or server stress. The Axios client intercepts outgoing requests to uniformly attach authentication tokens (JWTs) and anti-CSRF tokens.
+### Network Security Layer
+
+This layer establishes a security boundary between the untrusted public internet and the backend infrastructure. HTTPS / TLS Encryption forces all data in transit to be encrypted. This mitigates Man-in-the-Middle (MITM) attacks and ensures packet confidentiality and integrity between the client browser and the server endpoint.
+
+### Server Layer (Node/Express Backend)
+
+The backend acts as the gatekeeper and final line of defence, treating all incoming client requests as fundamentally untrusted. `helmet` and `cors` act as the backend's middleware providing server-side validation and configure HTTP response headers to force browsers to implement execution rules that mitigate clickjacking, MIME-type sniffing, and cross-origin security vulnerabilities. The Mongoose ODM acts to serialise and parameterise data queries, mitigating NoSQL Injection and corruption of system data. 
+
+The API project be organised into the following structure: 
+
+```mermaid 
+
+graph TD
+    hustle_app[hustle_app]
+    api[api/]
+    env[.env]
+    gitignore[.gitignore]
+    index[index.js]
+    middleware[middleware/]
+    controllers[controllers/]
+    routes[routes/]
+    lock[package-lock.json]
+    package[package.json]
+
+    hustle_app --> api
+    api --> env
+    api --> gitignore
+    api --> index
+    api --> middleware
+    api --> controllers
+    api --> routes
+    api --> lock
+    api --> package
+
+    %% Styling to make it look like a clean file tree
+    classDef folder fill:#2d3748,stroke:#4a5568,stroke-width:2px,color:#fff;
+    classDef file fill:#1a202c,stroke:#4a5568,stroke-width:1px,color:#cbd5e0;
+    
+    class hustle_app,api,middleware,controllers,routes folder;
+    class env,gitignore,index,lock,package file;
+
+```
+| Folder       | Purpose                                                                                                                                                                                   |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| routes/      | Defines endpoint paths for client requests and maps them to controller functions                                                                                                          |
+| controllers/ | Contains the logic that handles incoming requests sent to the various route endpoints and coordinates the business logic to produce appropriate system responses.                         |
+| middleware/  | Contains the processing, validation and error handling logic for requests sent to the various endpoints on the server, acting as an intermediary before the controller logic is executed. |
+
+The below sequence diagram represents a request lifecycle through the backend application, exemplifying the flow of a request before it reaches a controller:
+
+```mermaid 
+sequenceDiagram
+    autonumber
+    actor Client as Client (React UI / Axios)
+    participant MW as Middleware (middleware/)
+    participant Route as Routes (routes/)
+    participant Ctrl as Controllers (controllers/)
+    
+    Client->>MW: 1. Incoming HTTP Request
+    activate MW
+    
+    Note over MW: Intercepts request & checks data:<br/>- Validates structure (e.g., Zod)<br/>- Verifies access (e.g., Auth token)
+    
+    alt Request is INVALID / UNAUTHORISED
+        Note over MW: Fails Validation
+        MW-->>Client: 2a. Early Response (e.g., 400 Bad Request / 401 Unauthorized)
+        Note over MW: Request cycle ends here.<br/>Routes and Controllers are never reached.
+    else Request is VALID
+        Note over MW: Passes Validation
+        MW->>Route: 2b. next() -> Forward validated request
+    end
+    deactivate MW
+    
+    activate Route
+    Note over Route: Matches URL path and HTTP method
+    Route->>Ctrl: 3. Invoke assigned handler function
+    deactivate Route
+    
+    activate Ctrl
+    Note over Ctrl: Executes business logic
+    Ctrl-->>Client: 4. Final HTTP Response (200 OK)
+    deactivate Ctrl
+
+```
+# System Security 
 
 ## Client-side Input validation
 
 Input validation was a security consideration that will be implemented in the React front-end and acts as the first preventative security layer that stops malformed or malicious input/requests from reaching the server. However, it should be noted that client-side validation can be trivially bypassed, therefore it remains crucial to implement server-side validation and santisation of requests.
-
 ### Type checking 
 
 Type checking ensures that input fields submitted matches the exact primitive or data structure expected. This will be implemented in the Client-side application (React) using Zod to enforce primitives/data structures before submission.
@@ -285,7 +371,6 @@ Therefore, basic output escaping will be Incorporated by default in the client-s
 These exceptions leave the client-application vulnerable to cross-site scripting (XSS) in the eventuality there is some failure in server-side validation that allows code/markup to be rendered within the DOM. In order to address these concerns manual santisation will be implemented, which will be discussed in greater detail later. 
 
 --- 
-
 ### Sanitization
 
 The default output encoding supported by React is insufficient in circumstances where the system requires raw HTML to be rendered to the DOM. The React API exposes `dangerouslySetInnerHTML` that enables an element's innerHTML property to be set directly bypassing the default HTML encoding mentioned above. However, in the context of the system the rendering of HTML content might be completely justified for freelancers creating service listings using Rich-text editors for purposes of formatting the content of their listing.  
@@ -301,7 +386,6 @@ function ServiceListingDisplay({ serviceListing }) {
 ```
 
 Upon failure to render the image the `onerror` event will fire executing the specified JavaScript payload. In the above example this will ex-filtrate the cookies of the user that views the service listing to the threat actors infrastructure. 
-
 #### DOMPurify 
 
 Santisation of the user specified service listing HTML will be achieved using DOMPurify an industry standard sanitization library. DomPurify removes event handlers, script tags and returns a safe subset of HTML elements that can be rendered in the DOM without the possibility of introducing ACE vulnerabilities. The below example, showcases how DOMPurify will be implemented in the client to mitigate the risk associated with the `dangerouslySetInnerHTML` API: 
@@ -334,10 +418,12 @@ function DisplayServiceListing ({ serviceListingHTML }) {
 However, it should be noted that DOMPurify cannot be relied upon exclusively to remove all XSS attack vectors and will be paired with a Content Security Policy (CSP) to improve the robustness of the system's security. Lastly, despite the implementation of back-end santisation, the network should never be trusted. Therefore, sanitisation will always occur in the React client to mitigate circumstances whereby the HTML might be modified by a proxy or intercepted during transmission before being rendered on the client. 
 
 ---
+### Security Headers 
 
-### Content Security Policy (CSP)
+The system will use various security headers to enhance the robustness of defences against attacks. The following will be discussed below: the Content Security Policy (CSP) and the various other more general security headers. 
+#### Content Security Policy (CSP)
 
-Content Security Policy (CSP) is an HTTP header that instructs the browser to block certain code origins, mitigating code injection attacks, such as XSS. Even if an attacker injects malicious HTML like `<img src=x onerror="alert(1)">`, CSP can prevent the script from executing by restricting what sources the browser trusts. The CSP is defined in the server's configuration and sent upon a client request as a CSP HTTP header. The user's browser validates every resource against the policy defined in the header before rendering and subsequently execution. Upon violation of the policy the browser will block the resource preventing its execution.
+Content Security Policy (CSP) is a security header that instructs the browser to block certain code origins, mitigating code injection attacks, such as XSS. Even if an attacker injects malicious HTML like `<img src=x onerror="alert(1)">`, CSP can prevent the script from executing by restricting what sources the browser trusts. The CSP is defined in the server's configuration and sent upon a client request as a CSP HTTP header. The user's browser validates every resource against the policy defined in the header before rendering and subsequently execution. Upon violation of the policy the browser will block the resource preventing its execution.
 
 The CSP of the system will be defined as follows: 
 
@@ -365,14 +451,193 @@ Content-Security-Policy:
 - `base-uri 'self'`: Prevent scripts from changing the page's base URL.
 - `form-action 'self'`: Forms can only submit to the same origin.
 - `upgrade-insecure-requests`: Upgrade HTTP resources to HTTPS automatically.
+#### Security Headers 
 
+Security headers is a more general term for directives issued to browsers on how to appropriately handle content and mitigate various security threats in addition to those defined in the CSP.  The helmet middleware by default sets or removes the following security headers: 
 
-## Middleware 
+- `Cross-Origin-Opener-Policy` - Process isolates your page by controlling whether a new top-level document opened using `Window.open()` is opened in a new browsing context group (BCG) or not. This prevents an attacker from abusing cross-origin attacks to gain access to the global object (the enviroment . 
+- `Cross-Origin-Resource-Policy` - Blocks others from loading your resources cross-origin.
+- `Origin-Agent-Cluster` - Changes process isolation to be origin-based. 
+- `Referrer-Policy` - Controls the [`Referer`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Referer) header. 
+- `Strict-Transport-Security` - Sets a browser preference to prefer HTTPS over HTTP. 
+- `X-Content-Type-Options` - Mitigates MIME sniffing attacks.
+- `X-DNS-Prefetch-Control` - Controls DNS prefetching.
+- `X-Download-Options` - Forces downloads to be saved (Internet Explorer only). 
+- `X-Frame-Options` - Legacy header that mitigates [Clickjacking](https://en.wikipedia.org/wiki/Clickjacking) attacks. 
+- `X-Permitted-Cross-Domain-Policies` - Controls cross-domain behavior for Adobe products, like Acrobat. 
+- `X-Powered-By` - This header is set by default when using Express and serves not functional purpose besides identification of the framework. Helmet will implicitly remove the header, however, it's removal offers limited security benefits in terms of the identification of web server information. 
+- `X-XSS-Protection` - This legacy header tries to mitigate reflected XSS attacks, by instructing the browser to use its built-in XSS filtering. Helmet sets the header to `X-XSS-Protection: 0` by default, as it has proven to be ineffective and an insecure practice by modern development standards.   
 
-- How request will be intercepted by the middle ware 
-- Global exception handler (https://expressjs.com/en/guide/error-handling/#the-default-error-handler)
-- Rate limiting 
-- SQL injection (paramaterised queries)
+## Default error handler 
+
+Express has a built-in error handler which is added to the end of the middle-ware function stack that catches any errors that might be encountered within the application. The built-in error handler acts as a catch all in the eventuality that an error occurs during execution without a specified custom error handler. This effectively prevents an error from bubbling up and exposing information to the client such as stack traces and error messages that could be used to inform an attack on the server during the reconnaissance phase.
+
+https://expressjs.com/en/guide/error-handling/#catching-errors
+
+The use of the Express default error handler has been implemented in the system by setting an environmental variable `NODE_ENV` to `production`. This ensures that the server will run in production mode, whereby response bodies will be the HTML of the status code message, instead of the error stack trace (`err.stack`). 
+
+```markdown 
+NODE_ENV = production
+```
+## Rate limiting 
+
+The system requires that login endpoints are protected to ensure that private data is secure. Rate limiting will be incorporated to prevent authorised access attempts by limiting the number of requests made to the endpoint once certain conditions have been met. This prevents brute-force and credential stuffing attacks that could result in account compromission of user accounts. There are two conditions that will be used to distinguish between legitimate and malicious requests:
+
+1. The number of consecutive failed attempts by the same user name and IP address.
+2. The number of failed attempts from an IP address over the period of one day. 
+
+The `rate-limiter-flexible` package will be used for purposes of rate limiting in the system. 
+The example below protects a login route against brute-force and credential-stuffing attacks by enforcing a dual-layer rate-limiting strategy using Redis. It separates defense into two boundaries: a global IP-based tracker that blocks an IP address for 24 hours after 100 total daily failures, and a targeted account-based tracker that blocks a specific Email and IP combination for 1 hour after 10 consecutive failures.
+
+```javascript 
+
+const http = require('http');
+const express = require('express');
+const Redis = require('ioredis');
+const { RateLimiterRedis } = require('rate-limiter-flexible');
+const redisClient = new Redis({ enableOfflineQueue: false });
+
+const maxWrongAttemptsByIPperDay = 100;
+const maxConsecutiveFailsByUsernameAndIP = 10;
+
+const limiterSlowBruteByIP = new RateLimiterRedis({
+  storeClient: redisClient,
+  keyPrefix: 'login_fail_ip_per_day',
+  points: maxWrongAttemptsByIPperDay,
+  duration: 60 * 60 * 24,
+  blockDuration: 60 * 60 * 24,
+});
+
+const limiterConsecutiveFailsByUsernameAndIP = new RateLimiterRedis({
+  storeClient: redisClient,
+  keyPrefix: 'login_fail_consecutive_username_and_ip',
+  points: maxConsecutiveFailsByUsernameAndIP,
+  duration: 60 * 60 * 24 * 90, // Store number for 90 days since first fail
+  blockDuration: 60 * 60, // Block for 1 hour
+});
+
+const getUsernameIPkey = (username, ip) => `${username}_${ip}`;
+
+async function loginRoute(req, res) {
+  const ipAddr = req.ip;
+  const usernameIPkey = getUsernameIPkey(req.body.email, ipAddr);
+
+  const [resUsernameAndIP, resSlowByIP] = await Promise.all([
+    limiterConsecutiveFailsByUsernameAndIP.get(usernameIPkey),
+    limiterSlowBruteByIP.get(ipAddr),
+  ]);
+
+  let retrySecs = 0;
+
+  if (resSlowByIP !== null && resSlowByIP.consumedPoints > maxWrongAttemptsByIPperDay) {
+    retrySecs = Math.round(resSlowByIP.msBeforeNext / 1000) || 1;
+  } else if (resUsernameAndIP !== null && resUsernameAndIP.consumedPoints > maxConsecutiveFailsByUsernameAndIP) {
+    retrySecs = Math.round(resUsernameAndIP.msBeforeNext / 1000) || 1;
+  }
+
+  if (retrySecs > 0) {
+    res.set('Retry-After', String(retrySecs));
+    res.status(429).send('Too Many Requests');
+  } else {
+    const user = authorise(req.body.email, req.body.password); 
+    if (!user.isLoggedIn) {
+
+      try {
+        const promises = [limiterSlowBruteByIP.consume(ipAddr)];
+        if (user.exists) {
+promises.push(limiterConsecutiveFailsByUsernameAndIP.consume(usernameIPkey));
+        }
+
+        await Promise.all(promises);
+
+        res.status(400).end('email or password is wrong');
+      } catch (rlRejected) {
+        if (rlRejected instanceof Error) {
+          throw rlRejected;
+        } else {
+          res.set('Retry-After', String(Math.round(rlRejected.msBeforeNext / 1000)) || 1);
+          res.status(429).send('Too Many Requests');
+        }
+      }
+    }
+
+    if (user.isLoggedIn) {
+      if (resUsernameAndIP !== null && resUsernameAndIP.consumedPoints > 0) {
+        // Reset on successful authorisation
+        await limiterConsecutiveFailsByUsernameAndIP.delete(usernameIPkey);
+      }
+
+      res.end('authorized');
+    }
+  }
+}
+
+const app = express();
+
+app.post('/login', async (req, res) => {
+  try {
+    await loginRoute(req, res);
+  } catch (err) {
+    res.status(500).end();
+  }
+});
+```
+## Mongoose Object Data Modelling (ODM)
+
+In the context of MongoDB and Mongoose, code injection attacks namely NoSQL Injection, involves manipulating database queries using input from untrusted sources. The first line of defence against NoSQL Injection is input validation and sanitisation. This will be achieved using `zod` (client-side) , `helmet`, `cors` and `express-validator`. However, on the server side Mongoose schema validation, parameterised queries and access controls will be employed to further strengthen the security position of the system against this category of attack. 
+
+### Mongoose Schema Validation 
+
+Mongoose ODM provides schemas with built-in validation that enables the inclusion of validators for each field of the entity. Because NoSQL injection relies on forcing unexpected object types (`{"$ne": null}`) into query parameters, enforcing a rigid Mongoose Schema automatically type-casts incoming inputs into their expected schema primitives neutralising object injection attacks.
+
+Below is a simple example of how a freelancer Mongoose schema will be defined within the system to perform this object validation: 
+
+```javascript 
+const freeLancerSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 50
+  },
+});
+```
+
+### Parameterised Queries
+
+Mongoose ODM uses parameterised queries by default which supports the mitigation of NoSQL injection attacks. When explicit values are passed within structured Mongoose query objects, the ODM inserts the user defined values as data then passes the query object to the underlying MongoDB driver. These query objects effectively act as query templates rather than concatenating strings or the raw objects to construct the query. This ensures that user input is treated as a parameterised data variable in the database query rather than an executable database command. However, validation is still required to prevent attackers from altering structural logic by passing raw objects (such as `{"$ne": null}`) instead of expected primitive values, which could cause unintended data exposure.
+
+https://www.slingacademy.com/article/how-to-prevent-injection-attacks-in-mongoose/
+https://mongoosejs.com/docs/2.8.x/docs/query.html
+https://kayssel.substack.com/p/nosql-injection-breaking-mongodb
+
+The below code snippet exemplifies how this will be achieved in the system with regards to constructing a basic query to find all free lancer documents with hourly rates greater than R200 and less than R600 per hour on the platform using Mongoose ODM. The below request safely binds the numeric constraints into the query object: 
+
+```javascript
+FreeLancer.find().where('price').gte(200),lte(600)
+```
+
+However, if the implementation allows for users to pass objects in their requests that are then chained as query conditions without validation this introduces a vulnerability that enables the query logic to be constructed dynamically seen below:
+
+```javascript 
+    try {
+        // Expecting integers/strings: ?min=200&max=600
+        // Passed objects: ?max[$ne]=null
+        const minPrice = req.query.min;
+        const maxPrice = req.query.max;
+
+        const freelancers = await FreeLancer.find()
+            .where('price')
+            .gte(minPrice)
+            .lte(maxPrice);
+
+        res.json(freelancers);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+```
+
+This is considered insecure and something that we aim to avoid in the security implementation of the system. Importantly it underlines synergistic nature of schema validation and query paramertisation to prevent object injection. 
 
 ## Secure Communication Protocol
 - Https 
@@ -406,8 +671,6 @@ benchmarks/graphs
 ```
 
 **`.env`**: Blocks the main local environment file where you store your actual connection strings and API keys. The rest of the excludes are included primary to prevent the inclusion of unnecessary logging data (`*.log`, `*.gz`) and external dependencies (`node_modules`) that will bloat the size of the repository. 
-
-## Security Headers 
 
 ## JWT Authentication 
 
