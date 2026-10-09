@@ -16,6 +16,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const config = require("./config");
 const authRoutes = require("./routes/auth.routes");
+const connectToDB = require("./config/db");
 const { errorHandler, errorHandler404 } = require("./middleware/error.middleware");
 
 const app = express();
@@ -46,6 +47,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+// Connect to MongoDB cluster
+connectToDB();
 
 // Standard middleware with limit configured to prevent DoS 
 app.use(express.json({ limit: "10kb" }));
