@@ -191,7 +191,57 @@ router.post("/", gigValidation, authenticate, gigController.create);
  */
 router.get("/mine", authenticate, gigController.mine);
 
-// router.get("/:id");
+/**
+ * @swagger
+ * /api/gigs/{id}:
+ *   get:
+ *     summary: Get an active gig by id
+ *     description: >
+ *       Returns an active gig. If the token belongs to a freelancer, the gig is
+ *       only returned when it belongs to that freelancer. Other roles can view
+ *       any active gig.
+ *     tags: [Gigs]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           pattern: '^[a-fA-F0-9]{24}$'
+ *         description: MongoDB ObjectId of the gig
+ *         example: 64f1a2b3c4d5e6f7a8b9c0d2
+ *     responses:
+ *       200:
+ *         description: The matching gig
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 gig:
+ *                   $ref: '#/components/schemas/GigSummary'
+ *       400:
+ *         description: Invalid gig id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Missing, invalid or expired token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       404:
+ *         description: Gig not found, not active, or not owned by the freelancer
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+router.get("/:id", gigController.getGigByID);
 
 // router.put("/:id");
 

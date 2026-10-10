@@ -80,6 +80,7 @@ exports.mine = async (req, res, next) => {
 
 exports.getGigByID = async (req, res, next) => {
   try {
+    const gigID = req.params.id;
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -90,11 +91,26 @@ exports.getGigByID = async (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
     const decodedToken = jwt.verify(token, config.jwt.secret);
-    const userID = decodedToken.id;
+    const userRole = decodedToken.role;
 
-    const gigs = await Gig.find({ freelancer: userID });
+    const query = Gig.findOne()
+    .where("_id").equals(gigID)
+    .where("status").equals("Active");
 
-    return res.status(200).json({ gigs });
+    if(userRole === "freelancer"){
+      const userID = decodedToken.sub;
+      query.where("freelancer").equals(userID);
+    }
+
+    const gig = await query.exec();
+
+    if(!gig){
+      return res.status(404).json({
+        error: { code: "NOT_FOUND", message: "Gig not found." },
+      });
+    }
+
+    return res.status(200).json(gig);
   } catch (err) {
     next(err);
   }
