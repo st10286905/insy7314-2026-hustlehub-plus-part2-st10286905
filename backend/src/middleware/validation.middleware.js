@@ -126,7 +126,44 @@ const loginValidation = [
     handleValidationErrors,
 ];
 
+
+/**
+ * Validation rules for gig creation
+ * Validates:
+ * - email
+ * - password
+ */
+const gigValidation = [
+    rejectUnknownFields(['title', 'category', 'description', 'rate', 'durationHours']),
+
+    body('title')
+    .exists({checkFalsy: true}).withMessage('Title is required')
+    .bail().isString().withMessage('Title must be a string')
+    .bail().isLength({max: 120}).withMessage('Title is invalid'),
+
+    body('category')
+    .exists({checkFalsy: true}).withMessage('Category is required')
+    .bail().isString().withMessage('Category ID must be a string')
+    .isIn(['Development', 'Design', 'Writing', 'Marketing', 'Other']).withMessage('Category is invalid'),
+
+    body('description')
+    .exists({checkFalsy: true}).withMessage('Description is required')
+    .bail().isString().withMessage('Description must be a string')
+    .bail().isLength({max: 2000}).withMessage('Description must be less than or equal to 2000 characters'),
+
+    body('rate')
+    .exists({checkFalsy: true}).withMessage('Rate is required')
+    .bail().isNumeric({min: 1}).withMessage('Rate must be greater than R1'),
+
+    body('durationHours')
+    .exists({checkFalsy: true}).withMessage('Duration is required')
+    .bail().isNumeric({min: 1, max: 40}).withMessage('Duration must be between 1 and 40 hours'),
+
+    handleValidationErrors,
+];
+
 module.exports = {
     registerValidation,
     loginValidation,
+    gigValidation
 };
