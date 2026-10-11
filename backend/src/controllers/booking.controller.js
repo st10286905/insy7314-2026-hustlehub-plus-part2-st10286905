@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Booking = require("../models/booking");
 const Gig = require("../models/gig");
+const Transaction = require("../models/transaction");
 
 exports.create = async (req, res, next) => {
     try {
@@ -51,6 +52,19 @@ exports.create = async (req, res, next) => {
             freelancer: gigExists.freelancer,
             notes,
             status: "Confirmed",
+        });
+
+        /**
+         * Create a Pending transaction for the booking.
+         * The amount is derived from the gig rate, while the booking, client,
+         * and freelancer IDs are derived from the created booking.
+         */
+        await Transaction.create({
+            booking: booking._id,
+            client: booking.client,
+            freelancer: booking.freelancer,
+            amount: gigExists.rate,
+            status: "Pending",
         });
 
         res.status(201).json({
