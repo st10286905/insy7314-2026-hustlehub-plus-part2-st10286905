@@ -8,6 +8,7 @@ const {
   gigUpdateValidation,
   validateGigIdRouteParam,
 } = require("../middleware/validation.middleware");
+const { CheckGigOwnership } = require("../middleware/ownership.middleware")
 
 /**
  * @file gig.routes.js
@@ -331,7 +332,7 @@ router.get("/mine", authenticate, authorizeRoles("freelancer"), gigController.mi
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.get("/:id", authenticate, authorizeRoles("freelancer", "admin"), gigController.getGigByID);
+router.get("/:id", authenticate, authorizeRoles("freelancer", "admin"), CheckGigOwnership, gigController.getGigByID);
 
 /**
  * @swagger
@@ -436,7 +437,7 @@ router.get("/", gigSearchValidation, gigController.getGigs);
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.put("/:id", authenticate, authorizeRoles("freelancer", "admin"), gigUpdateValidation, gigController.updateGigByID);
+router.put("/:id", authenticate, authorizeRoles("freelancer", "admin"), CheckGigOwnership, gigUpdateValidation, gigController.updateGigByID);
 
 /**
  * @swagger
@@ -475,6 +476,6 @@ router.put("/:id", authenticate, authorizeRoles("freelancer", "admin"), gigUpdat
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.delete("/:id", authenticate, validateGigIdRouteParam, authorizeRoles("freelancer", "admin"), gigController.deleteGigByID);
+router.delete("/:id", authenticate, validateGigIdRouteParam, authorizeRoles("freelancer", "admin"), CheckGigOwnership,  gigController.deleteGigByID);
 
 module.exports = router;
