@@ -3,8 +3,6 @@ const Gig = require("../models/gig");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
-
-
 exports.create = async (req, res, next) => {
   try {
     const { title, category, description, rate, durationHours } = req.body;
@@ -180,7 +178,7 @@ exports.deleteGigByID = async (req, res, next) => {
         error: { code: "NOT_FOUND", message: "Gig not found." },
       });
     }
-    
+
     return res.status(200).json({ message: "Gig successfully deleted." });
   } catch (err) {
     next(err);

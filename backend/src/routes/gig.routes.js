@@ -3,7 +3,7 @@ const router = express.Router();
 const gigController = require("../controllers/gig.controller");
 const {
   authenticate,
-  authorizeRoles,
+  authorizeRoles
 } = require("../middleware/auth.middleware");
 
 const {
@@ -163,7 +163,7 @@ const {
  *       500:
  *         description: Unexpected server error
  */
-router.post("/", gigValidation, authenticate, gigController.create);
+router.post("/", gigValidation, authenticate, authorizeRoles('freelancer','admin'), gigController.create);
 
 /**
  * @swagger
