@@ -115,3 +115,103 @@ exports.getGigByID = async (req, res, next) => {
     next(err);
   }
 };
+
+
+exports.updateGigByID = async (req, res, next) => {
+    try {
+    const gigID = req.params.id;
+    const {title, category, description, rate, durationHours, status} = req.body;
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        error: { code: "UNAUTHORIZED", message: "Missing or malformed token." },
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+    const decodedToken = jwt.verify(token, config.jwt.secret);
+
+    const filter = { _id: gigID };
+    if (decodedToken.role === "freelancer") {
+      filter.freelancer = decodedToken.sub;
+    }
+
+    const gig = await Gig.findOneAndUpdate(
+      filter,
+      { $set: { title, category, description, rate, durationHours, status } },
+      { new: true, runValidators: true }
+    );
+
+    if (!gig) {
+      return res.status(404).json({
+        error: { code: "NOT_FOUND", message: "Gig not found." },
+      });
+    }
+
+    return res.status(200).json(gig);
+  } catch (err) {
+    next(err);
+  }
+}
+
+exports.deleteGigByID = async (req, res, next) => {
+    try {
+    const gigID = req.params.id;
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        error: { code: "UNAUTHORIZED", message: "Missing or malformed token." },
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+    const decodedToken = jwt.verify(token, config.jwt.secret);
+
+    const filter = { _id: gigID };
+    if (decodedToken.role === "freelancer") {
+      filter.freelancer = decodedToken.sub;
+    }
+
+    const gig = await Gig.findOneAndDelete(filter);
+    if (!gig) {
+      return res.status(404).json({
+        error: { code: "NOT_FOUND", message: "Gig not found." },
+      });
+    }
+    
+    return res.status(200).json({ message: "Gig successfully deleted." });
+  } catch (err) {
+    next(err);
+  }
+}
+
+
+
+exports.getGigs = async (req, res, next) => {
+  try {
+
+    const { search, category, minRate, maxRate, page, limit } = req.query;
+
+    const filter = {};
+    if (search) {
+      const escaped = search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      filter.title = { $regex: escaped, $options: 'i' };
+    }
+    if (category) filter.category = category;
+    if (minRate !== undefined || maxRate !== undefined) {
+      filter.rate = {};
+      if (minRate !== undefined) filter.rate.$gte = minRate;
+      if (maxRate !== undefined) filter.rate.$lte = maxRate;
+    }
+
+    const gigs = await Gig.find(filter)
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    return res.status(200).json(gigs);
+  } catch (err) {
+    next(err);
+  }
+}
