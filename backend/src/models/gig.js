@@ -8,6 +8,7 @@ const gigSchema = new Schema({
     },
     title: {
         type: String,
+        validate: [validateTitleLength, 'Title must be less than 120 characters long.'],
         required: true
     },
     category: {
@@ -33,12 +34,17 @@ const gigSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['Active', 'Paused']
+        enum: ['Active', 'Paused'],
+        default: 'Active'
     }
 }, {timestamps: true});
 
 function validateDescriptionLength(strLen){
     return strLen.length <= 2000;
+}
+
+function validateTitleLength(strLen){
+    return strLen.length <= 120;
 }
 
 const Gig = mongoose.model('Gig', gigSchema);

@@ -72,7 +72,7 @@ exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
     // Verify whether user exists
-    const user = await UserModel.findByEmail(email);
+    const user = await User.findOne({email});
     if (!user)
       return res.status(401).json({
         error: {
@@ -82,7 +82,7 @@ exports.login = async (req, res, next) => {
       });
 
     // Verify hash of given password matches stored passwordHash
-    const pwMatch = await bcrypt.compare(password, user.passwordHash);
+    const pwMatch = await bcrypt.compare(password, user.password);
     if (!pwMatch)
       return res.status(401).json({
         error: {
