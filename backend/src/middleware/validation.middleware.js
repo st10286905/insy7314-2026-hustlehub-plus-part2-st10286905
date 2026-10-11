@@ -126,7 +126,23 @@ const loginValidation = [
     handleValidationErrors,
 ];
 
+/**
+ * Validation rules for booking a gig.
+ * Validates:
+ * - gig (required, must be a valid MongoDB ObjectId)
+ * - notes (optional, must be a string and not exceed 500 characters)
+ */
+const bookingValidation = [
+    rejectUnknownFields(["gig", "notes"]),
+
+    body("gig").trim().notEmpty().withMessage("Gig ID is required").isMongoId().withMessage("Gig ID must be a valid MongoDB ObjectId"),
+    body("notes").optional().isString().withMessage("Notes must be a string").isLength({max: 500}).withMessage("Notes must not exceed 500 characters"),
+
+    handleValidationErrors,
+];
+
 module.exports = {
     registerValidation,
     loginValidation,
+    bookingValidation,
 };
