@@ -16,6 +16,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const config = require("./config");
 const authRoutes = require("./routes/auth.routes");
+const bookingRoutes = require("./routes/booking.routes");
 const connectToDB = require("./config/db");
 const { errorHandler, errorHandler404 } = require("./middleware/error.middleware");
 
@@ -56,6 +57,7 @@ app.use(express.json({ limit: "10kb" }));
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
