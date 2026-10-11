@@ -23,6 +23,7 @@ const config = require("./config");
 const authRoutes = require("./routes/auth.routes");
 const gigRoutes = require("./routes/gig.routes");
 const bookingRoutes = require("./routes/booking.routes");
+const transactionRoutes = require("./routes/transaction.routes");
 const connectToDB = require("./config/db");
 const { errorHandler, errorHandler404 } = require("./middleware/error.middleware");
  
@@ -163,10 +164,8 @@ app.use(express.json({ limit: "10kb" }));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/gigs", gigRoutes);
- 
-// Error handling: 404 first so unmatched routes reach the error handler,
-// then the centralized error handler last
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/transactions", transactionRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
