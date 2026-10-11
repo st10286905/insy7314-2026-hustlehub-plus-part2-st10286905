@@ -12,6 +12,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const UserModel = require("../models/user.model");
+const User = require("../models/user")
 
 const SALT_ROUNDS = 12;
 
@@ -24,10 +25,9 @@ const SALT_ROUNDS = 12;
  */
 exports.register = async (req, res, next) => {
   try {
-    const { email, password, role } = req.body;
+    const { name, email, password, role } = req.body;
 
-    // Verify whether user already exists
-    const existingUser = await UserModel.findByEmail(email);
+    const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.status(409).json({
         error: {
@@ -36,14 +36,15 @@ exports.register = async (req, res, next) => {
         },
       });
 
-    // Hash password and create new user
-    const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+
     const assignedRole = role ? role.toLowerCase() : "client";
-    const newUser = await UserModel.create({
+    const newUser = await User.create({
+      name,
       email,
-      passwordHash,
-      role: assignedRole,
+      password,
+      role: assignedRole
     });
+
 
     return res.status(201).json({
       message: "User successfully registered.",
