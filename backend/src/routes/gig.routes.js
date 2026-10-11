@@ -253,20 +253,6 @@ const { CheckGigOwnership } = require("../middleware/ownership.middleware")
  *                   example: Gig successfully created.
  *                 gig:
  *                   $ref: '#/components/schemas/GigSummary'
- *       400:
- *         $ref: '#/components/responses/ValidationError'
- *       401:
- *         $ref: '#/components/responses/Unauthorized'
- *       403:
- *         $ref: '#/components/responses/Forbidden'
- *       404:
- *         description: The authenticated user no longer exists
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
- *       500:
- *         $ref: '#/components/responses/ServerError'
  */
 router.post("/", authenticate, authorizeRoles("freelancer", "admin"), gigValidation, gigController.create);
 
@@ -291,10 +277,6 @@ router.post("/", authenticate, authorizeRoles("freelancer", "admin"), gigValidat
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/Gig'
- *       401:
- *         $ref: '#/components/responses/Unauthorized'
- *       500:
- *         $ref: '#/components/responses/ServerError'
  */
 router.get("/mine", authenticate, authorizeRoles("freelancer"), gigController.mine);
 
@@ -319,18 +301,6 @@ router.get("/mine", authenticate, authorizeRoles("freelancer"), gigController.mi
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Gig'
- *       400:
- *         $ref: '#/components/responses/ValidationError'
- *       401:
- *         $ref: '#/components/responses/Unauthorized'
- *       404:
- *         description: Gig not found, not Active, or not owned by the freelancer
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
- *       500:
- *         $ref: '#/components/responses/ServerError'
  */
 router.get("/:id", authenticate, authorizeRoles("freelancer", "admin"), CheckGigOwnership, gigController.getGigByID);
 
@@ -391,10 +361,6 @@ router.get("/:id", authenticate, authorizeRoles("freelancer", "admin"), CheckGig
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Gig'
- *       400:
- *         $ref: '#/components/responses/ValidationError'
- *       500:
- *         $ref: '#/components/responses/ServerError'
  */
 router.get("/", gigSearchValidation, gigController.getGigs);
 
@@ -424,18 +390,6 @@ router.get("/", gigSearchValidation, gigController.getGigs);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Gig'
- *       400:
- *         $ref: '#/components/responses/ValidationError'
- *       401:
- *         $ref: '#/components/responses/Unauthorized'
- *       404:
- *         description: Gig not found, or not owned by the freelancer
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
- *       500:
- *         $ref: '#/components/responses/ServerError'
  */
 router.put("/:id", authenticate, authorizeRoles("freelancer", "admin"), CheckGigOwnership, gigUpdateValidation, gigController.updateGigByID);
 
@@ -463,18 +417,6 @@ router.put("/:id", authenticate, authorizeRoles("freelancer", "admin"), CheckGig
  *                 message:
  *                   type: string
  *                   example: Gig successfully deleted.
- *       400:
- *         $ref: '#/components/responses/ValidationError'
- *       401:
- *         $ref: '#/components/responses/Unauthorized'
- *       404:
- *         description: Gig not found, or not owned by the freelancer
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
- *       500:
- *         $ref: '#/components/responses/ServerError'
  */
 router.delete("/:id", authenticate, validateGigIdRouteParam, authorizeRoles("freelancer", "admin"), CheckGigOwnership,  gigController.deleteGigByID);
 
