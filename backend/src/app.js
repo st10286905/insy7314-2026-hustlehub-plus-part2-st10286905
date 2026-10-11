@@ -22,6 +22,7 @@ const swaggerUi = require("swagger-ui-express");
 const config = require("./config");
 const authRoutes = require("./routes/auth.routes");
 const gigRoutes = require("./routes/gig.routes");
+const bookingRoutes = require("./routes/booking.routes");
 const connectToDB = require("./config/db");
 const { errorHandler, errorHandler404 } = require("./middleware/error.middleware");
  
@@ -111,6 +112,10 @@ app.use("/api/gigs", gigRoutes);
  
 // Error handling: 404 first so unmatched routes reach the error handler,
 // then the centralized error handler last
+app.use("/api/bookings", bookingRoutes);
+
+// Error handling middleware
+app.use(errorHandler);
 app.use(errorHandler404);
 app.use(errorHandler);
  
