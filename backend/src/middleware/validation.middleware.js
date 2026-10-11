@@ -13,7 +13,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Quantifier
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Lookahead_assertion
  */
-const {body, validationResult} = require('express-validator');
+const {body, param, query, validationResult} = require('express-validator');
 
 /**
  * Middleware that checks for validation errors in the request.
@@ -126,6 +126,38 @@ const loginValidation = [
     handleValidationErrors,
 ];
 
+
+/**
+ * Validation rules for gig creation
+ * Validates:
+ * - email
+ * - password
+ */
+const gigValidation = [
+    rejectUnknownFields(['title', 'category', 'description', 'rate', 'durationHours']),
+
+    body('title')
+    .exists({checkFalsy: true}).withMessage('Title is required')
+    .bail().isString().withMessage('Title must be a string')
+    .bail().isLength({max: 120}).withMessage('Title is invalid'),
+
+    body('category')
+    .exists({checkFalsy: true}).withMessage('Category is required')
+    .bail().isString().withMessage('Category ID must be a string')
+    .isIn(['Development', 'Design', 'Writing', 'Marketing', 'Other']).withMessage('Category is invalid'),
+
+    body('description')
+    .exists({checkFalsy: true}).withMessage('Description is required')
+    .bail().isString().withMessage('Description must be a string')
+    .bail().isLength({max: 2000}).withMessage('Description must be less than or equal to 2000 characters'),
+
+    body('rate')
+    .exists({checkFalsy: true}).withMessage('Rate is required')
+    .bail().isNumeric({min: 1}).withMessage('Rate must be greater than R1'),
+
+    body('durationHours')
+    .exists({checkFalsy: true}).withMessage('Duration is required')
+    .bail().isNumeric({min: 1, max: 40}).withMessage('Duration must be between 1 and 40 hours'),
 /**
  * Validation rules for booking a gig.
  * Validates:
@@ -141,6 +173,105 @@ const bookingValidation = [
     handleValidationErrors,
 ];
 
+const gigSearchValidation = [
+  query('search')
+    .default('')
+    .isString().withMessage('search must be a string').bail()
+    .trim()
+    .isLength({ max: 100 }).withMessage('search must be 100 characters or fewer'),
+
+  query('category')
+    .optional()                                  
+    .isString().withMessage('category must be a string').bail()
+    .trim()
+    .isIn(['Development', 'Design', 'Writing', 'Marketing', 'Other']) 
+    .withMessage('Invalid category'),
+
+  query('minRate')
+    .optional()
+    .isString().bail()                            
+    .isFloat({ min: 1 }).withMessage('minRate must be a number greater than or equal to 1')
+    .toFloat(),
+
+  query('maxRate')
+    .optional()
+    .isString().bail()
+    .isFloat({ min: 1 }).withMessage('maxRate must be a number greater than or equal to 1')
+    .toFloat()
+    .custom((max, { req }) => {
+      const min = req.query.minRate;
+      if (min !== undefined && max < min) {
+        throw new Error('maxRate must be greater than or equal to minRate');
+      }
+      return true;
+    }),
+
+  query('page')
+    .default('1')
+    .isString().bail()
+    .isInt({ min: 1 }).withMessage('page number must be equal to one or greater')
+    .toInt(),
+
+  query('limit')
+    .default('10')
+    .isString().bail()
+    .isInt({ min: 10, max: 50 }).withMessage('limit must be between 10 and 50')
+    .toInt(),
+];
+
+
+const gigUpdateValidation = [
+  param("id").isString().withMessage("Invalid gig id"),
+  rejectUnknownFields(['title', 'category', 'description', 'rate', 'durationHours', 'status']),
+  body("title")
+    .exists({ values: "null" }).withMessage("title is required").bail()
+    .isString().withMessage("title must be a string").bail()
+    .trim()
+    .isLength({ min: 1, max: 120 }).withMessage("title must be 1-120 characters"),
+
+  body("category")
+    .exists({ values: "null" }).withMessage("category is required").bail()
+    .isString().withMessage("category must be a string").bail()
+    .trim()
+    .isIn(["Development", "Design", "Writing", "Marketing", "Other"])
+    .withMessage("Invalid category"),
+
+  body("description")
+    .exists({ values: "null" }).withMessage("description is required").bail()
+    .isString().withMessage("description must be a string").bail()
+    .trim()
+    .isLength({ min: 1, max: 2000 }).withMessage("description must be 1-2000 characters"),
+
+  body("rate")
+    .exists({ values: "null" }).withMessage("rate is required").bail()
+    .custom((v) => typeof v === "number").withMessage("rate must be a number").bail()
+    .isFloat({ min: 1 }).withMessage("rate must be at least 1")
+    .toFloat(),
+
+  body("durationHours")
+    .exists({ values: "null" }).withMessage("durationHours is required").bail()
+    .custom((v) => typeof v === "number").withMessage("durationHours must be a number").bail()
+    .isInt({ min: 1 }).withMessage("durationHours must be an integer >= 1")
+    .toInt(),
+
+  body("status")
+    .exists({ values: "null" }).withMessage("status is required").bail()
+    .isString().withMessage("status must be a string").bail()
+    .isIn(["Active", "Paused"]).withMessage("status must be Active or Paused"),
+];
+
+const validateGigIdRouteParam = [
+    param("id").isString().withMessage("Invalid gig id")
+];
+
+module.exports = {
+    registerValidation,
+    loginValidation,
+    gigValidation,
+    gigSearchValidation,
+    gigUpdateValidation,
+    validateGigIdRouteParam 
+};
 module.exports = {
     registerValidation,
     loginValidation,
