@@ -218,6 +218,22 @@ const gigSearchValidation = [
     .isString().bail()
     .isInt({ min: 10, max: 50 }).withMessage('limit must be between 10 and 50')
     .toInt(),
+    handleValidationErrors,
+];
+
+const aggregationQueryValidation = [
+  query('page')
+    .default('1')
+    .isString().bail()
+    .isInt({ min: 1 }).withMessage('page number must be equal to one or greater')
+    .toInt(),
+
+  query('limit')
+    .default('10')
+    .isString().bail()
+    .isInt({ min: 10, max: 50 }).withMessage('limit must be between 10 and 50')
+    .toInt(),
+    handleValidationErrors,
 ];
 
 
@@ -259,10 +275,12 @@ const gigUpdateValidation = [
     .exists({ values: "null" }).withMessage("status is required").bail()
     .isString().withMessage("status must be a string").bail()
     .isIn(["Active", "Paused"]).withMessage("status must be Active or Paused"),
+    handleValidationErrors,
 ];
 
 const validateGigIdRouteParam = [
-    param("id").isString().withMessage("Invalid gig id")
+    param("id").isString().withMessage("Invalid gig id"),
+    handleValidationErrors,
 ];
 
 module.exports = {
@@ -272,5 +290,7 @@ module.exports = {
     gigValidation,
     gigSearchValidation,
     gigUpdateValidation,
-    validateGigIdRouteParam 
+    validateGigIdRouteParam,
+    aggregationQueryValidation,
+    bookingValidation
 };
