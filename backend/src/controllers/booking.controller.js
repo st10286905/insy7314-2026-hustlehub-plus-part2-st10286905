@@ -45,7 +45,7 @@ exports.create = async (req, res, next) => {
          * The booking status is set to "Confirmed" upon creation.
          * If the booking is created successfully, return a 201 Created response with the booking details.
          */
-        const booking = await Booking.create({ 
+        const booking = await Booking.create({
             gig: gigExists._id,
             client: req.user.id,
             freelancer: gigExists.freelancer,
