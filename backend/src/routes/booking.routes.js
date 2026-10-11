@@ -34,6 +34,13 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
+router.get(
+    "/mine",
+    authenticate,
+    authorizeRoles("freelancer"),
+    bookingController.mine
+)
+
 router.post(
     "/",
     authenticate,
@@ -41,5 +48,4 @@ router.post(
     bookingValidation,
     bookingController.create
 )
-
 module.exports = router;
