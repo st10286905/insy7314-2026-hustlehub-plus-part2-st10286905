@@ -80,7 +80,10 @@ const rejectUnknownFields = (allowedFields) => {
  * - role (optional)
  */
 const registerValidation = [
-    rejectUnknownFields(['email', 'password', 'role']),
+    rejectUnknownFields(['name', 'email', 'password', 'role']),
+    body('name')
+    .exists({checkFalsy: true}).withMessage('Name is required'),
+    
     body('email')
     .exists({checkFalsy: true}).withMessage('Email is required')
     .bail().trim().isLength({max:254}).withMessage('Email must not exceed 254 characters')
