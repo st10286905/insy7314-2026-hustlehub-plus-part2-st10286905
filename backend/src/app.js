@@ -50,12 +50,66 @@ if (process.env.NODE_ENV !== "production") {
         securitySchemes: {
           bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
         },
+        schemas: {
+          Booking: {
+            type: "object",
+            description: "A booking created by an authenticated client.",
+            properties: {
+              _id: {
+                type: "string",
+                description: "MongoDB ObjectId of the booking.",
+                example: "64f1a2b3c4d5e6f7a8b9c0d3",
+              },
+              gig: {
+                type: "string",
+                description: "MongoDB ObjectId of the booked gig.",
+                example: "64f1a2b3c4d5e6f7a8b9c0d2",
+              },
+              client: {
+                type: "string",
+                description: "MongoDB ObjectId of the client.",
+                example: "64f1a2b3c4d5e6f7a8b9c0d1",
+              },
+              freelancer: {
+                type: "string",
+                description: "MongoDB ObjectId of the freelancer.",
+                example: "64f1a2b3c4d5e6f7a8b9c0d4",
+              },
+              notes: {
+                type: "string",
+                maxLength: 500,
+                description: "Optional booking requirements or notes.",
+                example: "Please have the first draft ready within three days.",
+              },
+              status: {
+                type: "string",
+                enum: ["Pending", "Confirmed", "Completed", "Cancelled"],
+                example: "Confirmed",
+              },
+              createdAt: {
+                type: "string",
+                format: "date-time",
+              },
+              updatedAt: {
+                type: "string",
+                format: "date-time",
+              },
+              __v: {
+                type: "integer",
+                example: 0,
+              },
+            },
+          },
+        },
       },
     },
     // Absolute path so it works regardless of where Node is started from
     apis: [path.join(__dirname, "routes", "*.js")],
   });
  
+  app.get("/api-docs/openapi.json", (req, res) => {
+    res.json(swaggerSpec);
+  });
   
   app.use(
     "/api-docs",

@@ -158,6 +158,7 @@ const gigValidation = [
     body('durationHours')
     .exists({checkFalsy: true}).withMessage('Duration is required')
     .bail().isNumeric({min: 1, max: 40}).withMessage('Duration must be between 1 and 40 hours'),
+];
 /**
  * Validation rules for booking a gig.
  * Validates:
@@ -267,13 +268,9 @@ const validateGigIdRouteParam = [
 module.exports = {
     registerValidation,
     loginValidation,
+    bookingValidation,
     gigValidation,
     gigSearchValidation,
     gigUpdateValidation,
     validateGigIdRouteParam 
-};
-module.exports = {
-    registerValidation,
-    loginValidation,
-    bookingValidation,
 };
