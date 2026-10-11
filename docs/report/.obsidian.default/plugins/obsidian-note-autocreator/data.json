@@ -1,0 +1,17 @@
+{
+  "triggerSymbol": "@",
+  "suggestLinksToNonExistingNotes": true,
+  "relativeTopFolders": [],
+  "includeFoldersInSuggestions": true,
+  "folderSuggestionSettings": {
+    "folderSuggestionMode": "always",
+    "folderSuggestionTrigger": "/"
+  },
+  "enableRelativePaths": true,
+  "templateTriggerSymbol": "$",
+  "defaultTemplaterTemplate": "",
+  "quickAddTriggerSymbol": "€",
+  "defaultQuickAddTemplate": "",
+  "enabledFolders": [],
+  "triggerHeaderAsAliasSymbol": "!"
+}

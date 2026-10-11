@@ -1,0 +1,12 @@
+# Ignore Obsidian's internal hidden folder
+.obsidian/
+
+# Ignore Obsidian's internal trash folder
+.trash/
+
+# Ignore OS-specific system artifacts
+.DS_Store
+Thumbs.db
+
+# Ignore main.pdf
+main.pdf
