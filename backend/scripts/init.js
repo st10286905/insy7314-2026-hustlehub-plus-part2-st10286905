@@ -7,7 +7,6 @@
  * https://nodejs.org/api/fs.html
  * https://nodejs.org/api/path.html
  * https://www.npmjs.com/package/dotenv
- * https://www.npmjs.com/package/selfsigned
  * https://docs.openssl.org/3.0/man1/openssl-req/
  */
 // AI Disclosure: .sh scripts ported by https://share.gemini.google/Mz0xUeqIrTaI
@@ -15,7 +14,7 @@
 const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
-const selfsigned = require("selfsigned");
+const { execFileSync } = require("child_process")
 
 const rootDir = path.join(__dirname, "..");
 const envPath = path.join(rootDir, ".env");
@@ -61,38 +60,35 @@ async function init() {
       // Ensure certificate destination directories exist
       fs.mkdirSync(path.dirname(keyPath), { recursive: true });
       fs.mkdirSync(path.dirname(certPath), { recursive: true });
-
-      // Produce an X.509 certificate with Subject Alternative Names for localhost routing
-      const pems = await selfsigned.generate(
-        [{ name: "commonName", value: "localhost" }],
-        {
-          days: 365,
-          keySize: 2048,
-          extensions: [
-            {
-              name: "subjectAltName",
-              altNames: [
-                { type: 2, value: "localhost" },
-                { type: 7, ip: "127.0.0.1" },
-              ],
-            },
-          ],
-        },
+      
+      // Generate self-signed certificate using OpenSSL command-line tool
+      try {
+        execFileSync("openssl", [
+          "req",
+          "-x509",
+          "-newkey",
+          "rsa:2048",
+          "-nodes",
+          "-sha256",
+          "-days",
+          "365",
+          "-keyout",
+          keyPath,
+          "-out",
+          certPath,
+          "-subj",
+          "/CN=localhost",
+          "-addext",
+          "subjectAltName=DNS:localhost,IP:127.0.0.1",
+        ],
+        { stdio: "inherit" },
       );
-
-      const privateKey = pems.private || pems.key || pems.privateKey;
-      const cert = pems.cert || pems.certificate;
-
-      if (!privateKey || !cert) {
-        throw new Error("Failed to generate private key or certificate.");
+      console.log(`[init] Generated self-signed TLS certificates at ${path.dirname(keyPath)}`);
+      } catch (error) {
+        throw new Error(`Failed to generate self-signed TLS certificates: ${error.message}`);
       }
-
-      fs.writeFileSync(keyPath, privateKey, { encoding: "utf8" });
-      fs.writeFileSync(certPath, cert, { encoding: "utf8" });
-      console.log(`[init] Saved certificates to ${path.dirname(keyPath)}`);
     }
   }
-
   console.log("[init] Initialisation complete.");
 }
 
