@@ -291,6 +291,6 @@ module.exports = {
     gigSearchValidation,
     gigUpdateValidation,
     validateGigIdRouteParam,
-    bookingValidation,
-    aggregationQueryValidation
+    aggregationQueryValidation,
+    bookingValidation
 };
