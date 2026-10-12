@@ -931,6 +931,110 @@ sequenceDiagram
     Ctrl-->>Client: 7. Response: HTTP 200 + Dashboard Data
     deactivate Ctrl
 ```
+## Role Based Access Control (RBAC)
+
+The system utilises RBAC to restrict access to the following sensitive endpoints: 
+
+### Gig API endpoints
+
+- `GET /api/gigs/mine` (freelancer only)
+- `GET /api/gigs/:id` (freelancer and admin only)
+- `PUT /api/gigs/:id` (freelancer and admin only)
+- `DELETE /api/gigs/:id` (freelancer and admin only)
+### Admin API endpoints
+
+- `GET /api/admin/users` (admin only)
+- `GET /api/admin/bookings` (admin only)
+- `GET /api/admin/transactions` (admin only)
+- `GET /api/admin/gigs` (admin only)
+- `GET /api/admin/stats` (admin only)
+
+### Booking API endpoints
+
+- `GET /api/bookings/mine` (freelancer only)
+- `POST /api/bookings/mine` (client only)
+
+### Transaction API endpoints 
+
+- `GET /api/transactions/income` (freelancer only)
+
+It should be noted that RBAC is not applied to public facing endpoints for instance `GET /api/gigs`, as the system supports anonymous browsing of the marketplace without formal registration as a client. 
+
+### RBAC Implementation
+
+The RBAC implementation is exposed as a middleware function to the various endpoint routes mentioned above and chained after `authenticate`. This ensures it is first established that the incoming request has a valid JWT before continuing down the validation pipeline, avoiding unnecessary processing in the eventuality it does not exist or is malformed. 
+
+```js 
+router.post("/", authenticate, authorizeRoles("freelancer", "admin"), gigValidation, gigController.create);
+```
+
+Once the request is passed to the `authorizeRoles` RBAC middleware, the role key in the JWT is evaluated against the supplied roles. Validation failure occurs when the JWT does not contain the required role, returning as `Access denied` error to the client. Upon successful validation, the request is passed further down the middleware validation pipeline until it reaches the specified controller. This prevents unauthorised access to sensitive endpoints that aggregate or pull important system information. 
+
+```js 
+/**
+ * Build role-based authorization middleware.
+ * @param {...string} allowedRoles - The roles permitted to pass through.
+ * @returns {Function} A middleware that responds 403 when the role is not allowed.
+ */
+const authorizeRoles = (...allowedRoles) => {
+  return (req, res, next) => {
+    if(!req.user){
+      return res.status(401).json({ message: "Unauthorized access" });
+    }
+
+    if (!allowedRoles.includes(req.user.role)) {
+      return res.status(403).json({ error: "Access denied" });
+    }
+    next();
+  };
+};
+
+```
+
+## Ownership Middleware 
+
+The ownership middleware is another addition to the system since part one and provides a reusable asynchronous means of determining gig ownership. Without exposing the below ownership logic as a middleware function (`CheckGigOwnership`) each gig endpoint would have had to have some form of conditional branching to determine the query to perform in the controller in relation to the users role. For instance, a freelancer must prove ownership of a gig, however it would not make sense to place the same responsibility on an admin user maintaining the system. 
+
+The benefits can be seen below, whereby there are no conditionals as ownership has already been established before reaching the controller: 
+
+```js 
+exports.deleteGigByID = async (req, res, next) => {
+    try {
+    const gigID = req.params.id;
+    const filter = { _id: gigID };
+
+    await Gig.findOneAndDelete(filter);
+
+    return res.status(200).json({ message: "Gig successfully deleted." });
+  } catch (err) {
+    next(err);
+  }
+}
+```
+
+The ownership implementation first queries the existence of the specified gig, failing early in the event that it does not exist. Subsequently, it determines whether the user making the request is an admin or a freelancer associated to the gig  before passing the request further down the middleware pipeline. Upon failure to a `NOT FOUND` response is provided to the client. 
+
+```js 
+const CheckGigOwnership = async (req, res, next) => {
+  try {
+    const gig = await Gig.findById(req.params.id);
+    if (!gig) {
+      return res.status(404).json({ error: { code: "NOT_FOUND", message: "Gig not found." } });
+    }
+
+    const isAdmin = req.user.role === "admin";
+    const isOwner = gig.freelancer.toString() === req.user.id;
+
+    if (!isAdmin && !isOwner) {
+      return res.status(404).json({ error: { code: "NOT_FOUND", message: "Gig not found." } });
+    }
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+```
 
 ## Role Based Access Control (RBAC)
 
