@@ -2,6 +2,26 @@
 
 The HustleHub+ system is a freelance marketplace platform that facilitates the advertisement and browsing of listed services. The system processes sensitive personable identifiable and financial information related to the booking of services. This make it imperative that the system be designed and implemented in a security conscious manner to proactively mitigate and prevent attack vectors that could be leveraged to compromise its integrity. 
 
+## <u>How to Start Client</u>
+Below are the instrctions for running the client, please not you will need to open 2 seperate terminals:
+
+How to Run The Backend
+Run the following commands:
+- cd backend
+- npm install
+- npm start
+
+How to Run The Frontend
+Runn the following commands:
+- cd frontend
+- npm install
+- npm run dev
+
+The Following vredentials can be used:
+|connor@example.com|Password1!|Client|
+|jessica@example.com|Password1!|Freelancer|
+|admin@hustlehub.example.com|Password1!|Admin|
+
 ## Demo
 
 ### Admin Credentials 
