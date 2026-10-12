@@ -26,6 +26,7 @@ const SALT_ROUNDS = 12;
 exports.register = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
+    const assignableRoles = ['freelancer', 'client'];
 
     const existingUser = await User.findOne({ email });
     if (existingUser)
@@ -35,16 +36,21 @@ exports.register = async (req, res, next) => {
           message: "An account with this email address already exists.",
         },
       });
+    
+    if(!assignableRoles.includes(role))
+      return res.status(400).json({
+        error: {
+          code: "BAD_REQUEST",
+          message: "User registration has invalid role.",
+        },
+      });
 
-
-    const assignedRole = role ? role.toLowerCase() : "client";
     const newUser = await User.create({
       name,
       email,
       password,
-      role: assignedRole
+      role: role
     });
-
 
     return res.status(201).json({
       message: "User successfully registered.",

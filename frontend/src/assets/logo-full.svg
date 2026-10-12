@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
+  <defs>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9B6FFF"/>
+      <stop offset="100%" stop-color="#5B21D9"/>
+    </linearGradient>
+  </defs>
+  <!-- H icon: left leg -->
+  <rect x="2" y="4" width="8" height="32" rx="2" fill="url(#hGrad)"/>
+  <!-- H icon: right leg, slightly slanted -->
+  <polygon points="15,4 23,4 23,36 15,36" fill="url(#hGrad)"/>
+  <!-- H icon: crossbar -->
+  <rect x="10" y="16" width="5" height="8" fill="url(#hGrad)"/>
+  <!-- Hustle white -->
+  <text x="32" y="28" font-family="Inter,Outfit,Arial,sans-serif" font-weight="800" font-size="21" fill="#FFFFFF">Hustle</text>
+  <!-- Hub purple -->
+  <text x="107" y="28" font-family="Inter,Outfit,Arial,sans-serif" font-weight="800" font-size="21" fill="#9B6FFF">Hub</text>
+  <!-- + gold -->
+  <text x="154" y="29" font-family="Inter,Outfit,Arial,sans-serif" font-weight="800" font-size="24" fill="#FFC400">+</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E0E45"/>
+      <stop offset="100%" stop-color="#2D1260"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="8" fill="url(#bg)"/>
+  <g stroke="#C084FC" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- frame -->
+    <rect x="6" y="10" width="28" height="20" rx="2"/>
+    <!-- sun/circle top-left -->
+    <circle cx="13" cy="17" r="3"/>
+    <!-- mountain path -->
+    <polyline points="6,30 14,20 20,25 26,18 34,30"/>
+  </g>
+</svg>
