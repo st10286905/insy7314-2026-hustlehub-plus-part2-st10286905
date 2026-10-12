@@ -11,6 +11,8 @@
 
 #render_markdown(
   "main.md",
+  "reports/Main_Report.md",
+  "reports/ST10322521_Report.md",
 )
 
 #pagebreak()
