@@ -7,7 +7,7 @@ import { useAsync } from '../lib/useAsync'
 import { useAuth } from '../context/AuthContext'
 import CategoryArt from '../components/CategoryArt'
 import { displayName, initials, formatRand } from '../lib/format'
-import { sanitizeRichText } from '../lib/sanitize'
+import { sanitiseHtml } from '../lib/sanitize'
 
 export default function GigDetailPage() {
     const { id } = useParams()
@@ -85,8 +85,7 @@ export default function GigDetailPage() {
                         {descText ? (
                             descText.split('\n\n').map((p, i) => <p key={i}>{p}</p>)
                         ) : (
-                            <div dangerouslySetInnerHTML={{ __html: sanitizeRichText(gig.description) }} />
-                        )}
+                                <div dangerouslySetInnerHTML={{ __html: sanitiseHtml(gig.description) }} />                        )}
                     </div>
                 </div>
 
