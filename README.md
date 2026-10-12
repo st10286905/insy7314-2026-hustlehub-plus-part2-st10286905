@@ -931,7 +931,6 @@ sequenceDiagram
     Ctrl-->>Client: 7. Response: HTTP 200 + Dashboard Data
     deactivate Ctrl
 ```
-
 ## Role Based Access Control (RBAC)
 
 The system utilises RBAC to restrict access to the following sensitive endpoints: 
@@ -949,6 +948,15 @@ The system utilises RBAC to restrict access to the following sensitive endpoints
 - `GET /api/admin/transactions` (admin only)
 - `GET /api/admin/gigs` (admin only)
 - `GET /api/admin/stats` (admin only)
+
+### Booking API endpoints
+
+- `GET /api/bookings/mine` (freelancer only)
+- `POST /api/bookings/mine` (client only)
+
+### Transaction API endpoints 
+
+- `GET /api/transactions/income` (freelancer only)
 
 It should be noted that RBAC is not applied to public facing endpoints for instance `GET /api/gigs`, as the system supports anonymous browsing of the marketplace without formal registration as a client. 
 
