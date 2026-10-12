@@ -79,7 +79,7 @@ const {
  *               password:
  *                 type: string
  *                 format: password
- *                 example: MySecretPassword123
+ *                 example: ZapTestClient#2026
  *               role:
  *                 type: string
  *                 enum: [client, admin]
