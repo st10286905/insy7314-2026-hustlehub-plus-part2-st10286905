@@ -12,6 +12,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const UserModel = require("../models/user.model");
+const User = require("../models/user")
 
 const SALT_ROUNDS = 12;
 
@@ -24,10 +25,10 @@ const SALT_ROUNDS = 12;
  */
 exports.register = async (req, res, next) => {
   try {
-    const { email, password, role } = req.body;
+    const { name, email, password, role } = req.body;
+    const assignableRoles = ['freelancer', 'client'];
 
-    // Verify whether user already exists
-    const existingUser = await UserModel.findByEmail(email);
+    const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.status(409).json({
         error: {
@@ -35,14 +36,20 @@ exports.register = async (req, res, next) => {
           message: "An account with this email address already exists.",
         },
       });
+    
+    if(!assignableRoles.includes(role))
+      return res.status(400).json({
+        error: {
+          code: "BAD_REQUEST",
+          message: "User registration has invalid role.",
+        },
+      });
 
-    // Hash password and create new user
-    const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
-    const assignedRole = role ? role.toLowerCase() : "client";
-    const newUser = await UserModel.create({
+    const newUser = await User.create({
+      name,
       email,
-      passwordHash,
-      role: assignedRole,
+      password,
+      role: role
     });
 
     return res.status(201).json({
@@ -71,7 +78,7 @@ exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
     // Verify whether user exists
-    const user = await UserModel.findByEmail(email);
+    const user = await User.findOne({email});
     if (!user)
       return res.status(401).json({
         error: {
@@ -81,7 +88,7 @@ exports.login = async (req, res, next) => {
       });
 
     // Verify hash of given password matches stored passwordHash
-    const pwMatch = await bcrypt.compare(password, user.passwordHash);
+    const pwMatch = await bcrypt.compare(password, user.password);
     if (!pwMatch)
       return res.status(401).json({
         error: {

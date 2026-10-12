@@ -1,8 +1,8 @@
 {
     "info":{
-        "name":"HustleHub Auth API",
-        "description":"Collection of API endpoints for HustleHub authentication",
-        "schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"        
+        "name": "HustleHub Auth API",
+        "description": "Collection of API endpoints for HustleHub authentication",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "variable": [],
     "item": [
@@ -53,7 +53,7 @@
                                     "    const error = json.error.details.find(d => d.field === 'email');",
                                     "    pm.expect(error).to.exist;",
                                     "});"
-                                ]                                
+                                ]
                             }
                         }
                     ]
@@ -547,6 +547,3200 @@
                                     "});"
                                 ]
                             }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/users - No Token",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/users?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "users"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No user data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('user');",
+                                    "    pm.expect(json).to.not.have.property('users');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/users - Non-Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/users?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "users"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access Denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access Denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No user data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('user');",
+                                    "    pm.expect(json).to.not.have.property('users');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/users - Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/users?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "users"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "// Handles a bare array, or an array wrapped in 'users' or 'data'",
+                                    "const users = Array.isArray(json) ? json : (json.users || json.data);",
+                                    "",
+                                    "pm.test(\"Response contains an array of users\", function () {",
+                                    "    pm.expect(users).to.be.an('array');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Array respects the limit of 10\", function () {",
+                                    "    pm.expect(users.length).to.be.at.most(10);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Each item is a user object with an email\", function () {",
+                                    "    users.forEach(function (user) {",
+                                    "        pm.expect(user).to.be.an('object');",
+                                    "        pm.expect(user).to.have.property('email');",
+                                    "        pm.expect(user.email).to.be.a('string');",
+                                    "    });",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Password hash is not exposed\", function () {",
+                                    "    users.forEach(function (user) {",
+                                    "        pm.expect(user).to.not.have.property('passwordHash');",
+                                    "        pm.expect(user).to.not.have.property('password');",
+                                    "    });",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/gigs - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/gigs?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "gigs"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('gigs');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/gigs - Non-Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/gigs?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "gigs"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('gigs');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/gigs - Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/gigs?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "gigs"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Response contains a gigs array\", function () {",
+                                    "    pm.expect(json).to.have.property('gigs');",
+                                    "    pm.expect(json.gigs).to.be.an('array');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Array respects the limit of 10\", function () {",
+                                    "    pm.expect(json.gigs.length).to.be.at.most(10);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Each gig has the expected fields and types\", function () {",
+                                    "    json.gigs.forEach(function (gig) {",
+                                    "        pm.expect(gig).to.be.an('object');",
+                                    "        pm.expect(gig._id).to.be.a('string');",
+                                    "        pm.expect(gig.freelancer).to.be.a('string');",
+                                    "        pm.expect(gig.title).to.be.a('string');",
+                                    "        pm.expect(gig.category).to.be.a('string');",
+                                    "        pm.expect(gig.description).to.be.a('string');",
+                                    "        pm.expect(gig.rate).to.be.a('number');",
+                                    "        pm.expect(gig.durationHours).to.be.a('number');",
+                                    "        pm.expect(gig.status).to.be.a('string');",
+                                    "        pm.expect(gig.createdAt).to.be.a('string');",
+                                    "        pm.expect(gig.updatedAt).to.be.a('string');",
+                                    "    });",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/bookings - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/bookings?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "bookings"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No booking data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('bookings');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/bookings - Non-Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/bookings?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "bookings"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No booking data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('bookings');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/bookings - Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/bookings?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "bookings"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Response contains a bookings array\", function () {",
+                                    "    pm.expect(json).to.have.property('bookings');",
+                                    "    pm.expect(json.bookings).to.be.an('array');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Array respects the limit of 10\", function () {",
+                                    "    pm.expect(json.bookings.length).to.be.at.most(10);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Each booking has the expected fields and types\", function () {",
+                                    "    json.bookings.forEach(function (booking) {",
+                                    "        pm.expect(booking).to.be.an('object');",
+                                    "        pm.expect(booking._id).to.be.a('string');",
+                                    "        pm.expect(booking.gig).to.be.a('string');",
+                                    "        pm.expect(booking.client).to.be.a('string');",
+                                    "        pm.expect(booking.freelancer).to.be.a('string');",
+                                    "        pm.expect(booking.status).to.be.a('string');",
+                                    "        pm.expect(booking.createdAt).to.be.a('string');",
+                                    "        pm.expect(booking.updatedAt).to.be.a('string');",
+                                    "    });",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/transactions - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/transactions?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "transactions"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No transaction data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('transactions');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/transactions - Non-Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/transactions?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "transactions"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No transaction data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('transactions');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/transactions - Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/transactions?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "transactions"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Response contains a transactions array\", function () {",
+                                    "    pm.expect(json).to.have.property('transactions');",
+                                    "    pm.expect(json.transactions).to.be.an('array');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Array respects the limit of 10\", function () {",
+                                    "    pm.expect(json.transactions.length).to.be.at.most(10);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Each transaction has the expected fields and types\", function () {",
+                                    "    json.transactions.forEach(function (transaction) {",
+                                    "        pm.expect(transaction).to.be.an('object');",
+                                    "        pm.expect(transaction._id).to.be.a('string');",
+                                    "        pm.expect(transaction.booking).to.be.a('string');",
+                                    "        pm.expect(transaction.client).to.be.a('string');",
+                                    "        pm.expect(transaction.freelancer).to.be.a('string');",
+                                    "        pm.expect(transaction.amount).to.be.a('number');",
+                                    "        pm.expect(transaction.amount).to.be.at.least(0);",
+                                    "        pm.expect(transaction.status).to.be.a('string');",
+                                    "        pm.expect(transaction.createdAt).to.be.a('string');",
+                                    "        pm.expect(transaction.updatedAt).to.be.a('string');",
+                                    "    });",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/stats - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/stats",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "stats"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No stats data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('users');",
+                                    "    pm.expect(json).to.not.have.property('gigs');",
+                                    "    pm.expect(json).to.not.have.property('bookings');",
+                                    "    pm.expect(json).to.not.have.property('transactions');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/stats - Non-Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/stats",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "stats"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No stats data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('users');",
+                                    "    pm.expect(json).to.not.have.property('gigs');",
+                                    "    pm.expect(json).to.not.have.property('bookings');",
+                                    "    pm.expect(json).to.not.have.property('transactions');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /admin/stats - Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/stats",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "stats"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Response contains all four stats\", function () {",
+                                    "    pm.expect(json).to.have.property('users');",
+                                    "    pm.expect(json).to.have.property('gigs');",
+                                    "    pm.expect(json).to.have.property('bookings');",
+                                    "    pm.expect(json).to.have.property('transactions');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Each stat is a non-negative integer\", function () {",
+                                    "    ['users', 'gigs', 'bookings', 'transactions'].forEach(function (key) {",
+                                    "        pm.expect(json[key], key).to.be.a('number');",
+                                    "        pm.expect(Number.isInteger(json[key]), key + ' is an integer').to.be.true;",
+                                    "        pm.expect(json[key], key).to.be.at.least(0);",
+                                    "    });",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /gigs - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Logo design for small businesses\",\n    \"category\": \"Design\",\n    \"description\": \"I will design a modern logo with three concepts and two revisions.\",\n    \"rate\": 250.5,\n    \"durationHours\": 8\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig was created\", function () {",
+                                    "    pm.expect(json).to.not.have.property('gig');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /gigs - Non-Freelancer Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Logo design for small businesses\",\n    \"category\": \"Design\",\n    \"description\": \"I will design a modern logo with three concepts and two revisions.\",\n    \"rate\": 250.5,\n    \"durationHours\": 8\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig was created\", function () {",
+                                    "    pm.expect(json).to.not.have.property('gig');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /gigs - Freelancer Token (201)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Logo design for small businesses\",\n    \"category\": \"Design\",\n    \"description\": \"I will design a modern logo with three concepts and two revisions.\",\n    \"rate\": 250.5,\n    \"durationHours\": 8\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "const sent = JSON.parse(pm.request.body.raw);",
+                                    "",
+                                    "pm.test(\"Success message is correct\", function () {",
+                                    "    pm.expect(json.message).to.equal('Gig successfully created.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Gig object has the expected fields and types\", function () {",
+                                    "    pm.expect(json).to.have.property('gig');",
+                                    "    pm.expect(json.gig.id).to.be.a('string');",
+                                    "    pm.expect(json.gig.title).to.be.a('string');",
+                                    "    pm.expect(json.gig.description).to.be.a('string');",
+                                    "    pm.expect(json.gig.rate).to.be.a('number');",
+                                    "    pm.expect(json.gig.durationHours).to.be.a('number');",
+                                    "    pm.expect(json.gig.status).to.be.a('string');",
+                                    "    pm.expect(json.gig.category).to.be.a('string');",
+                                    "    pm.expect(json.gig.createdAt).to.be.a('string');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Returned gig matches the request body\", function () {",
+                                    "    pm.expect(json.gig.title).to.equal(sent.title);",
+                                    "    pm.expect(json.gig.category).to.equal(sent.category);",
+                                    "    pm.expect(json.gig.description).to.equal(sent.description);",
+                                    "    pm.expect(json.gig.rate).to.equal(sent.rate);",
+                                    "    pm.expect(json.gig.durationHours).to.equal(sent.durationHours);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"New gig status is Active\", function () {",
+                                    "    pm.expect(json.gig.status).to.equal('Active');",
+                                    "});",
+                                    "",
+                                    "// Save the id for later tests (get, update, delete)",
+                                    "pm.environment.set('createdGigId', json.gig.id);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /gigs/mine - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/mine",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "mine"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('gigs');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /gigs/mine - Non-Freelancer/Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/mine",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "mine"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('gigs');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /gigs/mine - Freelancer/Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/mine",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "mine"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "// Reads the payload (sub, role) from the JWT actually sent in this request",
+                                    "function getPayload(token) {",
+                                    "    let b64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');",
+                                    "    while (b64.length % 4) b64 += '=';",
+                                    "    return JSON.parse(atob(b64));",
+                                    "}",
+                                    "",
+                                    "const authHeader = pm.variables.replaceIn(pm.request.headers.get('Authorization'));",
+                                    "const payload = getPayload(authHeader.replace('Bearer ', ''));",
+                                    "",
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Response contains a gigs array\", function () {",
+                                    "    pm.expect(json).to.have.property('gigs');",
+                                    "    pm.expect(json.gigs).to.be.an('array');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Each gig has the expected fields and types\", function () {",
+                                    "    json.gigs.forEach(function (gig) {",
+                                    "        pm.expect(gig).to.be.an('object');",
+                                    "        pm.expect(gig._id).to.be.a('string');",
+                                    "        pm.expect(gig.freelancer).to.be.a('string');",
+                                    "        pm.expect(gig.title).to.be.a('string');",
+                                    "        pm.expect(gig.category).to.be.a('string');",
+                                    "        pm.expect(gig.description).to.be.a('string');",
+                                    "        pm.expect(gig.rate).to.be.a('number');",
+                                    "        pm.expect(gig.durationHours).to.be.a('number');",
+                                    "        pm.expect(gig.status).to.be.a('string');",
+                                    "        pm.expect(gig.createdAt).to.be.a('string');",
+                                    "        pm.expect(gig.updatedAt).to.be.a('string');",
+                                    "    });",
+                                    "});",
+                                    "",
+                                    "// Ownership is only checked for freelancers, not admins",
+                                    "if (payload.role === 'freelancer') {",
+                                    "    pm.test(\"All gigs belong to the logged-in freelancer\", function () {",
+                                    "        json.gigs.forEach(function (gig) {",
+                                    "            pm.expect(gig.freelancer).to.equal(payload.sub);",
+                                    "        });",
+                                    "    });",
+                                    "",
+                                    "    // Only runs if the POST /gigs test has saved an id",
+                                    "    const createdId = pm.environment.get('createdGigId');",
+                                    "    if (createdId) {",
+                                    "        pm.test(\"Recently created gig is in the list\", function () {",
+                                    "            const ids = json.gigs.map(function (gig) { return gig._id; });",
+                                    "            pm.expect(ids).to.include(createdId);",
+                                    "        });",
+                                    "    }",
+                                    "}"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /gigs/:id - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('_id');",
+                                    "    pm.expect(json).to.not.have.property('title');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /gigs/:id - Non-Freelancer/Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('_id');",
+                                    "    pm.expect(json).to.not.have.property('title');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /gigs/:id - Freelancer/Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Gig has the expected fields and types\", function () {",
+                                    "    pm.expect(json).to.be.an('object');",
+                                    "    pm.expect(json._id).to.be.a('string');",
+                                    "    pm.expect(json.freelancer).to.be.a('string');",
+                                    "    pm.expect(json.title).to.be.a('string');",
+                                    "    pm.expect(json.category).to.be.a('string');",
+                                    "    pm.expect(json.description).to.be.a('string');",
+                                    "    pm.expect(json.rate).to.be.a('number');",
+                                    "    pm.expect(json.durationHours).to.be.a('number');",
+                                    "    pm.expect(json.status).to.be.a('string');",
+                                    "    pm.expect(json.createdAt).to.be.a('string');",
+                                    "    pm.expect(json.updatedAt).to.be.a('string');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Returned gig is the one requested\", function () {",
+                                    "    pm.expect(json._id).to.equal(pm.variables.get('createdGigId'));",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT /gigs/:id - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Logo design - updated\",\n    \"category\": \"Design\",\n    \"description\": \"I will design a modern logo with three concepts and two revisions.\",\n    \"rate\": 300,\n    \"durationHours\": 10,\n    \"status\": \"Active\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{token}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('_id');",
+                                    "    pm.expect(json).to.not.have.property('title');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT /gigs/:id - Non-Freelancer/Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Logo design - updated\",\n    \"category\": \"Design\",\n    \"description\": \"I will design a modern logo with three concepts and two revisions.\",\n    \"rate\": 300,\n    \"durationHours\": 10,\n    \"status\": \"Active\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No gig data is exposed\", function () {",
+                                    "    pm.expect(json).to.not.have.property('_id');",
+                                    "    pm.expect(json).to.not.have.property('title');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT /gigs/:id - Freelancer/Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Logo design - updated\",\n    \"category\": \"Design\",\n    \"description\": \"I will design a modern logo with three concepts and two revisions.\",\n    \"rate\": 300,\n    \"durationHours\": 10,\n    \"status\": \"Active\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "const sent = JSON.parse(pm.request.body.raw);",
+                                    "",
+                                    "pm.test(\"Gig has the expected fields and types\", function () {",
+                                    "    pm.expect(json).to.be.an('object');",
+                                    "    pm.expect(json._id).to.be.a('string');",
+                                    "    pm.expect(json.freelancer).to.be.a('string');",
+                                    "    pm.expect(json.title).to.be.a('string');",
+                                    "    pm.expect(json.category).to.be.a('string');",
+                                    "    pm.expect(json.description).to.be.a('string');",
+                                    "    pm.expect(json.rate).to.be.a('number');",
+                                    "    pm.expect(json.durationHours).to.be.a('number');",
+                                    "    pm.expect(json.status).to.be.a('string');",
+                                    "    pm.expect(json.createdAt).to.be.a('string');",
+                                    "    pm.expect(json.updatedAt).to.be.a('string');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Returned gig is the one that was updated\", function () {",
+                                    "    pm.expect(json._id).to.equal(pm.variables.get('createdGigId'));",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Returned gig reflects the updated values\", function () {",
+                                    "    pm.expect(json.title).to.equal(sent.title);",
+                                    "    pm.expect(json.category).to.equal(sent.category);",
+                                    "    pm.expect(json.description).to.equal(sent.description);",
+                                    "    pm.expect(json.rate).to.equal(sent.rate);",
+                                    "    pm.expect(json.durationHours).to.equal(sent.durationHours);",
+                                    "    pm.expect(json.status).to.equal(sent.status);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"updatedAt is not earlier than createdAt\", function () {",
+                                    "    pm.expect(new Date(json.updatedAt).getTime()).to.be.at.least(new Date(json.createdAt).getTime());",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE /gigs/:id - No Token (401)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error object exists\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error code is UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal('UNAUTHORIZED');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message is correct\", function () {",
+                                    "    pm.expect(json.error.message).to.equal('Authentication token missing or malformed.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No success message is returned\", function () {",
+                                    "    pm.expect(json).to.not.have.property('message');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE /gigs/:id - Non-Freelancer/Admin Token (403)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Error message is 'Access denied'\", function () {",
+                                    "    pm.expect(json).to.have.property('error');",
+                                    "    pm.expect(json.error).to.equal('Access denied');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No success message is returned\", function () {",
+                                    "    pm.expect(json).to.not.have.property('message');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE /gigs/:id - Freelancer/Admin Token (200)",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs",
+                                "{{gigId}}"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Success message is correct\", function () {",
+                                    "    pm.expect(json.message).to.equal('Gig successfully deleted.');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No error is returned\", function () {",
+                                    "    pm.expect(json).to.not.have.property('error');",
+                                    "});",
+                                    "",
+                                    "// The gig no longer exists, so clear the saved id",
+                                    "pm.environment.unset('createdGigId');"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Bookings",
+            "item": [
+                {
+                    "name": "Setup - Register Freelancer",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Newman Test Freelancer\",\n    \"email\": \"{{freelancerEmail}}\",\n    \"password\": \"{{freelancerPassword}}\",\n    \"role\": \"freelancer\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "pm.environment.set(",
+                                    "    \"freelancerEmail\",",
+                                    "    `newman_freelancer_${Date.now()}@hustlehub.com`",
+                                    ");",
+                                    "",
+                                    "pm.environment.set(",
+                                    "    \"freelancerPassword\",",
+                                    "    \"NewmanTest#2026\"",
+                                    ");"
+                                ]
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Registration succeeded\", function () {",
+                                    "    pm.expect(json.message).to.equal(\"User successfully registered.\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Freelancer was created\", function () {",
+                                    "    pm.expect(json.user).to.have.property(\"id\");",
+                                    "    pm.expect(json.user.email).to.equal(",
+                                    "        pm.environment.get(\"freelancerEmail\")",
+                                    "    );",
+                                    "    pm.expect(json.user.role).to.equal(\"freelancer\");",
+                                    "});",
+                                    "",
+                                    "pm.environment.set(\"freelancerId\", json.user.id);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Setup - Login Freelancer",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{freelancerEmail}}\",\n    \"password\": \"{{freelancerPassword}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/login",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Login succeeded\", function () {",
+                                    "    pm.expect(json.message).to.equal(\"Login successful.\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"JWT was returned\", function () {",
+                                    "    pm.expect(json.token).to.be.a(\"string\").and.not.empty;",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Correct freelancer account logged in\", function () {",
+                                    "    pm.expect(json.user.email).to.equal(",
+                                    "        pm.environment.get(\"freelancerEmail\")",
+                                    "    );",
+                                    "    pm.expect(json.user.role).to.equal(\"freelancer\");",
+                                    "});",
+                                    "",
+                                    "pm.environment.set(\"freelancerToken\", json.token);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Setup - Create Gig",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{freelancerToken}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Newman Booking Test Gig\",\n    \"category\": \"Development\",\n    \"description\": \"Disposable gig created for automated booking API tests.\",\n    \"rate\": 250,\n    \"durationHours\": 4\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/gigs",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "gigs"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Gig was created\", function () {",
+                                    "    pm.expect(json.gig).to.exist;",
+                                    "    pm.expect(json.gig.id).to.be.a(\"string\").and.not.empty;",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Gig has expected rate\", function () {",
+                                    "    pm.expect(json.gig.rate).to.equal(250);",
+                                    "});",
+                                    "",
+                                    "pm.environment.set(\"gigId\", json.gig.id);",
+                                    "pm.environment.set(\"expectedGigRate\", 250);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Setup - Register Client",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Newman Test Client\",\n    \"email\": \"{{clientEmail}}\",\n    \"password\": \"{{clientPassword}}\",\n    \"role\": \"client\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "pm.environment.set(",
+                                    "    \"clientEmail\",",
+                                    "    `newman_client_${Date.now()}@hustlehub.com`",
+                                    ");",
+                                    "",
+                                    "pm.environment.set(",
+                                    "    \"clientPassword\",",
+                                    "    \"NewmanTest#2026\"",
+                                    ");"
+                                ]
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Registration succeeded\", function () {",
+                                    "    pm.expect(json.message).to.equal(\"User successfully registered.\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Client was created\", function () {",
+                                    "    pm.expect(json.user).to.have.property(\"id\");",
+                                    "    pm.expect(json.user.email).to.equal(",
+                                    "        pm.environment.get(\"clientEmail\")",
+                                    "    );",
+                                    "    pm.expect(json.user.role).to.equal(\"client\");",
+                                    "});",
+                                    "",
+                                    "pm.environment.set(\"clientId\", json.user.id);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Setup - Login Client",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"{{clientEmail}}\",\n    \"password\": \"{{clientPassword}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/login",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Login succeeded\", function () {",
+                                    "    pm.expect(json.message).to.equal(\"Login successful.\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"JWT was returned\", function () {",
+                                    "    pm.expect(json.token).to.be.a(\"string\").and.not.empty;",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Correct client account logged in\", function () {",
+                                    "    pm.expect(json.user.email).to.equal(",
+                                    "        pm.environment.get(\"clientEmail\")",
+                                    "    );",
+                                    "    pm.expect(json.user.role).to.equal(\"client\");",
+                                    "});",
+                                    "",
+                                    "pm.environment.set(\"clientToken\", json.token);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /bookings - No Token",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"gig\": \"{{gigId}}\",\n    \"notes\": \"Unauthenticated booking test\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 401\", function () {",
+                                    "    pm.response.to.have.status(401);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns UNAUTHORIZED\", function () {",
+                                    "    pm.expect(json.error.code).to.equal(\"UNAUTHORIZED\");",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /bookings - Wrong Role",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{freelancerToken}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"gig\": \"{{gigId}}\",\n    \"notes\": \"Wrong role booking test\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 403\", function () {",
+                                    "    pm.response.to.have.status(403);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns access denied\", function () {",
+                                    "    pm.expect(json.error).to.equal(\"Access denied\");",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /bookings - Invalid Gig ID",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{clientToken}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Invalid gig ID validation test\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns VALIDATION_ERROR\", function () {",
+                                    "    pm.expect(json.error.code).to.equal(\"VALIDATION_ERROR\");",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /bookings - Unknown Field",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{clientToken}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"gig\": \"{{gigId}}\",\n    \"notes\": \"Unknown field validation test\",\n    \"unexpectedField\": \"should be rejected\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Returns UNKNOWN_FIELDS\", function () {",
+                                    "    pm.expect(json.error.code).to.equal(\"UNKNOWN_FIELDS\");",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "POST /bookings - Valid",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{clientToken}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"gig\": \"{{gigId}}\",\n    \"notes\": \"Newman booking integration test.\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "const booking = json.booking;",
+                                    "",
+                                    "pm.test(\"Booking creation succeeded\", function () {",
+                                    "    pm.expect(json.message).to.equal(\"Booking created successfully\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Booking was returned\", function () {",
+                                    "    pm.expect(booking).to.be.an(\"object\");",
+                                    "    pm.expect(booking._id).to.be.a(\"string\").and.not.empty;",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Correct gig was booked\", function () {",
+                                    "    pm.expect(String(booking.gig)).to.equal(",
+                                    "        pm.environment.get(\"gigId\")",
+                                    "    );",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Client came from authenticated user\", function () {",
+                                    "    pm.expect(String(booking.client)).to.equal(",
+                                    "        pm.environment.get(\"clientId\")",
+                                    "    );",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Freelancer came from the gig\", function () {",
+                                    "    pm.expect(String(booking.freelancer)).to.equal(",
+                                    "        pm.environment.get(\"freelancerId\")",
+                                    "    );",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Booking is confirmed\", function () {",
+                                    "    pm.expect(booking.status).to.equal(\"Confirmed\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Booking notes were stored\", function () {",
+                                    "    pm.expect(booking.notes).to.equal(\"Newman booking integration test.\");",
+                                    "});",
+                                    "",
+                                    "pm.environment.set(\"bookingId\", booking._id);"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /bookings/mine - Freelancer",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{freelancerToken}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings/mine",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings",
+                                "mine"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "",
+                                    "pm.test(\"Bookings array was returned\", function () {",
+                                    "    pm.expect(json.bookings).to.be.an(\"array\");",
+                                    "});",
+                                    "",
+                                    "const bookingId = pm.environment.get(\"bookingId\");",
+                                    "const booking = json.bookings.find((item) =>",
+                                    "    String(item._id || item.id) === bookingId",
+                                    ");",
+                                    "",
+                                    "pm.test(\"Created booking is visible to freelancer\", function () {",
+                                    "    pm.expect(booking).to.exist;",
+                                    "});",
+                                    "",
+                                    "if (booking) {",
+                                    "    pm.test(\"Booking belongs to the expected freelancer\", function () {",
+                                    "        pm.expect(String(booking.freelancer)).to.equal(",
+                                    "            pm.environment.get(\"freelancerId\")",
+                                    "        );",
+                                    "    });",
+                                    "",
+                                    "    pm.test(\"Booking belongs to the expected client\", function () {",
+                                    "        pm.expect(String(booking.client)).to.equal(",
+                                    "            pm.environment.get(\"clientId\")",
+                                    "        );",
+                                    "    });",
+                                    "}"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GET /transactions/income - Freelancer",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{freelancerToken}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/transactions/income",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "transactions",
+                                "income"
+                            ]
+                        }
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is JSON\", function () {",
+                                    "    pm.response.to.be.json;",
+                                    "});",
+                                    "",
+                                    "const json = pm.response.json();",
+                                    "const bookingId = pm.environment.get(\"bookingId\");",
+                                    "",
+                                    "pm.test(\"Total income is a number\", function () {",
+                                    "    pm.expect(json.totalIncome).to.be.a(\"number\");",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Transactions array was returned\", function () {",
+                                    "    pm.expect(json.transactions).to.be.an(\"array\");",
+                                    "});",
+                                    "",
+                                    "const transaction = json.transactions.find((item) =>",
+                                    "    String(item.booking) === bookingId",
+                                    ");",
+                                    "",
+                                    "pm.test(\"Transaction for created booking exists\", function () {",
+                                    "    pm.expect(transaction).to.exist;",
+                                    "});",
+                                    "",
+                                    "if (transaction) {",
+                                    "    pm.test(\"Transaction has the expected amount\", function () {",
+                                    "        pm.expect(transaction.amount).to.equal(",
+                                    "            Number(pm.environment.get(\"expectedGigRate\"))",
+                                    "        );",
+                                    "    });",
+                                    "",
+                                    "    pm.test(\"Transaction is Pending\", function () {",
+                                    "        pm.expect(transaction.status).to.equal(\"Pending\");",
+                                    "    });",
+                                    "",
+                                    "    pm.test(\"Transaction belongs to the expected freelancer\", function () {",
+                                    "        pm.expect(String(transaction.freelancer)).to.equal(",
+                                    "            pm.environment.get(\"freelancerId\")",
+                                    "        );",
+                                    "    });",
+                                    "",
+                                    "    pm.test(\"Transaction belongs to the expected client\", function () {",
+                                    "        pm.expect(String(transaction.client)).to.equal(",
+                                    "            pm.environment.get(\"clientId\")",
+                                    "        );",
+                                    "    });",
+                                    "}",
+                                    "",
+                                    "pm.test(\"Pending transaction is excluded from total income\", function () {",
+                                    "    pm.expect(json.totalIncome).to.equal(0);",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Rate Limiting",
+                    "item": [
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 1",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 2",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 3",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 4",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 5",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 6",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Attempt 7",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 400\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "POST /bookings - Rate Limit Exceeded",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{clientToken}}"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"gig\": \"not-a-valid-object-id\",\n    \"notes\": \"Rate limit test.\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/api/bookings",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "bookings"
+                                    ]
+                                }
+                            },
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status is 429\", function () {",
+                                            "    pm.response.to.have.status(429);",
+                                            "});"
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }

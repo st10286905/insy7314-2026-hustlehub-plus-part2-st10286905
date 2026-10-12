@@ -1,0 +1,60 @@
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import * as authApi from "../api/auth";
+import { getToken, setToken } from "../api/client";
+
+const AuthContext = createContext(null);
+
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(Boolean(getToken()));
+
+    useEffect(() => {
+        if (!getToken()) return;
+        let cancelled = false;
+        authApi.me()
+            .then((res) => { if (!cancelled) setUser(res.user); })
+            .catch(() => setToken(null))
+            .finally(() => { if (!cancelled) setLoading(false); });
+        return () => { cancelled = true; };
+    }, []);
+
+    useEffect(() => {
+        const onExpired = () => setUser(null);
+        window.addEventListener("auth:expired", onExpired);
+        return () => window.removeEventListener("auth:expired", onExpired);
+    }, []);
+
+    const login = useCallback(async (credentials) => {
+        const res = await authApi.login(credentials);
+        setToken(res.token);
+        setUser(res.user);
+        return res.user;
+    }, []);
+
+    const register = useCallback(async (payload) => {
+        await authApi.register(payload);
+        // Backend register returns no token — login immediately after
+        const res = await authApi.login({ email: payload.email, password: payload.password });
+        setToken(res.token);
+        setUser(res.user);
+        return res.user;
+    }, []);
+
+    const logout = useCallback(() => {
+        setToken(null);
+        setUser(null);
+    }, []);
+
+    const value = useMemo(
+        () => ({ user, loading, isAuthenticated: Boolean(user), login, register, logout }),
+        [user, loading, login, register, logout]
+    );
+
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export function useAuth() {
+    const ctx = useContext(AuthContext);
+    if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
+    return ctx;
+}
