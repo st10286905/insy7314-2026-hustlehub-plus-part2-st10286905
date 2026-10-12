@@ -2,6 +2,7 @@ const express = require("express");
 const { authenticate, authorizeRoles} = require("../middleware/auth.middleware");
 const { bookingValidation } = require("../middleware/validation.middleware");
 const bookingController = require("../controllers/booking.controller");
+const { bookingRateLimiter } = require("../middleware/rate-limit.middleware");
 
 const router = express.Router();
 
@@ -34,12 +35,19 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
+router.get(
+    "/mine",
+    authenticate,
+    authorizeRoles("freelancer"),
+    bookingController.mine
+)
+
 router.post(
     "/",
     authenticate,
     authorizeRoles("client"),
+    bookingRateLimiter,
     bookingValidation,
     bookingController.create
 )
-
 module.exports = router;
