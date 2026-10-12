@@ -3,6 +3,19 @@
 The HustleHub+ system is a freelance marketplace platform that facilitates the advertisement and browsing of listed services. The system processes sensitive personable identifiable and financial information related to the booking of services. This make it imperative that the system be designed and implemented in a security conscious manner to proactively mitigate and prevent attack vectors that could be leveraged to compromise its integrity. 
 
 ## Demo
+
+### Admin Credentials 
+
+Username: 
+
+```
+admin@hustlehubplus.com
+```
+Password:
+```
+ZapTestClient#2026
+```
+
 ### YouTube Demo Video
 See the HustleHub+ Part 1 Postman Demo [Video](https://youtu.be/PlD6tQwKoPI).
 
@@ -1131,6 +1144,13 @@ const CheckGigOwnership = async (req, res, next) => {
   }
 };
 ```
+
+## Swagger API Documentation 
+
+Swagger has been incorporated into the API project, contextualizing the requests and responses of the above mentioned endpoints. The Swagger API documentation is available on `https://localhost:3000/api-docs/`.
+
+<img width="1070" height="512" alt="Screenshot From 2026-10-12 20-47-26" src="https://github.com/user-attachments/assets/4e50b9aa-ee37-4825-8fa0-7fd0dbe02ccd" />
+
 
 # Screenshots of API responses
 
