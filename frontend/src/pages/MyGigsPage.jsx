@@ -47,8 +47,7 @@ export default function MyGigsPage() {
                     <h1 className="page-title">My gigs</h1>
                     <p className="page-subtitle">Manage your services and track bookings.</p>
                 </div>
-                <button className="btn-primary" onClick={() => navigate('/my-gigs/new')}>+ Create gig</button>
-            </div>
+                <button className="btn-primary" onClick={() => navigate('/my-gigs/create')}>+ Create gig</button>            </div>
 
             {actionError && <p className="error-msg" style={{ marginBottom: 12 }}>{actionError}</p>}
 
@@ -64,7 +63,7 @@ export default function MyGigsPage() {
             ) : gigs.length === 0 ? (
                 <div className="table-card empty-state">
                     <p>You haven't created any gigs yet.</p>
-                    <button className="btn-primary" onClick={() => navigate('/my-gigs/new')}>+ Create your first gig</button>
+                    <button className="btn-primary" onClick={() => navigate('/my-gigs/create')}>+ Create your first gig</button>
                 </div>
             ) : (
                 <div className="table-card">
