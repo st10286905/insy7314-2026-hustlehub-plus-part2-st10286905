@@ -1,0 +1,50 @@
+            
+Frontend Reference List
+Connaire — KAN-17 Frontend Contribution
+
+JavaScript Runtime and Build Tooling
+Ecma International (2023) ECMAScript 2023 Language Specification (ECMA-262, 14th edition). Geneva: Ecma International. Available at: https://tc39.es/ecma262/
+Evans, E. and the Vite core team (2024) Vite 5.0 – Next generation frontend tooling. Available at: https://vitejs.dev/guide/
+Evans, E. and the Vite core team (2024) Configuring Vite: vite.config.js reference. Available at: https://vitejs.dev/config/
+Node.js Foundation (2024) Node.js 20 LTS documentation. Available at: https://nodejs.org/docs/latest-v20.x/api/
+
+React and Component Model
+Meta Open Source (2024) React 18 – A JavaScript library for building user interfaces. Available at: https://react.dev
+Meta Open Source (2024) Hooks reference: useState, useEffect, useContext. React documentation. Available at: https://react.dev/reference/react
+Meta Open Source (2024) createContext and useContext – React. React documentation. Available at: https://react.dev/reference/react/createContext
+Meta Open Source (2024) Error boundaries – React. React documentation. Available at: https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
+
+Routing
+Remix Software Inc. (2024) React Router v6 – Declarative routing for React. Available at: https://reactrouter.com/en/main
+Remix Software Inc. (2024) BrowserRouter, Routes, Route – React Router v6 API. Available at: https://reactrouter.com/en/main/routers/browser-router
+Remix Software Inc. (2024) Outlet – React Router v6 API. Available at: https://reactrouter.com/en/main/components/outlet
+Remix Software Inc. (2024) useNavigate, useSearchParams – React Router v6 hooks. Available at: https://reactrouter.com/en/main/hooks/use-navigate
+
+Schema Validation
+Colinhacks (2024) Zod: TypeScript-first schema validation with static type inference. Available at: https://zod.dev
+Colinhacks (2024) Zod – Basic usage: z.object, z.string, z.enum, z.min, z.regex. Zod documentation. Available at: https://zod.dev/?id=basic-usage
+
+HTTP Client
+Axios contributors (2024) Axios v1: Promise-based HTTP client for the browser and Node.js. Available at: https://axios-http.com/docs/intro
+Axios contributors (2024) Axios interceptors. Axios documentation. Available at: https://axios-http.com/docs/interceptors
+Axios contributors (2024) axios-mock-adapter – Axios adapter for mocking requests. Available at: https://github.com/ctimmerm/axios-mock-adapter
+
+Security and HTML Sanitisation
+Cure53 (2024) DOMPurify: A DOM-only, super-fast, uber-tolerant XSS sanitiser for HTML, MathML and SVG. Available at: https://github.com/cure53/DOMPurify
+OWASP Foundation (2024) Cross Site Scripting (XSS) prevention cheat sheet. OWASP Cheat Sheet Series. Available at: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+OWASP Foundation (2024) Content Security Policy (CSP) cheat sheet. OWASP Cheat Sheet Series. Available at: https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html
+OWASP Foundation (2024) Role-based access control. OWASP Testing Guide. Available at: https://owasp.org/www-project-testing/
+
+Testing
+Vitest contributors (2024) Vitest: A Vite-native unit test framework. Available at: https://vitest.dev/guide/
+Vitest contributors (2024) Vitest configuration reference: environment, globals, setupFiles. Available at: https://vitest.dev/config/
+Kent, K.C. and Testing Library contributors (2024) React Testing Library: Simple and complete React DOM testing utilities. Available at: https://testing-library.com/docs/react-testing-library/intro
+Testing Library contributors (2024) @testing-library/user-event: Fire events the way a user would. Available at: https://testing-library.com/docs/user-event/intro
+Testing Library contributors (2024) @testing-library/jest-dom: Custom jest matchers to test the state of the DOM. Available at: https://github.com/testing-library/jest-dom
+Jsdom contributors (2024) jsdom: A JavaScript implementation of various web standards, for use with Node.js. Available at: https://github.com/jsdom/jsdom
+
+Web Standards
+MDN Web Docs (2024) sessionStorage – Web APIs. Mozilla Developer Network. Available at: https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+MDN Web Docs (2024) URLSearchParams – Web APIs. Mozilla Developer Network. Available at: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+MDN Web Docs (2024) CustomEvent – Web APIs. Mozilla Developer Network. Available at: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
+MDN Web Docs (2024) AbortController – Web APIs. Mozilla Developer Network. Available at: https://developer.mozilla.org/en-US/docs/Web/API/AbortController

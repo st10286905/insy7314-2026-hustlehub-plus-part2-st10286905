@@ -1,0 +1,1082 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\ReferenceList.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\ReferenceList.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\App.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\setup.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\test\\setup.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\renderWithRouter.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\test\\renderWithRouter.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\csp-compat.test.js||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\test\\csp-compat.test.js||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\RegisterPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\RegisterPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyGigsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\MyGigsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyBookingsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\MyBookingsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\LoginPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\LoginPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\GigDetailPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\GigDetailPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\CreateGigPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\CreateGigPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BrowseGigsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\BrowseGigsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingsIncomePage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\BookingsIncomePage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingConfirmedPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\BookingConfirmedPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\AdminPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\AdminPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\validators.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\lib\\validators.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\useAsync.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\lib\\useAsync.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sessionNotice.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\lib\\sessionNotice.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sanitize.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\lib\\sanitize.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\format.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\lib\\format.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\constants.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\lib\\constants.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\context\\AuthContext.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\context\\AuthContext.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\SessionExpiredNotice.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\SessionExpiredNotice.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\RoleRoute.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\RoleRoute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\RegisterForm.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\RegisterForm.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\Register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\ProtectedRoute.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\ProtectedRoute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\PasswordRules.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\PasswordRules.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Navbar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\Navbar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\LoginForm.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\LoginForm.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\Login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Layout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\Layout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\GuestRoute.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\GuestRoute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\guards.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\guards.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\feedback.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\feedback.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\ErrorBoundary.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\CategoryArt.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\CategoryArt.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\gigs.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\gigs.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\client.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\client.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\bookings.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\bookings.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\auth.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\auth.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\db.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\mock\\db.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\adapter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\api\\mock\\adapter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env.example||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\.env.example||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\assets\\states\\success-check.svg||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\assets\\states\\success-check.svg||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\ErrorBoundary.test.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vitest.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\vitest.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\src\\models\\gig.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\models\\gig.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\tests\\postman\\HustleHub-Auth.postman_collection.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\tests\\postman\\HustleHub-Auth.postman_collection.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReferenceList.txt",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\ReferenceList.txt",
+              "RelativeDocumentMoniker": "frontend\\ReferenceList.txt",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\ReferenceList.txt",
+              "RelativeToolTip": "frontend\\ReferenceList.txt",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-10-12T17:11:58.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GigDetailPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\GigDetailPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\GigDetailPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\GigDetailPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\GigDetailPage.jsx",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAUwAkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:01:35.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LoginPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\LoginPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\LoginPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\LoginPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\LoginPage.jsx",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAQwBcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T09:25:59.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env",
+              "RelativeDocumentMoniker": "backend\\.env",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env",
+              "RelativeToolTip": "backend\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-12T11:36:29.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MyBookingsPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyBookingsPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\MyBookingsPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyBookingsPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\MyBookingsPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:03:08.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MyGigsPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyGigsPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\MyGigsPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyGigsPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\MyGigsPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:05:51.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RegisterPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\RegisterPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\RegisterPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\RegisterPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\RegisterPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T09:26:32.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "csp-compat.test.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\csp-compat.test.js",
+              "RelativeDocumentMoniker": "frontend\\src\\test\\csp-compat.test.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\csp-compat.test.js",
+              "RelativeToolTip": "frontend\\src\\test\\csp-compat.test.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAACRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:14:47.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "renderWithRouter.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\renderWithRouter.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\test\\renderWithRouter.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\renderWithRouter.jsx",
+              "RelativeToolTip": "frontend\\src\\test\\renderWithRouter.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:14:14.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\App.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.jsx",
+              "RelativeToolTip": "frontend\\src\\App.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T22:13:35.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "index.css",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\index.css",
+              "RelativeDocumentMoniker": "frontend\\src\\index.css",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\index.css",
+              "RelativeToolTip": "frontend\\src\\index.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-10-12T09:23:53.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.css",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.css",
+              "RelativeDocumentMoniker": "frontend\\src\\App.css",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.css",
+              "RelativeToolTip": "frontend\\src\\App.css",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-10-12T17:06:23.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CreateGigPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\CreateGigPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\CreateGigPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\CreateGigPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\CreateGigPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:06:24.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BrowseGigsPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BrowseGigsPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\BrowseGigsPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BrowseGigsPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\BrowseGigsPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAN8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:00:30.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "setup.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\setup.js",
+              "RelativeDocumentMoniker": "frontend\\src\\test\\setup.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\setup.js",
+              "RelativeToolTip": "frontend\\src\\test\\setup.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:13:19.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BookingsIncomePage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingsIncomePage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\BookingsIncomePage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingsIncomePage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\BookingsIncomePage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:07:02.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BookingConfirmedPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingConfirmedPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\BookingConfirmedPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingConfirmedPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\BookingConfirmedPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:02:20.207Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdminPage.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\AdminPage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\AdminPage.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\AdminPage.jsx",
+              "RelativeToolTip": "frontend\\src\\pages\\AdminPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T11:08:19.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "validators.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\validators.js",
+              "RelativeDocumentMoniker": "frontend\\src\\lib\\validators.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\validators.js",
+              "RelativeToolTip": "frontend\\src\\lib\\validators.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:15:48.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "useAsync.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\useAsync.js",
+              "RelativeDocumentMoniker": "frontend\\src\\lib\\useAsync.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\useAsync.js",
+              "RelativeToolTip": "frontend\\src\\lib\\useAsync.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:16:17.477Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "sessionNotice.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sessionNotice.js",
+              "RelativeDocumentMoniker": "frontend\\src\\lib\\sessionNotice.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sessionNotice.js",
+              "RelativeToolTip": "frontend\\src\\lib\\sessionNotice.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:17:04.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "sanitize.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sanitize.js",
+              "RelativeDocumentMoniker": "frontend\\src\\lib\\sanitize.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sanitize.js",
+              "RelativeToolTip": "frontend\\src\\lib\\sanitize.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:17:40.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "format.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\format.js",
+              "RelativeDocumentMoniker": "frontend\\src\\lib\\format.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\format.js",
+              "RelativeToolTip": "frontend\\src\\lib\\format.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:12:11.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "constants.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\constants.js",
+              "RelativeDocumentMoniker": "frontend\\src\\lib\\constants.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\constants.js",
+              "RelativeToolTip": "frontend\\src\\lib\\constants.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:16:27.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "AuthContext.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\context\\AuthContext.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\context\\AuthContext.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\context\\AuthContext.jsx",
+              "RelativeToolTip": "frontend\\src\\context\\AuthContext.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:18:27.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "SessionExpiredNotice.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\SessionExpiredNotice.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\SessionExpiredNotice.test.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:21:10.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SessionExpiredNotice.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\SessionExpiredNotice.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\SessionExpiredNotice.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:20:21.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "RoleRoute.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\RoleRoute.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\RoleRoute.test.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:28:35.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "RoleRoute.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\RoleRoute.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\RoleRoute.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:28:01.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "RegisterForm.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\RegisterForm.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\RegisterForm.test.jsx",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAgwBsAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:26:05.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "RegisterForm.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\RegisterForm.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\RegisterForm.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:24:36.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Register.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Register.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\Register.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Register.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\Register.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:34:52.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ProtectedRoute.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\ProtectedRoute.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\ProtectedRoute.test.jsx",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwCoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:27:25.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ProtectedRoute.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\ProtectedRoute.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\ProtectedRoute.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:26:49.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PasswordRules.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\PasswordRules.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\PasswordRules.test.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:22:38.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "PasswordRules.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\PasswordRules.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\PasswordRules.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:22:01.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Navbar.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Navbar.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\Navbar.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Navbar.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\Navbar.jsx",
+              "ViewState": "AgIAADQAAAAAAAAAAAAgwBsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T10:59:15.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "LoginForm.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\LoginForm.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\LoginForm.test.jsx",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAQwGMAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:23:47.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "LoginForm.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\LoginForm.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\LoginForm.jsx",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowAsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:23:09.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Login.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Login.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\Login.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Login.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\Login.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:34:12.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Layout.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Layout.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\Layout.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Layout.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\Layout.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T14:28:22.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "GuestRoute.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\GuestRoute.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\GuestRoute.test.jsx",
+              "ViewState": "AgIAACwAAAAAAAAAAAAQwCoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:29:44.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "GuestRoute.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\GuestRoute.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\GuestRoute.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:29:06.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "guards.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\guards.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\guards.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\guards.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\guards.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:30:36.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "feedback.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\feedback.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\feedback.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\feedback.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\feedback.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:19:12.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ErrorBoundary.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\ErrorBoundary.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\ErrorBoundary.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:31:19.835Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "CategoryArt.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\CategoryArt.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\CategoryArt.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\CategoryArt.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\CategoryArt.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-12T14:12:58.009Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "gigs.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\gigs.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\gigs.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\gigs.js",
+              "RelativeToolTip": "frontend\\src\\api\\gigs.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:03:15.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "client.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\client.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\client.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\client.js",
+              "RelativeToolTip": "frontend\\src\\api\\client.js",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowEkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:01:58.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "bookings.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\bookings.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\bookings.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\bookings.js",
+              "RelativeToolTip": "frontend\\src\\api\\bookings.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:03:43.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "auth.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\auth.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\auth.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\auth.js",
+              "RelativeToolTip": "frontend\\src\\api\\auth.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:02:41.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "admin.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\admin.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\admin.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\admin.js",
+              "RelativeToolTip": "frontend\\src\\api\\admin.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:04:16.354Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "db.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\db.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\mock\\db.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\db.js",
+              "RelativeToolTip": "frontend\\src\\api\\mock\\db.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:04:38.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "adapter.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\adapter.js",
+              "RelativeDocumentMoniker": "frontend\\src\\api\\mock\\adapter.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\adapter.js",
+              "RelativeToolTip": "frontend\\src\\api\\mock\\adapter.js",
+              "ViewState": "AgIAABsBAAAAAAAAAAAswC0BAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-12T14:05:06.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\package.json",
+              "RelativeDocumentMoniker": "backend\\package.json",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\package.json",
+              "RelativeToolTip": "backend\\package.json",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAB4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-12T15:44:28.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\.env",
+              "RelativeDocumentMoniker": "frontend\\.env",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\.env",
+              "RelativeToolTip": "frontend\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-12T14:06:31.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": ".env.example",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env.example",
+              "RelativeDocumentMoniker": "backend\\.env.example",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env.example",
+              "RelativeToolTip": "backend\\.env.example",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-12T15:11:51.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "success-check.svg",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\assets\\states\\success-check.svg",
+              "RelativeDocumentMoniker": "frontend\\src\\assets\\states\\success-check.svg",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\assets\\states\\success-check.svg",
+              "RelativeToolTip": "frontend\\src\\assets\\states\\success-check.svg",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAGAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKMSURBVDhPjZNLSFRhFMd/3507M/dKPsacsYelWGZZFFJRkdSmNrUoatMiKggSN2YFEUX3MvQiiBYWtFAyggoXPSGyhQuhFrXQFr7GMFOowcZMUO9MM3pPi9Eao6gf/Bcfh3PO/5yPo8jAsqxI5vtvKKXuhMPhK4jInIBlWRH5Bw0NDYOWZUVs264B0DILKEUXCCIpZOIi7uetpHpCxN8GiffU4rrThEIhXzgcXiEidbZtH/5ZQKTV\u002B72oItjSYfG5vxwneoX2/iW80dvxb4ji9D4BIBAIeBsbG4fSOXJWzSR7qpt9D\u002BvWndpTlNXL2HCQ28PXaIuVEB2Dmsp8DiZqyN35FAFiw19IJpPcbmrq0wCq7\u002BvHd5Y\u002B2rMy5y3OcBXmqtccq9rB/uUFKI/GzfZRPhRdBhEQIRgKUlxSAoAm0uqtWNB5Yu\u002Bier5\u002BWOoWbnxAwAwQzDao3lLIobX5ePxemiImroCIzFm\u002BztT7/CPLzi8ej\u002BVxdeyu1nJjgMR3FwDl0fD4dJRHozuWACStjM/TGDlZ50tNqHuxejo\u002B\u002BZPL8wwqCvxUFPhZFfBSbIBMJti0wJjpDpJRQXfjzr6uj9u\u002BtYysCWijA4OPqzeXpVLJtE010zS9cZDM1DTa9ASLmoaOnh4cEYaySsoa30T5Mp5kPD7Ni\u002B5Rtt7qofzqO553jqQHmHExi5p8RcRNsb6y7VWtnm1ecjUdcdM7QClwhQPl8zi3o\u002BiXdREMMwvbtvv0KYfmRJSBtvlVY93O6ujLlc8WdsYcdE1RmutlV3kO20tzcXFRohBFerQ/ccE6c11EJB53xIk7EndmNSnObxIRsSwrMucWUvh2AxiGiWmYGOassjB/0yxzzPzvOWfyAyvlXYiiBFoWAAAAAElFTkSuQmCC",
+              "WhenOpened": "2026-10-12T14:19:56.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ErrorBoundary.test.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.test.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\ErrorBoundary.test.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.test.jsx",
+              "RelativeToolTip": "frontend\\src\\components\\ErrorBoundary.test.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:32:59.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "vitest.config.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vitest.config.js",
+              "RelativeDocumentMoniker": "frontend\\vitest.config.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vitest.config.js",
+              "RelativeToolTip": "frontend\\vitest.config.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:47:20.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "vite.config.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vite.config.js",
+              "RelativeDocumentMoniker": "frontend\\vite.config.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vite.config.js",
+              "RelativeToolTip": "frontend\\vite.config.js",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAcwAoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T20:10:19.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\package.json",
+              "RelativeDocumentMoniker": "frontend\\package.json",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\package.json",
+              "RelativeToolTip": "frontend\\package.json",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAwwAgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-11T20:36:20.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "main.jsx",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\main.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\main.jsx",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\main.jsx",
+              "RelativeToolTip": "frontend\\src\\main.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAwwA8AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-10-11T20:35:51.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "gig.js",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\src\\models\\gig.js",
+              "RelativeDocumentMoniker": "backend\\src\\models\\gig.js",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\src\\models\\gig.js",
+              "RelativeToolTip": "backend\\src\\models\\gig.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-10-11T19:58:22.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-10-10T04:02:00.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "HustleHub-Auth.postman_collection.json",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\tests\\postman\\HustleHub-Auth.postman_collection.json",
+              "RelativeDocumentMoniker": "backend\\tests\\postman\\HustleHub-Auth.postman_collection.json",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\tests\\postman\\HustleHub-Auth.postman_collection.json",
+              "RelativeToolTip": "backend\\tests\\postman\\HustleHub-Auth.postman_collection.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-10T04:01:24.707Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
