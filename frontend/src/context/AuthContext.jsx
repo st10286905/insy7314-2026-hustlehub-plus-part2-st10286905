@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
         if (!getToken()) return;
         let cancelled = false;
         authApi.me()
-            .then((res) => { if (!cancelled) setUser(res.data); })
+            .then((res) => { if (!cancelled) setUser(res.user); })
             .catch(() => setToken(null))
             .finally(() => { if (!cancelled) setLoading(false); });
         return () => { cancelled = true; };
@@ -25,17 +25,19 @@ export function AuthProvider({ children }) {
     }, []);
 
     const login = useCallback(async (credentials) => {
-        const { data } = await authApi.login(credentials);
-        setToken(data.token);
-        setUser(data.user);
-        return data.user;
+        const res = await authApi.login(credentials);
+        setToken(res.token);
+        setUser(res.user);
+        return res.user;
     }, []);
 
     const register = useCallback(async (payload) => {
-        const { data } = await authApi.register(payload);
-        setToken(data.token);
-        setUser(data.user);
-        return data.user;
+        await authApi.register(payload);
+        // Backend register returns no token — login immediately after
+        const res = await authApi.login({ email: payload.email, password: payload.password });
+        setToken(res.token);
+        setUser(res.user);
+        return res.user;
     }, []);
 
     const logout = useCallback(() => {
