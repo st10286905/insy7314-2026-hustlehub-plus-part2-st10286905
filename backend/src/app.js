@@ -27,11 +27,15 @@ const bookingRoutes = require("./routes/booking.routes");
 const transactionRoutes = require("./routes/transaction.routes");
 const connectToDB = require("./config/db");
 const { errorHandler, errorHandler404 } = require("./middleware/error.middleware");
+const { globalRateLimiter } = require("./middleware/rate-limit.middleware");
  
 const app = express();
  
 app.disable("x-powered-by");
- 
+
+// Global rate limiter middleware
+app.use(globalRateLimiter);
+
 // Swagger docs
 // Mounted BEFORE the strict global helmet config so /api-docs gets its own
 // relaxed CSP and the request is finished before the strict policy applies.
@@ -172,6 +176,5 @@ app.use("/api/transactions", transactionRoutes);
 // Error handling middleware
 app.use(errorHandler);
 app.use(errorHandler404);
-
  
 module.exports = app;
