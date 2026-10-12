@@ -1132,6 +1132,13 @@ const CheckGigOwnership = async (req, res, next) => {
 };
 ```
 
+## Swagger API Documentation 
+
+Swagger has been incorporated into the API project, contextualizing the requests and responses of the above mentioned endpoints. The Swagger API documentation is available on `https://localhost:3000/api-docs/`.
+
+<img width="1070" height="512" alt="Screenshot From 2026-10-12 20-47-26" src="https://github.com/user-attachments/assets/4e50b9aa-ee37-4825-8fa0-7fd0dbe02ccd" />
+
+
 # Screenshots of API responses
 
 ![Postman sends POST /api/auth/login with a wrong password; the server responds 401 Unauthorized with an INVALID_CREDENTIALS error and the message "Invalid email or password."](<backend/tests/postman/Screenshots/Login - Invalid Credentials.png>)
