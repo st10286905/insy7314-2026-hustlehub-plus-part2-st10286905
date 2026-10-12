@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\docs\\report\\reports\\ST10297849_Report.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\report\\reports\\ST10297849_Report.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -274,7 +278,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -282,7 +286,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "ST10297849_Report.md",
+              "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\docs\\report\\reports\\ST10297849_Report.md",
+              "RelativeDocumentMoniker": "docs\\report\\reports\\ST10297849_Report.md",
+              "ToolTip": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\docs\\report\\reports\\ST10297849_Report.md",
+              "RelativeToolTip": "docs\\report\\reports\\ST10297849_Report.md",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAALEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-10-12T18:53:00.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ReferenceList.txt",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\ReferenceList.txt",
               "RelativeDocumentMoniker": "frontend\\ReferenceList.txt",
@@ -295,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "GigDetailPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\GigDetailPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\GigDetailPage.jsx",
@@ -307,7 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "LoginPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\LoginPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\LoginPage.jsx",
@@ -319,7 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": ".env",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env",
               "RelativeDocumentMoniker": "backend\\.env",
@@ -332,7 +349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "MyBookingsPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyBookingsPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\MyBookingsPage.jsx",
@@ -344,7 +361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "MyGigsPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\MyGigsPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\MyGigsPage.jsx",
@@ -356,7 +373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "RegisterPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\RegisterPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\RegisterPage.jsx",
@@ -368,7 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "csp-compat.test.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\csp-compat.test.js",
               "RelativeDocumentMoniker": "frontend\\src\\test\\csp-compat.test.js",
@@ -380,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "renderWithRouter.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\renderWithRouter.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\test\\renderWithRouter.jsx",
@@ -392,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\App.jsx",
@@ -404,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\index.css",
               "RelativeDocumentMoniker": "frontend\\src\\index.css",
@@ -416,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\App.css",
               "RelativeDocumentMoniker": "frontend\\src\\App.css",
@@ -428,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CreateGigPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\CreateGigPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\CreateGigPage.jsx",
@@ -440,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "BrowseGigsPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BrowseGigsPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\BrowseGigsPage.jsx",
@@ -452,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "setup.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\test\\setup.js",
               "RelativeDocumentMoniker": "frontend\\src\\test\\setup.js",
@@ -464,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "BookingsIncomePage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingsIncomePage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\BookingsIncomePage.jsx",
@@ -476,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "BookingConfirmedPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\BookingConfirmedPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\BookingConfirmedPage.jsx",
@@ -488,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AdminPage.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\pages\\AdminPage.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\pages\\AdminPage.jsx",
@@ -500,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "validators.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\validators.js",
               "RelativeDocumentMoniker": "frontend\\src\\lib\\validators.js",
@@ -512,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "useAsync.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\useAsync.js",
               "RelativeDocumentMoniker": "frontend\\src\\lib\\useAsync.js",
@@ -524,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "sessionNotice.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sessionNotice.js",
               "RelativeDocumentMoniker": "frontend\\src\\lib\\sessionNotice.js",
@@ -536,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "sanitize.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\sanitize.js",
               "RelativeDocumentMoniker": "frontend\\src\\lib\\sanitize.js",
@@ -548,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "format.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\format.js",
               "RelativeDocumentMoniker": "frontend\\src\\lib\\format.js",
@@ -560,7 +577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "constants.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\lib\\constants.js",
               "RelativeDocumentMoniker": "frontend\\src\\lib\\constants.js",
@@ -572,7 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "AuthContext.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\context\\AuthContext.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\context\\AuthContext.jsx",
@@ -584,7 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "SessionExpiredNotice.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\SessionExpiredNotice.test.jsx",
@@ -596,7 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "SessionExpiredNotice.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\SessionExpiredNotice.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\SessionExpiredNotice.jsx",
@@ -608,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "RoleRoute.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\RoleRoute.test.jsx",
@@ -620,7 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "RoleRoute.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RoleRoute.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\RoleRoute.jsx",
@@ -632,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "RegisterForm.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\RegisterForm.test.jsx",
@@ -644,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "RegisterForm.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\RegisterForm.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\RegisterForm.jsx",
@@ -656,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "Register.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Register.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\Register.jsx",
@@ -668,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "ProtectedRoute.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\ProtectedRoute.test.jsx",
@@ -680,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "ProtectedRoute.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ProtectedRoute.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\ProtectedRoute.jsx",
@@ -692,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "PasswordRules.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\PasswordRules.test.jsx",
@@ -704,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "PasswordRules.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\PasswordRules.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\PasswordRules.jsx",
@@ -716,7 +733,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "Navbar.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Navbar.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\Navbar.jsx",
@@ -728,7 +745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "LoginForm.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\LoginForm.test.jsx",
@@ -740,7 +757,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "LoginForm.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\LoginForm.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\LoginForm.jsx",
@@ -752,7 +769,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Login.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Login.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\Login.jsx",
@@ -764,7 +781,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "Layout.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\Layout.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\Layout.jsx",
@@ -776,7 +793,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "GuestRoute.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\GuestRoute.test.jsx",
@@ -788,7 +805,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "GuestRoute.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\GuestRoute.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\GuestRoute.jsx",
@@ -800,7 +817,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "guards.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\guards.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\guards.jsx",
@@ -812,7 +829,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "feedback.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\feedback.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\feedback.jsx",
@@ -824,7 +841,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "ErrorBoundary.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\ErrorBoundary.jsx",
@@ -836,7 +853,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "CategoryArt.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\CategoryArt.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\CategoryArt.jsx",
@@ -848,7 +865,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "gigs.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\gigs.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\gigs.js",
@@ -860,7 +877,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "client.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\client.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\client.js",
@@ -872,7 +889,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "bookings.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\bookings.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\bookings.js",
@@ -884,7 +901,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "auth.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\auth.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\auth.js",
@@ -896,7 +913,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "admin.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\admin.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\admin.js",
@@ -908,7 +925,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "db.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\db.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\mock\\db.js",
@@ -920,7 +937,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "adapter.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\api\\mock\\adapter.js",
               "RelativeDocumentMoniker": "frontend\\src\\api\\mock\\adapter.js",
@@ -932,7 +949,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\package.json",
               "RelativeDocumentMoniker": "backend\\package.json",
@@ -944,7 +961,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": ".env",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\.env",
               "RelativeDocumentMoniker": "frontend\\.env",
@@ -956,7 +973,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": ".env.example",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\.env.example",
               "RelativeDocumentMoniker": "backend\\.env.example",
@@ -968,7 +985,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "success-check.svg",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\assets\\states\\success-check.svg",
               "RelativeDocumentMoniker": "frontend\\src\\assets\\states\\success-check.svg",
@@ -980,7 +997,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "ErrorBoundary.test.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\components\\ErrorBoundary.test.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\components\\ErrorBoundary.test.jsx",
@@ -992,7 +1009,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "vitest.config.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vitest.config.js",
               "RelativeDocumentMoniker": "frontend\\vitest.config.js",
@@ -1004,7 +1021,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "vite.config.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\vite.config.js",
               "RelativeDocumentMoniker": "frontend\\vite.config.js",
@@ -1016,7 +1033,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\package.json",
               "RelativeDocumentMoniker": "frontend\\package.json",
@@ -1028,7 +1045,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\frontend\\src\\main.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\main.jsx",
@@ -1040,7 +1057,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "gig.js",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\src\\models\\gig.js",
               "RelativeDocumentMoniker": "backend\\src\\models\\gig.js",
@@ -1052,7 +1069,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 65,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -1064,7 +1081,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 66,
               "Title": "HustleHub-Auth.postman_collection.json",
               "DocumentMoniker": "C:\\Users\\conna\\source\\repos\\insy7314-2026-hustlehub-plus-part2-st10286905\\backend\\tests\\postman\\HustleHub-Auth.postman_collection.json",
               "RelativeDocumentMoniker": "backend\\tests\\postman\\HustleHub-Auth.postman_collection.json",
