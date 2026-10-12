@@ -16,6 +16,7 @@ const {
   authenticate,
   authorizeRoles,
 } = require("../middleware/auth.middleware");
+const { authRateLimiter } = require("../middleware/rate-limit.middleware");
 
 const {
   registerValidation,
@@ -99,7 +100,12 @@ const {
  *                 user:
  *                   $ref: '#/components/schemas/RegisteredUser'
  */
-router.post("/register", registerValidation, authController.register);
+router.post(
+  "/register",
+  registerValidation,
+  authRateLimiter,
+  authController.register,
+);
 
 /**
  * @swagger
@@ -155,7 +161,7 @@ router.post("/register", registerValidation, authController.register);
  *                       type: string
  *                       example: user
  */
-router.post("/login", loginValidation, authController.login);
+router.post("/login", loginValidation, authRateLimiter, authController.login);
 
 // Protected routes (require valid JWT)
 /**
