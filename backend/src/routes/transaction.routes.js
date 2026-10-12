@@ -37,7 +37,7 @@ const router = express.Router();
  *     security:
  *       - bearerAuth: []
  *     responses:
- *       200:
+ *       200:F
  *         description: Total income and the freelancer's transactions
  *         content:
  *           application/json:
