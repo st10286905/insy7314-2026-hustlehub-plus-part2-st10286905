@@ -15,7 +15,8 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "node --test tests/**/*.test.js",
-    "demo": "node scripts/demo.js"
+    "demo": "node scripts/demo.js",
+    "test:postman:bookings": "newman run tests/postman/HustleHub-Auth.postman_collection.json -e tests/postman/HustleHub-Local.postman_environment.json --folder \"Bookings\" --insecure"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "dotenv": "^17.4.2",
+    "newman": "^6.2.3",
     "nodemon": "^3.1.14"
   }
 }
