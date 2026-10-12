@@ -8,6 +8,35 @@ const router = express.Router();
 
 /**
  * @swagger
+ * /api/bookings/mine:
+ *   get:
+ *     summary: Get the authenticated freelancer's bookings
+ *     description: Returns all bookings where the authenticated user is the freelancer. Requires a valid JWT and the freelancer role.
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: The freelancer's bookings (empty array if none)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 bookings:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Booking'
+ */
+router.get(
+    "/mine",
+    authenticate,
+    authorizeRoles("freelancer"),
+    bookingController.mine
+)
+
+/**
+ * @swagger
  * /api/bookings:
  *   post:
  *     summary: Create a new booking
@@ -35,13 +64,6 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get(
-    "/mine",
-    authenticate,
-    authorizeRoles("freelancer"),
-    bookingController.mine
-)
-
 router.post(
     "/",
     authenticate,
